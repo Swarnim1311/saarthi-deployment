@@ -112,7 +112,7 @@
   border-color: rgba(158,214,131,.8);
   box-shadow: 0 0 0 3px rgba(158,214,131,.18);
 }
-.ca-locator select option { background: #101c14; color: #eef4ea; }
+/* option colours are defined once, globally, in saarthi-design.css */
 
 /* ---------- Standby / loading / error ---------- */
 

@@ -142,7 +142,7 @@ html.liq-on .liq-hero:hover::after{opacity:1}
   padding:10px 12px;font:600 13px var(--sans);outline:none;transition:border-color var(--t-fast),box-shadow var(--t-fast),background var(--t-fast);cursor:pointer}
 .app-shell select:hover,.app-shell input:hover{border-color:rgba(255,255,255,.28);background:rgba(14,26,18,.7)}
 .app-shell select:focus,.app-shell input:focus{border-color:#9ed683;box-shadow:0 0 0 3px rgba(158,214,131,.24)}
-.app-shell select option{background-color:#ffffff;color:#111111}
+/* option/optgroup colours are defined once, globally, in saarthi-design.css */
 .app-shell label{color:#a9bda2}
 .app-shell .farm-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);
   backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 12px 34px rgba(0,0,0,.30)}

@@ -179,6 +179,8 @@
 .map-filters select {
   min-height: 40px;
 }
+/* Native select option colours are defined once, globally, in
+   saarthi-design.css — do not re-declare them here. */
 
 /* ---------- 6. Heroes: calm editorial rhythm ---------- */
 .page-head {

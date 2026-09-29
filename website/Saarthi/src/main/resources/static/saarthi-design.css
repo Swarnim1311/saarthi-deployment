@@ -141,8 +141,46 @@ a{color:inherit}
   box-shadow: 0 0 0 3px rgba(158, 214, 131, .18), 0 0 22px rgba(158, 214, 131, .14);
   background-color: rgba(10, 20, 13, .66);
 }
-.app-shell select option, .app select option {
-  background: #101c14; color: #eef4ea; font-weight: 600;
+/* ---------- global native dropdown contract (every page) ----------
+   CLOSED: nothing below touches the closed select's surface, border,
+   typography, chevron or spacing — the dark glass look above is kept.
+   OPEN: the native popup is painted by the UA. Because the app shell
+   declares `body.app { color-scheme: dark }` (saarthi-shell.css) and the
+   closed select paints near-white text on a dark translucent surface,
+   the UA hands the popup a dark palette and the <option> text becomes
+   unreadable. Forcing the select (and therefore the popup) to the light
+   color scheme and giving every <option> an explicit light surface with
+   dark text fixes it once, for every native select in the app.
+   Native selects are kept as-is: browser behaviour, keyboard support and
+   every onchange/change handler (state -> district -> block cascade) are
+   untouched. This is the single source of truth — page/component sheets
+   must not re-declare option colours. */
+select {
+  color-scheme: light;
+}
+select option,
+select optgroup,
+option,
+optgroup {
+  background: #ffffff;
+  color: #111111;
+  color-scheme: light;
+  font-weight: 600;
+}
+select option:checked {
+  background: #e8f0e2;
+  color: #0b120d;
+}
+select option:disabled,
+select option[disabled] {
+  background: #f2f4ef;
+  color: var(--muted);
+}
+@media (hover: hover) {
+  select option:hover {
+    background: #dde9d5;
+    color: #0b120d;
+  }
 }
 .app-shell select:disabled, .app-shell input:disabled { opacity: .55; cursor: not-allowed; }
 .app-shell input[type="checkbox"] { width: 15px; height: 15px; accent-color: #9ed683; }
