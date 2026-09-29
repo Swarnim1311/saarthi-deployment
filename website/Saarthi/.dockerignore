@@ -1,0 +1,12 @@
+# Keep the container build context small. Only pom.xml + src/ are copied by
+# Dockerfile.vercel; everything below is build output, tooling, or secrets
+# that must never enter the image.
+target/
+.git/
+.idea/
+.vscode/
+*.log
+__pycache__/
+*.pyc
+.env
+.DS_Store
