@@ -1,0 +1,24 @@
+# CHIRPS-GEFS large rasters — 65 MB each, don't commit
+data/raw/forecast/*.tif
+data/raw/forecast/*.tif.tmp
+*.tif
+*.tif.tmp
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+*.tmp

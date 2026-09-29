@@ -1,0 +1,320 @@
+/* ============================================================
+   SAARTHI — Shared Application Shell (all pages)
+   One visual foundation: cinematic bg + floating dark shell +
+   hover-expand vertical rail + glass levels + dark content theme.
+   Page-specific layout stays in thin per-page <style> blocks.
+   ============================================================ */
+
+/* ---------- page background system ---------- */
+body.app{background:#0b120d;color:#f2f5ec;font-family:var(--sans);margin:0;min-height:100vh;color-scheme:dark;overflow-x:clip}
+@keyframes saSlowDrift{0%{transform:scale(1) translate3d(0,0,0)}50%{transform:scale(1.035) translate3d(-.6%,-.4%,0)}100%{transform:scale(1) translate3d(0,0,0)}}
+.app-bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+.app-bg img{width:100%;height:100%;object-fit:cover;object-position:center 42%;transition:opacity .6s var(--ease);animation:saSlowDrift 45s ease-in-out infinite alternate;will-change:transform}
+.app-bg img.fading{opacity:0}
+/* Issue 8: veil lightened at the top/middle so atmospheric background stays
+   visible; deeper only at the bottom where footer text sits. */
+.app-veil{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(8,14,10,.42) 0%,rgba(8,14,10,.16) 30%,rgba(8,14,10,.30) 65%,rgba(8,14,10,.58) 100%),
+  radial-gradient(120% 90% at 50% 10%,transparent 55%,rgba(5,10,7,.40) 100%)}
+.app-tint{position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(115deg,rgba(24,60,44,.12),transparent 45%,rgba(30,70,100,.08))}
+
+/* ---------- floating application shell ---------- */
+/* Issue 8: shell lightened so the environment reads through; readability
+   is carried by blur + borders + text shadows, not by opaque fills. */
+.app-shell{position:relative;z-index:2;width:min(1440px,calc(100% - 28px));margin:14px auto;min-height:calc(100vh - 28px);
+  border-radius:var(--r-2xl);border:1px solid rgba(255,255,255,.14);
+  background:linear-gradient(160deg,rgba(10,20,14,.46),rgba(10,20,14,.28));
+  backdrop-filter:blur(18px) saturate(1.35);-webkit-backdrop-filter:blur(18px) saturate(1.35);
+  box-shadow:0 30px 80px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.16);
+  display:flex;flex-direction:column;overflow:hidden;
+  animation:wxShellIn .8s var(--ease) both}
+@keyframes wxShellIn{from{opacity:0;transform:translateY(16px) scale(.995)}to{opacity:1;transform:none}}
+.app-body{flex:1;display:flex;gap:18px;padding:20px;align-items:flex-start;min-width:0}
+.app-content{flex:1;min-width:0;display:flex;flex-direction:column;gap:16px;animation:wxRise .7s var(--ease) .12s both}
+@keyframes wxRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.app-foot{display:flex;justify-content:space-between;gap:10px;padding:13px 24px;border-top:1px solid rgba(255,255,255,.09);
+  font:500 10.5px var(--mono);color:#8fa184;flex-wrap:wrap}
+.app-foot a{color:#c6d2c0;transition:color var(--t-fast)}
+.app-foot a:hover{color:#e9f2d8}
+
+/* ---------- vertical hover-expand rail (sole primary nav) ---------- */
+.rail{flex:0 0 auto;width:68px;align-self:stretch;position:sticky;top:20px;max-height:calc(100vh - 40px);
+  display:flex;flex-direction:column;align-items:stretch;gap:4px;padding:12px 10px;border-radius:var(--r-lg);z-index:6;
+  transition:width .32s var(--ease);overflow:hidden}
+.rail:hover,.rail:focus-within{width:216px}
+.rail-brand{display:flex;align-items:center;gap:12px;text-decoration:none;padding:6px 8px 14px;margin-bottom:6px;
+  border-bottom:1px solid rgba(255,255,255,.10);min-height:52px}
+.rail-brand img{height:30px;width:30px;min-width:30px;object-fit:contain;display:block;filter:drop-shadow(0 1px 6px rgba(0,0,0,.5));transition:transform var(--t-fast)}
+.rail-brand:hover img{transform:scale(1.08)}
+.rail-brand b{font-size:15px;letter-spacing:.04em;color:#fff;white-space:nowrap;opacity:0;transform:translateX(-8px);transition:opacity .25s var(--ease) .05s,transform .3s var(--ease)}
+.rail:hover .rail-brand b,.rail:focus-within .rail-brand b{opacity:1;transform:none}
+.rail-item{position:relative;display:flex;align-items:center;gap:13px;padding:0 0 0 13px;height:44px;border-radius:var(--r-md);
+  color:#c6d2c0;text-decoration:none;transition:background var(--t-fast),color var(--t-fast),transform var(--t-fast)}
+.rail-item:hover{background:rgba(255,255,255,.12);color:#fff;transform:translateX(2px)}
+.rail-item i{font-style:normal;font-size:18px;width:22px;min-width:22px;text-align:center;line-height:1;transition:transform var(--t-fast),color var(--t-fast)}
+.rail-item:hover i{transform:scale(1.12);color:#d8e87e}
+.rail-item span{font-size:13px;font-weight:700;white-space:nowrap;opacity:0;transform:translateX(-8px);
+  transition:opacity .22s var(--ease) .04s,transform .3s var(--ease)}
+.rail:hover .rail-item span,.rail:focus-within .rail-item span{opacity:1;transform:none}
+.rail-item.active{background:rgba(240,245,235,.14);color:#fff}
+.rail-item.active::before{content:"";position:absolute;left:-10px;top:10px;bottom:10px;width:3px;border-radius:99px;
+  background:linear-gradient(180deg,#d8e87e,#9ed683);box-shadow:0 0 10px rgba(216,232,126,.6)}
+.rail-item.active i{color:#e9f2d8}
+.rail-live{margin-top:auto;display:flex;align-items:center;gap:10px;padding:12px 8px 4px;border-top:1px solid rgba(255,255,255,.10);
+  font:700 9.5px var(--mono);letter-spacing:.1em;color:#9fb198;text-transform:uppercase}
+.rail-live em{font-style:normal;white-space:nowrap;opacity:0;transform:translateX(-8px);transition:opacity .25s var(--ease) .05s,transform .3s var(--ease)}
+.rail:hover .rail-live em,.rail:focus-within .rail-live em{opacity:1;transform:none}
+
+/* ---------- glass levels (Issue 4: premium frosted glass — lower fill,
+   stronger blur, subtle tint; the background stays visible through it) ---------- */
+/* LIGHT — nav, controls, chips: barely-there glass. */
+.glass-lite{background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);border-radius:var(--r-lg);
+  backdrop-filter:blur(14px) saturate(1.25);-webkit-backdrop-filter:blur(14px) saturate(1.25);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 8px 24px rgba(0,0,0,.22);
+  transition:transform var(--t-fast),border-color var(--t-fast),box-shadow var(--t-fast)}
+.glass-lite:hover{border-color:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 12px 28px rgba(0,0,0,.26)}
+/* MEDIUM — normal cards: translucent, imagery passes through. */
+.glass{background:linear-gradient(165deg,rgba(255,255,255,.075),rgba(255,255,255,.028));
+  border:1px solid rgba(255,255,255,.14);border-radius:var(--r-lg);
+  backdrop-filter:blur(20px) saturate(1.35);-webkit-backdrop-filter:blur(20px) saturate(1.35);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 12px 34px rgba(0,0,0,.28);
+  transition:transform var(--t-fast),border-color var(--t-fast),box-shadow var(--t-fast)}
+.glass:hover{border-color:rgba(255,255,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 16px 42px rgba(0,0,0,.34)}
+/* STRONG — large content panels where readability wins; still translucent. */
+.glass-strong{background:linear-gradient(165deg,rgba(12,22,15,.56),rgba(12,22,15,.42));
+  border:1px solid rgba(255,255,255,.13);border-radius:var(--r-lg);
+  backdrop-filter:blur(22px) saturate(1.3);-webkit-backdrop-filter:blur(22px) saturate(1.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 12px 34px rgba(0,0,0,.30);
+  transition:transform var(--t-fast),border-color var(--t-fast),box-shadow var(--t-fast)}
+.glass-strong:hover{border-color:rgba(255,255,255,.20);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 16px 42px rgba(0,0,0,.36)}
+/* Fallback: no backdrop-filter → deep translucent solid keeps text readable. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .app-shell{background:rgba(10,20,14,.94)}
+  .glass,.glass-lite,.liq{background:rgba(16,28,20,.92)}
+  .glass-strong{background:rgba(12,22,15,.96)}
+}
+/* Level 2 — liquid glass (progressive enhancement over .glass/.liq base).
+   backdrop-filter:url() samples the LIVE backdrop (the CodePen's html2canvas
+   snapshot idea, but real-time and GPU-composited) through an SVG
+   turbulence+displacement filter: genuine refraction + blur + rim.
+   PERF: the url() filter forces software rasterization in Chromium, so it
+   applies ONLY to .liq-hero elements (one hero card per page). Every other
+   .liq (rail, side cards) keeps the cheap static glass below. */
+.liq{position:relative;background:linear-gradient(155deg,rgba(255,255,255,.10),rgba(255,255,255,.035) 55%,rgba(255,255,255,.065));
+  border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);
+  backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(255,255,255,.06),0 18px 50px rgba(0,0,0,.32)}
+html.liq-on .liq-hero{backdrop-filter:url(#saLiq) blur(14px) saturate(1.3);-webkit-backdrop-filter:url(#saLiq) blur(14px) saturate(1.3)}
+html.liq-on .liq-hero.soft{backdrop-filter:url(#saLiqSoft) blur(12px) saturate(1.2);-webkit-backdrop-filter:url(#saLiqSoft) blur(12px) saturate(1.2)}
+.liq::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.14),transparent 32%)}
+.liq::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s var(--ease);
+  background:radial-gradient(220px circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.16),transparent 65%)}
+html.liq-on .liq-hero:hover::after{opacity:1}
+
+/* ---------- shared type ---------- */
+.eyebrow{display:flex;align-items:center;gap:10px;font:700 10.5px var(--mono);letter-spacing:.16em;color:#a9bda2;text-transform:uppercase;margin:0}
+.display{font-family:var(--serif);font-weight:600;line-height:1.05;letter-spacing:-.01em;color:#fff;margin:0;
+  text-shadow:0 2px 26px rgba(0,0,0,.45)}
+.display em{font-style:italic;color:#e9f2d8}
+.lede{color:#cfdacb;line-height:1.65;font-size:14px;max-width:64ch;margin:0}
+.kicker{font:700 10px var(--mono);letter-spacing:.12em;color:#9fb198;margin:0 0 8px;text-transform:uppercase}
+
+/* ---------- mobile nav: floating button + fullscreen overlay ---------- */
+.fab-menu{display:none;position:fixed;top:20px;right:20px;z-index:60;width:52px;height:52px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.2);cursor:pointer;font-size:22px;color:#fff;
+  background:rgba(20,34,24,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.rail-overlay{display:none;position:fixed;inset:0;z-index:59;padding:90px 26px 30px;
+  background:rgba(10,18,12,.78);backdrop-filter:blur(12px) saturate(1.2);-webkit-backdrop-filter:blur(12px) saturate(1.2)}
+.rail-overlay.open{display:block;animation:wxRise .35s var(--ease) both}
+.rail-overlay a{display:flex;align-items:center;gap:16px;color:#eef4ea;text-decoration:none;font-weight:800;
+  font-size:21px;padding:13px 10px;border-radius:14px;border-bottom:1px solid rgba(255,255,255,.07)}
+.rail-overlay a i{font-style:normal;width:30px;text-align:center;color:#9ed683}
+.rail-overlay a.active{background:rgba(255,255,255,.10)}
+.rail-overlay .ov-live{margin-top:22px;font:700 10.5px var(--mono);letter-spacing:.14em;color:#9fb198}
+
+/* ---------- dark-theme overrides for dynamic portal components ---------- */
+.app-shell h1,.app-shell h2,.app-shell h3,.app-shell h4{color:#f2f5ec}
+.app-shell select,.app-shell input[type="date"],.app-shell input[type="text"]{
+  background:rgba(10,20,13,.58);color:#f2f5ec;border:1px solid rgba(255,255,255,.16);border-radius:var(--r-sm);
+  padding:10px 12px;font:600 13px var(--sans);outline:none;transition:border-color var(--t-fast),box-shadow var(--t-fast),background var(--t-fast);cursor:pointer}
+.app-shell select:hover,.app-shell input:hover{border-color:rgba(255,255,255,.28);background:rgba(14,26,18,.7)}
+.app-shell select:focus,.app-shell input:focus{border-color:#9ed683;box-shadow:0 0 0 3px rgba(158,214,131,.24)}
+.app-shell select option{color:#1d241f}
+.app-shell label{color:#a9bda2}
+.app-shell .farm-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--r-lg);
+  backdrop-filter:blur(12px);box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 12px 34px rgba(0,0,0,.30)}
+.app-shell .farm-form h3{border-bottom:1px solid rgba(255,255,255,.10)}
+.app-shell .pillar-card,.app-shell .soil-gauge-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:var(--r-md)}
+.app-shell .pillar-card span{color:#9fb198}
+.app-shell .pillar-card strong{color:#fff}
+.app-shell .pillar-card small{color:#8fa184}
+.app-shell .share-action-card{background:rgba(216,232,126,.07);border:1px dashed rgba(216,232,126,.35);border-radius:var(--r-md)}
+.app-shell .share-action-card h3{color:#e9f2d8}
+.app-shell .share-action-card p{color:#a9bda2}
+.app-shell .timeline-card-wrap{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:var(--r-md)}
+.app-shell .matrix-table-wrap{background:rgba(8,16,11,.5);border:1px solid rgba(255,255,255,.10)}
+.app-shell .matrix-table{color:#dfe8d8}
+.app-shell .matrix-table th{background:rgba(255,255,255,.06);color:#9fb198;border-bottom:1px solid rgba(255,255,255,.10)}
+.app-shell .matrix-table td{border-bottom:1px solid rgba(255,255,255,.07);color:#dfe8d8}
+.app-shell .matrix-table tr:nth-child(even){background:rgba(255,255,255,.025)}
+.app-shell .matrix-table tr:hover{background:rgba(255,255,255,.06)}
+.app-shell .plain-box{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10)}
+.app-shell .plain-kicker{background:rgba(216,232,126,.14);border:1px solid rgba(216,232,126,.35);color:#dfe8cf}
+.app-shell .plain-text{color:#c6d2c0}
+.app-shell .section-note{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.16);color:#a9bda2}
+.app-shell .map-controls-bar{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px}
+.app-shell .map-legend-pills{color:#9fb198}
+.app-shell .api-loading-note{display:block;width:100%;box-sizing:border-box;background:rgba(255,255,255,.08);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.16);border-radius:var(--r-md);padding:14px 18px;color:#e2ebd8;box-shadow:0 8px 24px rgba(0,0,0,.25);margin:0 0 16px;animation:wxRise .35s var(--ease) both}
+.app-shell .api-loading-note.api-standby-note{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12);box-shadow:none}
+.app-shell .api-loading-header{display:flex;align-items:center;gap:12px;font-size:13px;font-weight:600;letter-spacing:-.01em;color:#f0f4ea}
+.app-shell .intel-summary,.app-shell .intel-assumptions{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:16px}
+.app-shell .intel-location{color:#fff}
+.app-shell .intel-meta{color:#9fb198}
+.app-shell .intel-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:16px;color:#c6d2c0}
+.app-shell .intel-card h4{color:#fff}
+.app-shell .intel-card .intel-label{color:#9fb198}
+.app-shell .ca-standby,.app-shell .ca-loading{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:16px;color:#c6d2c0}
+.app-shell .ca-standby-title{color:#fff}
+.app-shell .ca-standby-sub{color:#9fb198}
+.app-shell .ca-section-note{color:#9fb198}
+.app-shell .ca-location{color:#fff}
+.app-shell .ca-meta{color:#9fb198}
+.app-shell .ca-fp,.app-shell .ca-cl,.app-shell .ca-card{background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.11);border-radius:14px}
+.app-shell .ca-fp-label{color:#9fb198}
+.app-shell .ca-fp-value{color:#fff}
+.app-shell .ca-cl h5{color:#fff}
+.app-shell .ca-cl p{color:#9fb198}
+.app-shell .ca-crop-name{color:#fff}
+.app-shell .ca-env-name{color:#9fb198}
+.app-shell .ca-env-val{color:#fff}
+.app-shell .ca-band-title{color:#fff}
+.app-shell .ca-missing{color:#a9bda2}
+.app-shell .ca-error{background:rgba(242,114,86,.12);border:1px solid rgba(242,114,86,.4);color:#ffb3a0;border-radius:14px}
+.app-shell .gauge-info h3{color:#fff}
+.app-shell .gauge-info p{color:#9fb198}
+.app-shell .gauge-inner-val{color:#e9f2d8}
+.app-shell .decision-meta-row{color:#9fb198}
+.app-shell .timeline-header-bar h2{color:#fff}
+
+/* Forecast chart (SVG uses presentation attributes — CSS wins over them) */
+.app-shell #recharts-forecast-canvas svg text{fill:#c6d2c0}
+.app-shell #recharts-forecast-canvas svg line{stroke:rgba(255,255,255,.14)}
+.app-shell .chart-legend-row{color:#9fb198}
+.app-shell .chart-legend-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1)}
+
+/* CropAtlas + Intelligence variable remap for the dark shell */
+.app-shell .ca-page,.app-shell .ca-wrap{--ca-ink:#eef4ea;--ca-deep:#e9f2d8;--ca-muted:#9fb198;
+  --ca-green:#9ed683;--ca-lime:#d8e87e;--ca-paper:transparent;--ca-cream:rgba(255,255,255,.045);
+  --ca-line:rgba(255,255,255,.11);--ca-line-soft:rgba(255,255,255,.07);
+  --ca-clay:#c98a5e;--ca-silt:#e0c25e;--ca-sand:#e2cda1}
+/* Hardcoded light panels → dark translucent (fingerprint, climate, cards,
+   standby, notices, provenance, global, methodology, image wells). */
+.app-shell .ca-standby{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.14)}
+.app-shell .ca-cl{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.11)}
+.app-shell .ca-card{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.11)}
+.app-shell .ca-imgwrap{background:rgba(255,255,255,.05)}
+.app-shell .ca-missing{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.14)}
+.app-shell .ca-unavail{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.14);color:#9fb198}
+.app-shell .ca-soilbar{background:rgba(255,255,255,.12)}
+.app-shell .ca-fp-value.is-empty,.app-shell .ca-cl-val.is-empty,.app-shell .ca-empty{color:#9fb198}
+.app-shell .ca-method-block{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.11)}
+.app-shell .ca-method-block li{color:#a9bda2}
+.app-shell .ca-global-panel{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.11)}
+/* Portal tables, notes, controls → dark translucent (base rules are legacy light). */
+.app-shell .map-controls-bar{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.12)}
+.app-shell .map-filters select{background:rgba(10,20,13,.55);color:#f2f5ec;border-color:rgba(255,255,255,.16)}
+.app-shell .timeline-card-wrap{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.11)}
+.app-shell .recharts-forecast-container{background:rgba(8,16,11,.40);border-color:rgba(255,255,255,.10);color:#dfe8d8}
+.app-shell .chart-legend-row{color:#9fb198}
+.app-shell .chart-legend-badge{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.10);color:#c6d2c0}
+.app-shell .matrix-table-wrap{background:rgba(8,16,11,.32);border-color:rgba(255,255,255,.10)}
+.app-shell .matrix-table{color:#dfe8d8}
+.app-shell .matrix-table th{background:rgba(255,255,255,.06);color:#9fb198;border-color:rgba(255,255,255,.10)}
+.app-shell .matrix-table td{border-color:rgba(255,255,255,.07);color:#dfe8d8}
+.app-shell .matrix-table tr:nth-child(even){background:rgba(255,255,255,.025)}
+.app-shell .matrix-table tr:hover{background:rgba(255,255,255,.06)}
+.app-shell .plain-box{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.10)}
+.app-shell .plain-kicker{background:rgba(216,232,126,.14);border-color:rgba(216,232,126,.35);color:#dfe8cf}
+.app-shell .plain-text{color:#c6d2c0}
+.app-shell .section-note{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.14);color:#a9bda2}
+.app-shell .timeline-horizon-buttons{background:rgba(255,255,255,.06);padding:3px;border-radius:var(--r-pill)}
+.app-shell .timeline-horizon-buttons button{color:#a9bda2;transition:color var(--t-fast),background var(--t-fast);border-radius:var(--r-pill);padding:6px 12px;font-size:12px;cursor:pointer}
+.app-shell .timeline-horizon-buttons button:hover{color:#fff;background:rgba(255,255,255,.10)}
+.app-shell .timeline-horizon-buttons button.active{background:rgba(216,232,126,.22);color:#e9f2d8;box-shadow:0 0 12px rgba(216,232,126,.25)}
+.app-shell .farm-form{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.12)}
+.app-shell .farm-form h3{border-color:rgba(255,255,255,.10)}
+.app-shell .gauge-info p{color:#9fb198}
+.app-shell .intel-select-bar{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.12)}
+.app-shell .intel-summary{background:rgba(255,255,255,.05);border-left-color:#9ed683}
+.app-shell .intel-assumptions{background:rgba(255,255,255,.045);border-color:rgba(255,255,255,.11)}
+.app-shell .intel-assumptions li{color:#a9bda2}
+.app-shell .intel-card{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.11)}
+.app-shell .intel-card h4{color:#fff}
+.app-shell .intel-card p{color:#c6d2c0}
+.app-shell .intel-card ul{color:#a9bda2}
+.app-shell .intel-sub,.app-shell .intel-meta,.app-shell .intel-card p,
+.app-shell .intel-card ul,.app-shell .intel-assumptions li,
+.app-shell .intel-card .intel-note{color:#a9bda2}
+.app-shell .intel-card h4,.app-shell .intel-section-title{color:#fff}
+.app-shell .intel-card .intel-label{color:#8fa184}
+.app-shell .ca-why-toggle{color:#cfe0bd}
+
+/* Policy cards + tech accordion on dark */
+.app-shell .timeline-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.11);border-radius:16px}
+.app-shell .sa-tech{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.12)}
+.app-shell .sa-tech summary{color:#fff}
+.app-shell .sa-tech .sa-tech-body{color:#a9bda2}
+
+/* Status badges on dark */
+.app-shell .sa-badge.low{background:rgba(158,214,131,.16);color:#b9e6a8;border-color:rgba(158,214,131,.4)}
+.app-shell .sa-badge.mod{background:rgba(240,195,94,.14);color:#f0d48a;border-color:rgba(240,195,94,.4)}
+.app-shell .sa-badge.high{background:rgba(242,114,86,.14);color:#ff9b86;border-color:rgba(242,114,86,.45)}
+.app-shell .sa-badge.na{background:rgba(255,255,255,.07);color:#9fb198;border-color:rgba(255,255,255,.16)}
+/* Loading spinner stays legible on dark glass. */
+.app-shell .sa-spinner{border-color:rgba(255,255,255,.22);border-top-color:#d8e87e}
+
+/* ---------- responsive ---------- */
+/* Issue 1: Leaflet popups on the dark shell — compact, readable, kept inside
+   the map viewport (JS also passes autoPan padding + keepInView). */
+.app-shell .leaflet-popup-content-wrapper{background:rgba(14,24,17,.94);color:#eef4ea;
+  border:1px solid rgba(255,255,255,.16);border-radius:var(--r-md);
+  box-shadow:0 14px 36px rgba(0,0,0,.5)}
+.app-shell .leaflet-popup-content{margin:12px 14px;line-height:1.55;font-family:var(--sans);font-size:12px}
+.app-shell .leaflet-popup-tip{background:rgba(14,24,17,.94);border:1px solid rgba(255,255,255,.16)}
+.app-shell .leaflet-popup-close-button{color:#9fb198 !important;font-size:15px !important;padding:6px 8px 0 0 !important}
+.app-shell .leaflet-container{font-family:var(--sans);border-radius:var(--r-lg)}
+/* Issue 1: compact selected-block card — decision-first, no decorative image. */
+.map-side{display:flex;flex-direction:column;gap:12px;min-width:0}
+.sel-block{padding:18px 20px}
+.sel-block .sel-eyebrow{font:700 9.5px var(--mono);letter-spacing:.14em;color:#9fb198;text-transform:uppercase;margin:0 0 6px}
+.sel-block h3{margin:0;font-size:clamp(19px,1.6vw,24px);letter-spacing:-.01em;color:#fff}
+.sel-block .sel-sub{margin:2px 0 0;font-size:12.5px;color:#9fb198}
+.sel-risk{margin-top:14px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sel-risk .sa-badge{font-size:12px;padding:8px 14px}
+.sel-risk-note{margin:8px 0 0;font-size:13px;color:#dfe8d8;line-height:1.55}
+.sel-rains{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.sel-rains div{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:var(--r-md);padding:10px 12px}
+.sel-rains span{display:block;font:700 9px var(--mono);letter-spacing:.12em;color:#9fb198;text-transform:uppercase}
+.sel-rains strong{display:block;font-size:17px;color:#fff;margin-top:3px}
+.sel-meta{margin:12px 0 0;padding-top:12px;border-top:1px solid rgba(255,255,255,.10);
+  font:500 11px var(--mono);color:#8fa184;line-height:1.7}
+.sel-meta b{color:#c6d2c0;font-weight:700}
+.sel-why{margin:12px 0 0;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.10);
+  border-radius:var(--r-md);padding:10px 12px;font-size:11.5px;color:#a9bda2;line-height:1.6}
+.sel-why b{display:block;font:700 9.5px var(--mono);letter-spacing:.12em;color:#9fb198;text-transform:uppercase;margin-bottom:4px}
+.risk-legend{padding:14px 16px;font-size:11.5px;color:#a9bda2;line-height:1.6}
+.risk-legend b{display:block;font:700 9.5px var(--mono);letter-spacing:.12em;color:#9fb198;text-transform:uppercase;margin-bottom:6px}
+@media(max-width:1180px){.sel-rains{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:560px){.sel-rains{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:1180px){.rail{display:none}.fab-menu{display:grid;place-items:center}}
+@media(max-width:960px){.app-body{padding:14px}.app-shell{width:calc(100% - 16px);margin:8px auto;border-radius:22px}}
+@media (prefers-reduced-motion:reduce){
+  .app-bg img{animation:none !important}
+  .app-shell,.app-content,.rail,.rail-item span,.rail-brand b,.rail-live em,.liq::after{animation:none !important;transition-duration:.001s !important}
+  html.liq-on .liq-hero,html.liq-on .liq-hero.soft{backdrop-filter:blur(12px) saturate(1.2);-webkit-backdrop-filter:blur(12px) saturate(1.2)}
+  .sa-loading-bar i,.sa-loading-bar .sa-loading-fill{animation:saPulse 2.4s ease-in-out infinite !important;left:0 !important;width:100% !important;opacity:.85}
+  .sa-spinner{animation-duration:2s !important}
+}

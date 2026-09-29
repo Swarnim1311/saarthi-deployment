@@ -1,0 +1,7 @@
+forecast_date,download_status,extraction_status,number_of_records,error_message
+2010-07-15,success,success,6,
+2019-09-04,success,success,6,
+2025-08-01,success,success,6,
+2009-12-31,success,success,6,
+2010-01-01,success,success,6,
+2010-01-02,success,success,6,

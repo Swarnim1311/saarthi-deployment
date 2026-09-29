@@ -1,0 +1,240 @@
+{
+  "arms": {
+    "JJAS/W3/FLAT": {
+      "n": 630,
+      "brier": 0.6667,
+      "logloss": 1.0986,
+      "accuracy": 0.3317
+    },
+    "JJAS/W3/SEASONAL": {
+      "n": 630,
+      "brier": 0.6703,
+      "logloss": 1.105,
+      "accuracy": 0.3571,
+      "brier_skill_vs_FLAT": -0.0054
+    },
+    "JJAS/W3/PERSIST_LR": {
+      "n": 630,
+      "brier": 0.6793,
+      "logloss": 1.1201,
+      "accuracy": 0.346,
+      "brier_skill_vs_FLAT": -0.0189,
+      "brier_skill_vs_SEASONAL": -0.0134
+    },
+    "JJAS/W4/FLAT": {
+      "n": 630,
+      "brier": 0.6667,
+      "logloss": 1.0986,
+      "accuracy": 0.3333
+    },
+    "JJAS/W4/SEASONAL": {
+      "n": 630,
+      "brier": 0.6666,
+      "logloss": 1.0984,
+      "accuracy": 0.354,
+      "brier_skill_vs_FLAT": 0.0001
+    },
+    "JJAS/W4/PERSIST_LR": {
+      "n": 630,
+      "brier": 0.6751,
+      "logloss": 1.1129,
+      "accuracy": 0.3349,
+      "brier_skill_vs_FLAT": -0.0126,
+      "brier_skill_vs_SEASONAL": -0.0128
+    },
+    "FULLYR/W3/FLAT": {
+      "n": 1854,
+      "brier": 0.6667,
+      "logloss": 1.0986,
+      "accuracy": 0.4056
+    },
+    "FULLYR/W3/SEASONAL": {
+      "n": 1854,
+      "brier": 0.6583,
+      "logloss": 1.0853,
+      "accuracy": 0.4035,
+      "brier_skill_vs_FLAT": 0.0126
+    },
+    "FULLYR/W3/PERSIST_LR": {
+      "n": 1854,
+      "brier": 0.6694,
+      "logloss": 1.1045,
+      "accuracy": 0.3905,
+      "brier_skill_vs_FLAT": -0.004,
+      "brier_skill_vs_SEASONAL": -0.0169
+    },
+    "FULLYR/W4/FLAT": {
+      "n": 1854,
+      "brier": 0.6667,
+      "logloss": 1.0986,
+      "accuracy": 0.4083
+    },
+    "FULLYR/W4/SEASONAL": {
+      "n": 1854,
+      "brier": 0.6551,
+      "logloss": 1.0798,
+      "accuracy": 0.4067,
+      "brier_skill_vs_FLAT": 0.0174
+    },
+    "FULLYR/W4/PERSIST_LR": {
+      "n": 1854,
+      "brier": 0.6585,
+      "logloss": 1.0882,
+      "accuracy": 0.4169,
+      "brier_skill_vs_FLAT": 0.0123,
+      "brier_skill_vs_SEASONAL": -0.0052
+    }
+  },
+  "block": {
+    "JJAS/W3/Dhuri": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6651,
+      "PERSIST_LR": 0.6875
+    },
+    "JJAS/W3/Lehra": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6665,
+      "PERSIST_LR": 0.6689
+    },
+    "JJAS/W3/Malerkotla": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6828,
+      "PERSIST_LR": 0.6874
+    },
+    "JJAS/W3/Moonak": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6747,
+      "PERSIST_LR": 0.6798
+    },
+    "JJAS/W3/Sangrur": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6731,
+      "PERSIST_LR": 0.68
+    },
+    "JJAS/W3/Sunam": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6598,
+      "PERSIST_LR": 0.6721
+    },
+    "JJAS/W4/Dhuri": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6552,
+      "PERSIST_LR": 0.6859
+    },
+    "JJAS/W4/Lehra": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6642,
+      "PERSIST_LR": 0.6606
+    },
+    "JJAS/W4/Malerkotla": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6868,
+      "PERSIST_LR": 0.6917
+    },
+    "JJAS/W4/Moonak": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6621,
+      "PERSIST_LR": 0.6676
+    },
+    "JJAS/W4/Sangrur": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6686,
+      "PERSIST_LR": 0.6756
+    },
+    "JJAS/W4/Sunam": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6626,
+      "PERSIST_LR": 0.6689
+    },
+    "FULLYR/W3/Dhuri": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.656,
+      "PERSIST_LR": 0.6742
+    },
+    "FULLYR/W3/Lehra": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6547,
+      "PERSIST_LR": 0.6621
+    },
+    "FULLYR/W3/Malerkotla": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6683,
+      "PERSIST_LR": 0.6769
+    },
+    "FULLYR/W3/Moonak": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6494,
+      "PERSIST_LR": 0.6635
+    },
+    "FULLYR/W3/Sangrur": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6629,
+      "PERSIST_LR": 0.6727
+    },
+    "FULLYR/W3/Sunam": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6585,
+      "PERSIST_LR": 0.6673
+    },
+    "FULLYR/W4/Dhuri": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6523,
+      "PERSIST_LR": 0.6651
+    },
+    "FULLYR/W4/Lehra": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6498,
+      "PERSIST_LR": 0.6513
+    },
+    "FULLYR/W4/Malerkotla": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6671,
+      "PERSIST_LR": 0.668
+    },
+    "FULLYR/W4/Moonak": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6452,
+      "PERSIST_LR": 0.6478
+    },
+    "FULLYR/W4/Sangrur": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6589,
+      "PERSIST_LR": 0.6606
+    },
+    "FULLYR/W4/Sunam": {
+      "FLAT": 0.6667,
+      "SEASONAL": 0.6574,
+      "PERSIST_LR": 0.6583
+    }
+  },
+  "reliability": {},
+  "n_issues": {
+    "JJAS": 105,
+    "FULLYR": 309
+  },
+  "skill_ci95_issue_clustered": {
+    "JJAS/W3/SEASONAL_vs_FLAT": {
+      "lo": -0.0543,
+      "hi": 0.045
+    },
+    "JJAS/W3/PERSIST_LR_vs_FLAT": {
+      "lo": -0.045,
+      "hi": 0.0081
+    },
+    "JJAS/W4/SEASONAL_vs_FLAT": {
+      "lo": -0.048,
+      "hi": 0.0511
+    },
+    "JJAS/W4/PERSIST_LR_vs_FLAT": {
+      "lo": -0.0376,
+      "hi": 0.0125
+    }
+  },
+  "method": {
+    "thresholds": "train-frozen block_doy_normals_train_2010_2019.csv (never deployment)",
+    "fit": "seasonal table: TRAIN daily 2010-2019 per (block,issue-DOY), Laplace+0.5; PERSIST LR: fixed C=1.0 lbfgs on [log1p(f7),log1p(f14)] ending D-3, TRAIN JJAS daily pooled, per window; no tuning on 2020-2025",
+    "test": "weekly JJAS/FULLYR 2020-2025, last issue 2025-12-01; W3=D+17..23, W4=D+24..30; labels BELOW x<=t33, ABOVE x>t66 else NEAR",
+    "excluded": "MJO, ENSO, IOD, SoilGrids, GEFS, ECMWF/Open-Meteo, live-only data",
+    "uncertainty": "issue-clustered bootstrap, 2000 reps, seed 7"
+  }
+}

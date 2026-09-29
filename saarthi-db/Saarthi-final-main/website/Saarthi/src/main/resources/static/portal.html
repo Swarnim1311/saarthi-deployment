@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saarthi Platform — Hyperlocal Climate & Agronomy Intelligence</title>
+  <meta name="description" content="SAARTHI decision platform: live ECMWF IFS outlook per selected block (D+1..D+16) plus a 17-30 day climatological outlook." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <!-- Leaflet GIS Map Stylesheet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/portal.css">
+</head>
+<body>
+<div class="page-shell portal-shell">
+  <!-- Portal Navigation Header with Active Route Indicators & Bilingual Switcher -->
+  <nav class="portal-nav">
+    <a class="brand" href="/"><img class="brand-logo" src="/static/assets/logo.png" alt="Saarthi" height="32">Saarthi</a>
+    
+    <div class="nav-tabs">
+      <a href="/farmer" id="nav-farmer" data-i18n="nav_farmer">Farmer Portal</a>
+      <a href="/map" id="nav-map" data-i18n="nav_map">Risk Map</a>
+      <a href="/timeline" id="nav-timeline" data-i18n="nav_timeline">Forecast</a>
+    </div>
+
+    <div class="portal-nav-group">
+      <span class="live-pill"><i class="live-dot"></i> <span data-i18n="live_monitoring">Live Monitoring</span></span>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="hi">हिन्दी</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Platform Shell -->
+  <main class="portal-main">
+    <header class="portal-header">
+      <p class="eyebrow"><i class="live-dot"></i> <span data-i18n="district_name">Sangrur District, Punjab · 6 Blocks · Live ECMWF IFS Outlook</span></p>
+      <h1 id="page-title">Farmer <em>advisory.</em></h1>
+      <p id="page-intro" class="portal-intro"></p>
+    </header>
+
+    <!-- 1. FARMER ADVISORY PORTAL (/farmer) -->
+    <section id="farmer" class="portal-page" style="display: none;">
+      <div class="portal-grid">
+        <!-- Farm Profile Form -->
+        <aside class="farm-form">
+          <h3 data-i18n="farm_profile">Farm Profile</h3>
+          
+          <label>
+            <span data-i18n="geo_state">State</span>
+            <select id="form-state"></select>
+          </label>
+
+          <label>
+            <span data-i18n="geo_district">District</span>
+            <select id="form-district"></select>
+          </label>
+
+          <label>
+            <span data-i18n="lbl_block">Block</span>
+            <select id="form-block"></select>
+          </label>
+          <p id="form-location-note" style="font-size:12px;opacity:.8;margin:-4px 0 8px;"></p>
+
+          <label>
+            <span data-i18n="lbl_crop">Crop Variety</span>
+            <select id="form-crop">
+              <option value="Paddy (PR-126)" selected>Paddy (PR-126 - Short Duration)</option>
+              <option value="Paddy (Pusa-44)">Paddy (Pusa-44 - Long Duration)</option>
+              <option value="Basmati">Basmati (PB-1121 / PB-1509)</option>
+              <option value="Cotton">Cotton (Bt Hybrid)</option>
+              <option value="Maize">Maize (PMH-1)</option>
+              <option value="Wheat">Wheat (HD-2967 / PBW-725)</option>
+              <option value="Sugarcane">Sugarcane (Co-0238)</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="lbl_soil">Soil Type</span>
+            <select id="form-soil">
+              <option value="Clay Loam" selected>Clay Loam (High Retention)</option>
+              <option value="Alluvial">Alluvial (Balanced Loam)</option>
+              <option value="Sandy Loam">Sandy Loam (Rapid Drain)</option>
+              <option value="Silt Loam">Silt Loam (Moderate Retention)</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="lbl_sowing_date">Planned Sowing Date</span>
+            <input type="date" id="form-date" value="2026-09-06">
+          </label>
+
+          <label>
+            <span data-i18n="lbl_irrigation">Irrigation Source</span>
+            <select id="form-irrigation">
+              <option value="Canals" selected>Canals (Sirhind/Bhakhra Network)</option>
+              <option value="Tubewells">Tubewells (Deep Groundwater Pump)</option>
+              <option value="Rainfed">Rainfed (Pure Monsoon Dependent)</option>
+            </select>
+          </label>
+
+          <button class="primary-button" id="form-refresh-btn">
+            <span data-i18n="btn_update_advisory">Compute Advisory</span> <span>→</span>
+          </button>
+        </aside>
+
+        <!-- Decision Board -->
+        <div class="decision-board">
+          <!-- Sowing Decision Hero Card -->
+          <div class="decision-hero-card">
+            <div class="decision-badge-strip">
+              <span class="decision-tag sow" id="decision-tag">SAFE TO SOW</span>
+              <span class="window-badge"><span data-i18n="lbl_recommended_window">Recommended Window:</span> <strong id="decision-window">Sep 06 – Sep 12</strong></span>
+            </div>
+
+            <h2 id="decision-headline">Advisory for your selected block.</h2>
+            <p class="decision-rationale" id="decision-explanation">Select State → District → Block, then Compute Advisory to load the live outlook.</p>
+
+            <div class="decision-meta-row">
+              <div><span>Live Weather:</span> <strong id="decision-prob">Loading…</strong></div>
+              <div><span data-i18n="lbl_model_confidence">Model Source:</span> <strong id="decision-confidence">ECMWF IFS (live)</strong></div>
+              <div><span>Location:</span> <strong id="decision-location">Sunam · Sangrur, Punjab</strong></div>
+            </div>
+          </div>
+
+          <!-- 4-Pillar Risk Breakdown Grid -->
+          <div class="pillars-grid">
+            <div class="pillar-card">
+              <span data-i18n="pillar_weather">Weather Watch</span>
+              <strong id="pillar-weather-val">—</strong>
+              <small>Live ECMWF IFS outlook</small>
+            </div>
+            <div class="pillar-card">
+              <span data-i18n="pillar_soil">Surface Soil Moisture</span>
+              <strong id="pillar-soil-val">—</strong>
+              <small>Forecast 0–7 cm (not a measurement)</small>
+            </div>
+            <div class="pillar-card">
+              <span data-i18n="pillar_crop">Crop Water Need</span>
+              <strong id="pillar-crop-val">—</strong>
+              <small>PAU/ICAR crop reference</small>
+            </div>
+            <div class="pillar-card">
+              <span data-i18n="pillar_dry_spell">Dry-Spell Watch</span>
+              <strong id="pillar-dry-val">—</strong>
+              <small>Worded watch — no fabricated %</small>
+            </div>
+          </div>
+
+          <!-- Soil Gauge Dial & WhatsApp Share Row -->
+          <div class="gauge-actions-row">
+            <!-- Root-Zone Soil Moisture Gauge Dial -->
+            <div class="soil-gauge-card">
+              <div class="gauge-dial-wrap">
+                <div class="gauge-dial" id="root-gauge-dial">
+                  <span class="gauge-inner-val" id="gauge-percent">38%</span>
+                </div>
+              </div>
+              <div class="gauge-info">
+                <p class="card-kicker" data-i18n="lbl_root_moisture">Forecast Surface Soil Moisture</p>
+                <h3 id="gauge-status">Awaiting block selection…</h3>
+                <p>ECMWF IFS 0–7 cm forecast, block mean. Model forecast — not a field measurement.</p>
+              </div>
+            </div>
+
+            <!-- Advisory actions (deterministic, cited) + sources -->
+            <div class="share-action-card" style="grid-column: 1 / -1;">
+              <div>
+                <p class="card-kicker">Advisory Actions</p>
+                <div id="advisory-actions" style="font-size: 13.5px; line-height: 1.55;">Advisory actions will appear here once the live outlook loads.</div>
+              </div>
+              <div style="margin-top: 14px;">
+                <p class="card-kicker">Sources</p>
+                <div id="advisory-sources" style="font-size: 12px; opacity: 0.85;">Sources will be listed here.</div>
+              </div>
+            </div>
+
+            <!-- WhatsApp Kisan Group Sharing Action Card -->
+            <div class="share-action-card">
+              <div>
+                <p class="card-kicker">Kisan Community Outreach</p>
+                <h3 data-i18n="btn_copy_whatsapp">Share WhatsApp Advisory</h3>
+                <p>One-click formatted advisory message ready to forward to local Kisan WhatsApp & Telegram groups.</p>
+              </div>
+              <div class="share-buttons-group">
+                <button class="share-kisan-btn" id="share-whatsapp-btn">
+                  <span>📱</span> <span id="share-btn-text" data-i18n="btn_copy_whatsapp">Copy WhatsApp Text</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. LIVE RISK MAP (/map): State → District → Block, ECMWF IFS -->
+    <section id="map" class="portal-page" style="display: none;">
+      <div class="map-layout-container">
+        <!-- P0 forecast-freshness banner (text set by portal.js; stale forecasts must never look fresh) -->
+        <p id="map-freshness-banner" data-freshness-banner="true" style="margin:0 0 12px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:8px;background:#eef1ea;color:#657566;">Forecast freshness: loading…</p>
+        <!-- Map Controls: dynamic geography cascade (geo-select.js, never hardcoded) -->
+        <div class="map-controls-bar">
+          <div class="map-filters">
+            <label style="margin: 0; font-weight: 700; font-size: 11px;">
+              <span data-i18n="geo_state">State</span>
+              <select id="map-state"></select>
+            </label>
+            <label style="margin: 0; font-weight: 700; font-size: 11px;">
+              <span data-i18n="geo_district">District</span>
+              <select id="map-district"></select>
+            </label>
+            <label style="margin: 0; font-weight: 700; font-size: 11px;">
+              <span data-i18n="lbl_block">Block</span>
+              <select id="map-block"></select>
+            </label>
+            <label style="margin: 0; font-weight: 700; font-size: 11px; align-self: end;">
+              <input type="checkbox" id="map-show-boundary" checked style="width:auto;">
+              <span data-i18n="map_show_boundary">Show block boundary</span>
+            </label>
+          </div>
+
+          <div class="map-legend-pills">
+            <span class="legend-pill low"><i></i> <span data-i18n="map_legend_poly">Selected block</span></span>
+            <span class="legend-pill mod"><i style="background:#427c9c;"></i> <span data-i18n="map_legend_marker">Live forecast marker</span></span>
+          </div>
+        </div>
+
+        <!-- Current block outlook card (populated by portal.js from live API values) -->
+        <div id="map-forecast-card" class="matrix-table-wrap" style="margin-bottom:12px;">
+          <p style="font-size: 12.5px; margin: 0;" data-i18n="map_standby">Select a state, district and block to view the live outlook.</p>
+        </div>
+
+        <!-- Interactive Leaflet Map Canvas -->
+        <div id="leaflet-map-canvas"></div>
+      </div>
+    </section>
+
+    <!-- 3. 7-DAY FORECAST OUTLOOK (/timeline; prototype serves 7 days only, not 30) -->
+    <section id="timeline" class="portal-page" style="display: none;">
+      <div class="timeline-card-wrap">
+        <!-- P0 forecast-freshness banner (text set by portal.js; stale forecasts must never look fresh) -->
+        <p id="timeline-freshness-banner" data-freshness-banner="true" style="margin:0 0 12px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:8px;background:#eef1ea;color:#657566;">Forecast freshness: loading…</p>
+        <div class="timeline-header-bar">
+          <div>
+            <p class="card-kicker" data-i18n="timeline_title">Probabilistic Outlook</p>
+            <h2><span id="timeline-place">Select a block</span> · <em id="timeline-block-title">—</em></h2>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <div class="timeline-horizon-buttons">
+              <button class="horizon-btn active" data-days="7">7 Days</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dual-Axis Probabilistic Timeline Chart Container -->
+        <div class="recharts-forecast-container" id="recharts-forecast-canvas">
+          <!-- Rendered dynamically by portal.js -->
+        </div>
+
+        <!-- 7-Day Day-by-Day Forecast Matrix Table -->
+        <h3 style="font-size: 16px; margin: 24px 0 12px; letter-spacing: 0.01em; word-spacing: 0.05em;">7-Day Day-by-Day Rainfall Matrix</h3>
+        <div class="matrix-table-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th data-i18n="th_day">Day</th>
+                <th data-i18n="th_date">Date</th>
+                <th data-i18n="th_rain">Predicted Rain (mm)</th>
+                <th data-i18n="th_wetdry">Wet / Dry (≥1 mm)</th>
+              </tr>
+            </thead>
+            <tbody id="forecast-matrix-tbody">
+              <!-- Matrix rows inserted by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Live Operational Outlook (Open-Meteo delivery + ECMWF IFS NWP, 16 days).
+             Phase 1+2: block-level live rainfall alongside the validated 7-day outlook.
+             Days 16–30 are NOT served (no deterministic feed; never synthesised). -->
+        <h3 style="font-size: 16px; margin: 24px 0 12px; letter-spacing: 0.01em; word-spacing: 0.05em;">Live ECMWF IFS Outlook (16-day, short/medium range)</h3>
+        <div class="matrix-table-wrap">
+          <label style="display:block; margin-bottom: 8px; font-weight: 700; font-size: 12.5px;">
+            <span data-i18n="geo_state">State</span> <select id="tl-state"></select>
+            <span data-i18n="geo_district">District</span> <select id="tl-district"></select>
+            <span data-i18n="lbl_block">Block</span>:
+            <select id="live-block-select"></select>
+          </label>
+          <p id="live-meta" style="font-size: 12.5px; margin: 0 0 4px;">Live outlook loading…</p>
+          <p id="live-freshness" data-freshness-banner="true" style="margin:0 0 12px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:8px;background:#eef1ea;color:#657566;">Forecast freshness: loading…</p>
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Day</th>
+                <th>Date</th>
+                <th>Rain (mm)</th>
+                <th>Rain probability</th>
+              </tr>
+            </thead>
+            <tbody id="live-matrix-tbody">
+              <tr><td colspan="4">Loading live outlook…</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size: 12px; opacity: 0.75; margin-top: 8px;">Days 1–7 operational · 8–15 extended/lower-confidence · 16–30 not served by the 16-day deterministic feed. Missing values are shown as “No data”, never filled with zero.</p>
+          <div class="plain-box" id="live-meaning" hidden><p class="plain-kicker" data-i18n="plain_kicker">In simple terms</p><p class="plain-text" id="live-meaning-text"></p></div>
+        </div>
+
+        <!-- Agricultural Risk (Phase 4.3: composite_v1 priority composite, /api/risks/*).
+             Rule-based priority, NOT a score: FIELD_HIGH -> HIGH; provisional
+             dry-spell watch -> MODERATE (never HIGH); stale -> MODERATE.
+             Generic signals only: no crops, no agronomic prescriptions. -->
+        <h3 style="font-size: 16px; margin: 24px 0 12px; letter-spacing: 0.01em; word-spacing: 0.05em;">Agricultural Risk (D+1–D+3)</h3>
+        <div class="matrix-table-wrap">
+          <p id="risk-meta" style="font-size: 12.5px; margin: 0 0 4px;">Field-work risk loading…</p>
+          <p id="risk-card" style="margin:0 0 8px;font-size:13px;font-weight:700;padding:8px 12px;border-radius:8px;background:#eef1ea;color:#657566;">Loading…</p>
+          <p id="risk-primary" style="font-size: 12.5px; margin: 0 0 4px;"></p>
+          <p id="risk-evidence" style="font-size: 12.5px; margin: 0 0 4px;"></p>
+          <p id="risk-others" style="font-size: 12.5px; margin: 0 0 4px;"></p>
+          <p id="risk-advisory" style="font-size: 12.5px; margin: 0 0 4px;"></p>
+          <p style="font-size: 12px; opacity: 0.75; margin-top: 8px;">Rule-based composite (composite_v1, no score): HIGH when ≥2 of the next 3 forecast days are wet (≥1 mm/day). Dry-spell watch is provisional (IFS validation pending) and never drives HIGH. Heavy-rain flag is display-only evidence. Historically validated on GEFS; live IFS transfer not yet confirmed — shown at MODERATE confidence, never as validated.</p>
+          <div class="plain-box" id="risk-meaning" hidden><p class="plain-kicker" data-i18n="plain_kicker">In simple terms</p><p class="plain-text" id="risk-meaning-text"></p></div>
+        </div>
+
+        <!-- Weeks 3-4 Extended Climate Outlook (Phase 3B: display-only, climatology-based).
+              NOT a deterministic forecast: W3 = D+17..D+23, W4 = D+24..D+30 per block.
+              MJO/IOD/ENSO shown as context only, never wired into probabilities. -->
+        <h3 style="font-size: 16px; margin: 24px 0 12px; letter-spacing: 0.01em; word-spacing: 0.05em;">17-30 Day Climatological Outlook — Weeks 3-4 (not an IFS forecast)</h3>
+        <div class="matrix-table-wrap">
+          <p class="section-note" data-i18n="w34_guide_note">This is a longer-range guide based on the block’s usual rainfall pattern — not a day-by-day rainfall forecast.</p>
+          <p id="w34-meta" style="font-size: 12.5px; margin: 0 0 4px;">Extended outlook loading…</p>
+          <p id="w34-freshness" data-freshness-banner="true" style="margin:0 0 12px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:8px;background:#eef1ea;color:#657566;">Extended outlook freshness: loading…</p>
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th>Window</th>
+                <th>Period</th>
+                <th>Below / Near / Above</th>
+                <th>Climatological normal (reference)</th>
+                <th>Confidence</th>
+              </tr>
+            </thead>
+            <tbody id="w34-matrix-tbody">
+              <tr><td colspan="5">Loading extended outlook…</td></tr>
+            </tbody>
+          </table>
+          <p id="w34-narrative" style="font-size: 12.5px; margin: 8px 0 0;"></p>
+          <p style="font-size: 12px; opacity: 0.75; margin-top: 8px;">Extended climate outlook: W3/W4 probabilities are the climatological tercile prior (1/3 each), not a calibrated forecast. Rainfall amounts are climatological normals for reference only — not deterministic predictions. MJO / IOD / ENSO are context only.</p>
+          <div class="plain-box" id="w34-meaning" hidden><p class="plain-kicker" data-i18n="plain_kicker">In simple terms</p><p class="plain-text" id="w34-meaning-text"></p></div>
+        </div>
+
+        <!-- Large-Scale Climate Context (MJO + ENSO + IOD note; explanatory only, not a rainfall driver) -->
+        <h3 style="font-size: 16px; margin: 24px 0 12px; letter-spacing: 0.01em; word-spacing: 0.05em;">Large-Scale Climate Context</h3>
+        <div class="matrix-table-wrap">
+          <p class="section-note" data-i18n="climate_guide_note">Large-scale background only — the local 16-day forecast above comes from ECMWF IFS.</p>
+          <table class="matrix-table">
+            <tbody id="climate-context-tbody">
+              <tr><td>Loading climate context…</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size: 12px; opacity: 0.75; margin-top: 8px;">Climate context is explanatory only — the live rainfall forecast above comes from Open-Meteo ECMWF IFS.</p>
+          <div class="plain-box" id="climate-meaning" hidden><p class="plain-kicker" data-i18n="climate_plain_title">Climate context in simple terms</p><p class="plain-text" id="climate-meaning-text"></p></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Platform Footer -->
+  <footer>
+    <a class="brand" href="/"><img class="brand-logo" src="/static/assets/logo.png" alt="Saarthi" height="32">Saarthi</a>
+    <p data-i18n="footer_text">Climate clarity for stronger rural futures.</p>
+    <span data-i18n="footer_copy">© 2026 · SIH26086 Hyperlocal Monsoon Intelligence</span>
+  </footer>
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/static/i18n.js"></script>
+<script src="/static/geo-select.js"></script>
+<script src="/static/portal.js"></script>
+</body>
+</html>

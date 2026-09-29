@@ -1,0 +1,28 @@
+# Saarthi Phase 1B — GEFS vs IFS ENS evaluation dependencies (2026-09-15)
+#
+# DELIBERATE DECISION: no new packages are required for the GEFS-APCP arm.
+# GRIB2 decoding is handled by the existing rasterio/GDAL stack (verified:
+# rasterio 1.4.4 opens NCEP GEFS APCP subsets natively, including
+# GRIB_REF_TIME / GRIB_VALID_TIME / GRIB_COMMENT metadata used for
+# accumulation-window validation). HTTP range reads use the Python stdlib.
+#
+# Base environment (see requirements.txt): python 3.11, rasterio>=1.4.4,
+# geopandas, pandas, numpy, scipy, scikit-learn (scoring only).
+#
+# Install nothing extra for:
+#   src/data/build_raw_gefs_leads.py
+#   src/evaluation/phase1b_forecast_comparison.py
+#
+# INSTALLED 2026-09-15 for the IFS arm (official packages only):
+#   - ecmwf-opendata      # server-side param/step subsetting (tp-only pulls;
+#                          # whole-step files are ~147 MB each - never use them)
+#   - eccodes             # GRIB2 CCSDS (template 5.42) decoding, which the
+#                          # stock GDAL build cannot read (verified failure)
+#   - cfgrib, xarray      # companion GRIB/xarray stack (cfgrib unused yet;
+#                          # eccodes direct API is used for control)
+#
+# GEFS-APCP arm needs NOTHING above (rasterio/GDAL decodes NCEP GRIB2).
+#
+# Blocked credential (no install fixes this):
+#   - ECMWF MARS / ECDS-TIGGE account for IFS ENS history (Feb-2024-style
+#     AIFS needs it too). See src/data/build_ifsens_leads.py header.

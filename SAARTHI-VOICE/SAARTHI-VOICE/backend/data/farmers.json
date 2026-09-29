@@ -1,0 +1,34 @@
+[
+  {
+    "farmerId": "F001",
+    "farmerName": "Vaishnavi",
+    "crop": "Rice",
+    "cropLocation": "Amritsar",
+    "district": "Amritsar",
+    "state": "Punjab",
+    "landSize": "2 acres",
+    "sowingDate": "2026-09-09",
+    "updatedAt": "2026-09-11T07:41:19.116Z"
+  },
+  {
+    "farmerId": "F002",
+    "farmerName": "Ramesh Kumar",
+    "crop": "Wheat",
+    "cropLocation": "Vijayawada",
+    "district": "NTR",
+    "state": "Andhra Pradesh",
+    "landSize": "3 acres",
+    "sowingDate": "2024-11-10"
+  },
+  {
+    "farmerId": "F003",
+    "farmerName": "Sukhwinder Kaur",
+    "crop": "Cotton",
+    "cropLocation": "Bathinda",
+    "district": "Bathinda",
+    "state": "Punjab",
+    "landSize": "4 acres",
+    "sowingDate": "2024-05-10",
+    "updatedAt": "2026-09-11T07:28:50.947Z"
+  }
+]

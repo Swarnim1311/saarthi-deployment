@@ -1,0 +1,10 @@
+{
+  "kind": "checkpoint0-prescreen",
+  "feat_lag_days": 3,
+  "leakage_statement": "All features end at D-3; thresholds train-frozen; test issues >= 2020-01-01; no future or live-only inputs.",
+  "thresholds": "train-frozen block_doy_normals_train_2010_2019.csv (never deployment)",
+  "fit": "seasonal table: TRAIN daily 2010-2019 per (block,issue-DOY), Laplace+0.5; PERSIST LR: fixed C=1.0 lbfgs on [log1p(f7),log1p(f14)] ending D-3, TRAIN JJAS daily pooled, per window; no tuning on 2020-2025",
+  "test": "weekly JJAS/FULLYR 2020-2025, last issue 2025-12-01; W3=D+17..23, W4=D+24..30; labels BELOW x<=t33, ABOVE x>t66 else NEAR",
+  "excluded": "MJO, ENSO, IOD, SoilGrids, GEFS, ECMWF/Open-Meteo, live-only data",
+  "uncertainty": "issue-clustered bootstrap, 2000 reps, seed 7"
+}

@@ -1,0 +1,21 @@
+{
+ "available": true,
+ "stale": true,
+ "data_month": "2026-05",
+ "forecast_month": "2026-06",
+ "dmi": "western SST anomaly minus eastern SST anomaly (HadISST1.1 DMI series used directly)",
+ "phase": "Neutral",
+ "model": "LightGBM",
+ "test_MAE": 0.1936,
+ "note": "Input DMI series ends 2026-05; forecast from latest valid month. Context only, not a rainfall driver.",
+ "method_reused_from": "notebooks/IOD_nb.ipynb (unmodified)",
+ "regions": {
+  "western": "50-70E, 10S-10N",
+  "eastern": "90-110E, 10S-0"
+ },
+ "thresholds": {
+  "positive": ">= +0.4C",
+  "negative": "<= -0.4C",
+  "neutral": "otherwise"
+ }
+}

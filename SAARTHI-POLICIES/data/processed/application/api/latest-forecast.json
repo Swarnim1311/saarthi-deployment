@@ -1,0 +1,404 @@
+{
+  "system": {
+    "district": "Sangrur",
+    "state": "Punjab",
+    "spatial_unit": "block",
+    "boundary_source": "Bhuvan (sangrur_blocks_bhuvan.gpkg, 6 legacy blocks)",
+    "block_id_scheme": "bhuvan_b_<b_code>",
+    "forecast_horizon_days": 7,
+    "forecast_method": "Raw CHIRPS-GEFS",
+    "model_type": "raw_gefs",
+    "thresholds_mm": {
+      "low_upper": 10.939151985384193,
+      "high_lower": 34.66167447031182,
+      "source": "training_only (Notebook 04)"
+    },
+    "probability_method": "residual_ecdf, train-only (Notebook 04)",
+    "attribution": "CHIRPS-GEFS v3 (CHC UCSB, bias-corrected GEFS) + CHIRPS observations",
+    "limitations": [
+      "7-day block outlook only; no 30-day/IOD/MJO/ERA5/SMAP/S2S claims",
+      "block scale only; no village-level observations",
+      "advisories are prototype decision-support guidance, not agronomic validation"
+    ]
+  },
+  "forecast": {
+    "issue_date": "2026-09-09",
+    "valid_from": "2026-09-10",
+    "valid_to": "2026-09-16",
+    "generated_at": "2026-09-10T06:36:53+00:00",
+    "blocks": [
+      {
+        "block_id": "bhuvan_b_270",
+        "block_name": "Dhuri",
+        "forecast_7d_total_rainfall_mm": 22.5,
+        "category": "NORMAL",
+        "probability": {
+          "low": 0.2008,
+          "normal": 0.528,
+          "high": 0.2712
+        },
+        "daily_forecast": [
+          {
+            "date": "2026-09-10",
+            "day": 1,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-11",
+            "day": 2,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-12",
+            "day": 3,
+            "rainfall_mm": 0.25
+          },
+          {
+            "date": "2026-09-13",
+            "day": 4,
+            "rainfall_mm": 1.22
+          },
+          {
+            "date": "2026-09-14",
+            "day": 5,
+            "rainfall_mm": 7.38
+          },
+          {
+            "date": "2026-09-15",
+            "day": 6,
+            "rainfall_mm": 7.57
+          },
+          {
+            "date": "2026-09-16",
+            "day": 7,
+            "rainfall_mm": 6.08
+          }
+        ],
+        "indicators": {
+          "max_daily_rainfall_mm": 7.57,
+          "max_daily_rainfall_date": "2026-09-15",
+          "wet_days": 4,
+          "dry_days": 3
+        },
+        "advisories": [
+          {
+            "level": "info",
+            "topic": "general",
+            "message": "Near-normal 7-day rainfall expected. Conditions generally favorable; continue routine crop monitoring.",
+            "label": "Prototype advisory \u2014 decision-support guidance, not agronomic validation"
+          }
+        ]
+      },
+      {
+        "block_id": "bhuvan_b_273",
+        "block_name": "Lehra",
+        "forecast_7d_total_rainfall_mm": 22.81,
+        "category": "NORMAL",
+        "probability": {
+          "low": 0.1984,
+          "normal": 0.5253,
+          "high": 0.2763
+        },
+        "daily_forecast": [
+          {
+            "date": "2026-09-10",
+            "day": 1,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-11",
+            "day": 2,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-12",
+            "day": 3,
+            "rainfall_mm": 0.6
+          },
+          {
+            "date": "2026-09-13",
+            "day": 4,
+            "rainfall_mm": 0.47
+          },
+          {
+            "date": "2026-09-14",
+            "day": 5,
+            "rainfall_mm": 7.3
+          },
+          {
+            "date": "2026-09-15",
+            "day": 6,
+            "rainfall_mm": 5.15
+          },
+          {
+            "date": "2026-09-16",
+            "day": 7,
+            "rainfall_mm": 9.29
+          }
+        ],
+        "indicators": {
+          "max_daily_rainfall_mm": 9.29,
+          "max_daily_rainfall_date": "2026-09-16",
+          "wet_days": 3,
+          "dry_days": 4
+        },
+        "advisories": [
+          {
+            "level": "info",
+            "topic": "general",
+            "message": "Near-normal 7-day rainfall expected. Conditions generally favorable; continue routine crop monitoring.",
+            "label": "Prototype advisory \u2014 decision-support guidance, not agronomic validation"
+          }
+        ]
+      },
+      {
+        "block_id": "bhuvan_b_269",
+        "block_name": "Malerkotla",
+        "forecast_7d_total_rainfall_mm": 17.82,
+        "category": "NORMAL",
+        "probability": {
+          "low": 0.2534,
+          "normal": 0.5372,
+          "high": 0.2094
+        },
+        "daily_forecast": [
+          {
+            "date": "2026-09-10",
+            "day": 1,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-11",
+            "day": 2,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-12",
+            "day": 3,
+            "rainfall_mm": 0.17
+          },
+          {
+            "date": "2026-09-13",
+            "day": 4,
+            "rainfall_mm": 1.62
+          },
+          {
+            "date": "2026-09-14",
+            "day": 5,
+            "rainfall_mm": 5.78
+          },
+          {
+            "date": "2026-09-15",
+            "day": 6,
+            "rainfall_mm": 5.82
+          },
+          {
+            "date": "2026-09-16",
+            "day": 7,
+            "rainfall_mm": 4.43
+          }
+        ],
+        "indicators": {
+          "max_daily_rainfall_mm": 5.82,
+          "max_daily_rainfall_date": "2026-09-15",
+          "wet_days": 4,
+          "dry_days": 3
+        },
+        "advisories": [
+          {
+            "level": "info",
+            "topic": "general",
+            "message": "Near-normal 7-day rainfall expected. Conditions generally favorable; continue routine crop monitoring.",
+            "label": "Prototype advisory \u2014 decision-support guidance, not agronomic validation"
+          }
+        ]
+      },
+      {
+        "block_id": "bhuvan_b_274",
+        "block_name": "Moonak",
+        "forecast_7d_total_rainfall_mm": 17.81,
+        "category": "NORMAL",
+        "probability": {
+          "low": 0.2534,
+          "normal": 0.5379,
+          "high": 0.2087
+        },
+        "daily_forecast": [
+          {
+            "date": "2026-09-10",
+            "day": 1,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-11",
+            "day": 2,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-12",
+            "day": 3,
+            "rainfall_mm": 0.55
+          },
+          {
+            "date": "2026-09-13",
+            "day": 4,
+            "rainfall_mm": 0.66
+          },
+          {
+            "date": "2026-09-14",
+            "day": 5,
+            "rainfall_mm": 5.49
+          },
+          {
+            "date": "2026-09-15",
+            "day": 6,
+            "rainfall_mm": 3.63
+          },
+          {
+            "date": "2026-09-16",
+            "day": 7,
+            "rainfall_mm": 7.48
+          }
+        ],
+        "indicators": {
+          "max_daily_rainfall_mm": 7.48,
+          "max_daily_rainfall_date": "2026-09-16",
+          "wet_days": 3,
+          "dry_days": 4
+        },
+        "advisories": [
+          {
+            "level": "info",
+            "topic": "general",
+            "message": "Near-normal 7-day rainfall expected. Conditions generally favorable; continue routine crop monitoring.",
+            "label": "Prototype advisory \u2014 decision-support guidance, not agronomic validation"
+          }
+        ]
+      },
+      {
+        "block_id": "bhuvan_b_271",
+        "block_name": "Sangrur",
+        "forecast_7d_total_rainfall_mm": 21.99,
+        "category": "NORMAL",
+        "probability": {
+          "low": 0.2066,
+          "normal": 0.5321,
+          "high": 0.2613
+        },
+        "daily_forecast": [
+          {
+            "date": "2026-09-10",
+            "day": 1,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-11",
+            "day": 2,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-12",
+            "day": 3,
+            "rainfall_mm": 0.29
+          },
+          {
+            "date": "2026-09-13",
+            "day": 4,
+            "rainfall_mm": 0.91
+          },
+          {
+            "date": "2026-09-14",
+            "day": 5,
+            "rainfall_mm": 7.42
+          },
+          {
+            "date": "2026-09-15",
+            "day": 6,
+            "rainfall_mm": 6.9
+          },
+          {
+            "date": "2026-09-16",
+            "day": 7,
+            "rainfall_mm": 6.47
+          }
+        ],
+        "indicators": {
+          "max_daily_rainfall_mm": 7.42,
+          "max_daily_rainfall_date": "2026-09-14",
+          "wet_days": 3,
+          "dry_days": 4
+        },
+        "advisories": [
+          {
+            "level": "info",
+            "topic": "general",
+            "message": "Near-normal 7-day rainfall expected. Conditions generally favorable; continue routine crop monitoring.",
+            "label": "Prototype advisory \u2014 decision-support guidance, not agronomic validation"
+          }
+        ]
+      },
+      {
+        "block_id": "bhuvan_b_272",
+        "block_name": "Sunam",
+        "forecast_7d_total_rainfall_mm": 19.48,
+        "category": "NORMAL",
+        "probability": {
+          "low": 0.2326,
+          "normal": 0.5389,
+          "high": 0.2285
+        },
+        "daily_forecast": [
+          {
+            "date": "2026-09-10",
+            "day": 1,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-11",
+            "day": 2,
+            "rainfall_mm": 0.0
+          },
+          {
+            "date": "2026-09-12",
+            "day": 3,
+            "rainfall_mm": 0.41
+          },
+          {
+            "date": "2026-09-13",
+            "day": 4,
+            "rainfall_mm": 0.62
+          },
+          {
+            "date": "2026-09-14",
+            "day": 5,
+            "rainfall_mm": 6.64
+          },
+          {
+            "date": "2026-09-15",
+            "day": 6,
+            "rainfall_mm": 5.18
+          },
+          {
+            "date": "2026-09-16",
+            "day": 7,
+            "rainfall_mm": 6.63
+          }
+        ],
+        "indicators": {
+          "max_daily_rainfall_mm": 6.64,
+          "max_daily_rainfall_date": "2026-09-14",
+          "wet_days": 3,
+          "dry_days": 4
+        },
+        "advisories": [
+          {
+            "level": "info",
+            "topic": "general",
+            "message": "Near-normal 7-day rainfall expected. Conditions generally favorable; continue routine crop monitoring.",
+            "label": "Prototype advisory \u2014 decision-support guidance, not agronomic validation"
+          }
+        ]
+      }
+    ]
+  }
+}

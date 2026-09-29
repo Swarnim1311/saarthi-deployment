@@ -1,0 +1,71 @@
+{
+ "model_type": "lgbm",
+ "target": "DMI(M+1)",
+ "horizon_months": 1,
+ "features": [
+  "DMI_M",
+  "dmi_lag1",
+  "dmi_lag2",
+  "dmi_lag3",
+  "dmi_lag4",
+  "dmi_lag5",
+  "dmi_lag6",
+  "dmi_lag7",
+  "dmi_lag8",
+  "dmi_lag9",
+  "dmi_lag10",
+  "dmi_lag11",
+  "dmi_lag12",
+  "dmi_roll3",
+  "dmi_roll6",
+  "dmi_roll12",
+  "dmi_std6",
+  "dmi_trend12",
+  "sin_m",
+  "cos_m",
+  "enso",
+  "enso_lag3",
+  "mjo_RMM1",
+  "mjo_RMM2",
+  "mjo_amplitude"
+ ],
+ "dataset": {
+  "file": "data/raw/iod/dmi.had.long.csv",
+  "kind": "monthly HadISST1.1 DMI",
+  "valid_range": "1870-01..2026-05",
+  "rows_valid": 1877,
+  "provenance": "VERIFIED from file header (PSL/NOAA monthly timeseries page)"
+ },
+ "splits": {
+  "train": "<=2000-12",
+  "val": "2001-2012",
+  "test": ">=2013-01"
+ },
+ "phase_thresholds": {
+  "pos": ">+0.4",
+  "neg": "<-0.4"
+ },
+ "test_metrics": {
+  "MAE": 0.19360087513157648,
+  "RMSE": 0.25068379444509425,
+  "corr": 0.8055449794465379,
+  "R2": 0.4721613779827065,
+  "phase_acc": 0.74375,
+  "phase_macroF1": 0.4166056166056166
+ },
+  "baseline_test": {
+   "persist_MAE": 0.15734375,
+   "persist_phase_acc": 0.825
+  },
+  "conclusion": "LightGBM provides an ML-based IOD forecast, but persistence remains the stronger benchmark on the held-out test set. Therefore IOD is used as climate context rather than as a demonstrated improvement to rainfall prediction.",
+ "seed": 42,
+ "preprocessing": "causal lags/rolls + ENSO(prev-month) + MJO(monthly mean, NaN-tolerant); no scaler",
+ "leakage_audit": "PASS (inputs<=M, target M+1; chronological splits)",
+ "timestamp": "2026-09-11T11:24:41",
+ "versions": {
+  "sklearn": "1.8.0",
+  "lightgbm": "4.7.0",
+  "pandas": "2.3.3",
+  "numpy": "2.4.1"
+ }
+}

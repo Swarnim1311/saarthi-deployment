@@ -1,0 +1,55 @@
+{
+ "date_issued": "2026-09-11",
+ "rainfall_forecast": {
+  "method": "Raw CHIRPS-GEFS (protected winner, unchanged)",
+  "horizon_days": 7,
+  "blocks": 6
+ },
+ "mjo": {
+  "available": true,
+  "observation_end": "2026-09-07",
+  "stale": true,
+  "observed": {
+   "date": "2026-09-07",
+   "RMM1": -0.559,
+   "RMM2": 0.759,
+   "amplitude": 0.94,
+   "phase": 7
+  },
+  "forecast_H7": {
+   "forecast_date": "2026-09-14",
+   "RMM1": -0.627,
+   "RMM2": 0.232,
+   "amplitude": 0.67,
+   "phase": 8
+  },
+  "model": {
+   "test_RMM1_MAE": 0.6267193260729914,
+   "test_RMM2_MAE": 0.5602080992226952,
+   "phase_acc": 0.3487061234947476,
+   "beats_persistence": true
+  },
+  "note": "MJO live observation unavailable beyond file end; forecast from latest available 84-day window. Context only, not a rainfall driver claim."
+ },
+ "enso": {
+  "available": true,
+  "source": "data/raw/climate/ersst5.nino.mth.91-20.ascii (NOAA CPC ERSSTv5)",
+  "latest_month": "2026-06",
+  "nino34_anom": 1.44,
+  "status": "El Nino",
+  "note": "Monthly index; contextual status via +/-0.5C convention. Use value available at forecast issue date D, never future."
+ },
+ "iod": {
+  "available": true,
+  "stale": true,
+  "data_month": "2026-05",
+  "forecast_month": "2026-06",
+  "dmi": 0.033,
+  "phase": "Neutral",
+  "model": "LightGBM",
+  "test_MAE": 0.1936,
+  "note": "Input DMI series ends 2026-05; forecast from latest valid month. Context only, not a rainfall driver."
+ },
+ "integration_decision": "USE CLIMATE CONTEXT ONLY",
+ "integration_evidence": "No held-out rainfall experiment showed climate-enhanced ML beating Raw GEFS (none run under time budget); per project rule, MJO/ENSO/soil stay as explanatory context, not rainfall predictors."
+}

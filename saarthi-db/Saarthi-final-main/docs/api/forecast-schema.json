@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "latest_forecast",
+  "$comment": "NB06/application PUBLIC contract. NB05 internal live_forecast/latest_block_forecast.json is a DIFFERENT representation (daily_rainfall_mm[7], flat prob_low/prob_normal/prob_high, rainfall_category, context{soil}) and is NOT validated by this schema — see docs/api/api-contract.md 'NB05 vs NB06 representations'. Probability low+normal+high must sum to ~1 (tolerance 1e-3); this sum rule is enforced by backend validation and src/utils/forecast_freshness.py, not expressible in vanilla JSON Schema.",
+  "type": "object",
+  "required": [
+    "system",
+    "forecast",
+    "summary"
+  ],
+  "properties": {
+    "system": {
+      "type": "object",
+      "required": [
+        "district",
+        "spatial_unit",
+        "forecast_horizon_days",
+        "forecast_method",
+        "model_type"
+      ],
+      "properties": {
+        "district": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "spatial_unit": {
+          "type": "string",
+          "const": "block"
+        },
+        "forecast_horizon_days": {
+          "type": "integer",
+          "const": 7
+        },
+        "forecast_method": {
+          "type": "string"
+        },
+        "model_type": {
+          "type": "string",
+          "const": "raw_gefs"
+        },
+        "thresholds_mm": {
+          "type": "object",
+          "required": ["low_upper", "high_lower", "source"]
+        },
+        "probability_method": {
+          "type": "string"
+        },
+        "attribution": {
+          "type": "string"
+        },
+        "limitations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "forecast": {
+      "type": "object",
+      "required": [
+        "issue_date",
+        "valid_from",
+        "valid_to",
+        "generated_at",
+        "blocks"
+      ],
+      "properties": {
+        "issue_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "valid_from": {
+          "type": "string",
+          "format": "date"
+        },
+        "valid_to": {
+          "type": "string",
+          "format": "date"
+        },
+        "generated_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": [
+              "block_id",
+              "block_name",
+              "forecast_7d_total_rainfall_mm",
+              "category",
+              "probability",
+              "daily_forecast",
+              "indicators"
+            ],
+            "properties": {
+              "block_id": { "type": "string" },
+              "block_name": { "type": "string" },
+              "forecast_7d_total_rainfall_mm": { "type": "number", "minimum": 0 },
+              "category": { "type": "string", "enum": ["LOW", "NORMAL", "HIGH"] },
+              "probability": {
+                "type": "object",
+                "required": ["low", "normal", "high"],
+                "properties": {
+                  "low": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "normal": { "type": "number", "minimum": 0, "maximum": 1 },
+                  "high": { "type": "number", "minimum": 0, "maximum": 1 }
+                }
+              },
+              "daily_forecast": {
+                "type": "array",
+                "minItems": 7,
+                "maxItems": 7,
+                "items": {
+                  "type": "object",
+                  "required": ["date", "day", "rainfall_mm"],
+                  "properties": {
+                    "date": { "type": "string", "format": "date" },
+                    "day": { "type": "integer", "minimum": 1, "maximum": 7 },
+                    "rainfall_mm": { "type": "number", "minimum": 0 }
+                  }
+                }
+              },
+              "indicators": {
+                "type": "object",
+                "required": ["max_daily_rainfall_mm", "max_daily_rainfall_date", "wet_days", "dry_days"]
+              },
+              "advisories": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["level", "topic", "message"],
+                  "properties": {
+                    "level": { "type": "string", "enum": ["info", "watch"] }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "issue_date",
+        "valid_from",
+        "valid_to"
+      ]
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "_provenance": "BUILD 1 cross-sector intelligence thresholds (additive). Wet-day definition reuses the frozen FIELD_HIGH rule (wet >= 1.0 mm/day). Logistics/warehouse/energy values are rule-based planning defaults, NOT calibrated per-block science.",
+  "method_version": "sector-v1",
+  "validation": "Rule-based indicator; current IFS risk validation pending.",
+  "validation_note": "Rule-based indicator; current IFS risk validation pending. FIELD_HIGH wet-day threshold (>=1.0 mm) validated historically on GEFS only (precision 0.721, recall 0.809); live IFS transfer not yet confirmed.",
+  "wet_day_mm": 1.0,
+  "agriculture": {
+    "high_min_wet_days_d1_d3": 2,
+    "moderate_min_wet_days_d1_d3": 1,
+    "heavy_daily_mm": "block daily_p95 (risk/excess_thresholds_v1.json, display-only evidence)"
+  },
+  "logistics": {
+    "high_min_wet_days_d1_d3": 2,
+    "high_max_daily_mm": 20.0,
+    "high_rain_3d_mm": 35.0,
+    "moderate_min_wet_days_d1_d3": 1,
+    "moderate_rain_3d_mm": 15.0
+  },
+  "warehouse": {
+    "high_min_wet_days_d1_d7": 4,
+    "high_rain_7d_mm": 50.0,
+    "moderate_min_wet_days_d1_d7": 2,
+    "moderate_rain_7d_mm": 20.0
+  },
+  "energy_groundwater": {
+    "high_min_dry_days_d1_d7": 6,
+    "high_deficit_7d_mm": -10.0,
+    "moderate_min_dry_days_d1_d7": 4,
+    "moderate_deficit_7d_mm": -5.0,
+    "dry_soil_moisture_vwc": 0.12
+  }
+}

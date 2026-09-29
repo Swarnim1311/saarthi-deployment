@@ -1,0 +1,69 @@
+{
+  "kind": "soil-block-context",
+  "boundary": {
+    "file": "data\\raw\\boundaries\\sangrur_blocks_bhuvan.gpkg",
+    "layer": "sangrur_blocks",
+    "sha256": "0c9ca9affeed2a19de944644458c2c18413e484f6f00ea98dda209817d9fbdfb",
+    "block_column": "b_name",
+    "blocks": [
+      "Dhuri",
+      "Lehra",
+      "Malerkotla",
+      "Moonak",
+      "Sangrur",
+      "Sunam"
+    ]
+  },
+  "rasters": {
+    "crs": "EPSG:4326",
+    "resolution_deg": [
+      0.0022598870056497336,
+      0.0023894862604540014
+    ],
+    "dimensions": {
+      "width": 885,
+      "height": 837
+    },
+    "bounds": [
+      74.3885,
+      29.2047,
+      76.38850000000001,
+      31.2047
+    ],
+    "dtype": "int16",
+    "nodata": null,
+    "clay": {
+      "file": "data\\raw\\soil\\Clay_0-5cm_mean.tif",
+      "sha256": "c368a1fe1fcfc039a1956daf351d6e2ea2a9afd90eb172a54b44ea3e9c31ba23",
+      "scale": 1.0,
+      "unit": "g/kg"
+    },
+    "sand": {
+      "file": "data\\raw\\soil\\Sand_0-5cm_mean.tif",
+      "sha256": "f7ca65473ab344bbbdd1e8bd6723d0a6c03ae289defbdf963eedac840cd4e32d",
+      "scale": 1.0,
+      "unit": "g/kg"
+    },
+    "silt": {
+      "file": "data\\raw\\soil\\Silt_0-5cm_mean.tif",
+      "sha256": "b40992ae58f70fdc0214d7321402dd19c99f8178b5b0b6328c54071a89b90b4a",
+      "scale": 1.0,
+      "unit": "g/kg"
+    },
+    "soc": {
+      "file": "data\\raw\\soil\\OrganicCarbon_0-5cm_mean.tif",
+      "sha256": "7e2ccc4e49c0fb4d5309331b5c9bc9d45c515e7bb3aec4be8f63cf5b5f7f15ec",
+      "scale": 0.1,
+      "unit": "g/kg (raw dg/kg /10)"
+    },
+    "ph": {
+      "file": "data\\raw\\soil\\pH_0-5cm_mean.tif.tif",
+      "sha256": "0f9ef553fc2a8d505380662fc62680aff0fa995edee15d0c9eb839196a0b2692",
+      "scale": 0.1,
+      "unit": "pH units (raw pH*10 /10)"
+    }
+  },
+  "aggregation": "rasterio.mask per-block polygon, mean of unmasked pixels (pixel-center inclusion); geometry matched to raster CRS when different",
+  "generated_utc": "2026-09-20T19:12:51+00:00",
+  "code": "src/risk/build_soil.py"
+}

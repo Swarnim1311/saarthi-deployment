@@ -1,0 +1,19 @@
+/* User-provided hero image, kept separate so the original layout remains intact. */
+.hero-landscape {
+  overflow: hidden;
+  background: url('/static/images/hero-fields.jpg') center 69% / cover no-repeat;
+}
+
+.hero-landscape::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(246, 248, 240, .5), transparent 44%, rgba(23, 50, 34, .08));
+}
+
+.hero-landscape .sun,
+.hero-landscape .field { display: none; }
+
+@media (max-width: 800px) {
+  .hero-landscape { background-position: center 69%; }
+}

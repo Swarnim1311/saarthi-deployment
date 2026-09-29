@@ -1,0 +1,222 @@
+{
+  "issue_date": "2026-09-09",
+  "forecast_horizon_days": 7,
+  "district": "Sangrur",
+  "spatial_unit": "block",
+  "blocks": [
+    {
+      "block_name": "Dhuri",
+      "daily_rainfall_mm": [
+        0.0,
+        0.0,
+        0.25,
+        1.22,
+        7.38,
+        7.57,
+        6.08
+      ],
+      "forecast_7d_total_rainfall_mm": 22.5,
+      "max_daily_rainfall_mm": 7.57,
+      "max_daily_rainfall_day": 6,
+      "dry_days_in_next_7d": 3,
+      "wet_days_in_next_7d": 4,
+      "rainfall_category": "NORMAL",
+      "prob_low": 0.2008,
+      "prob_normal": 0.528,
+      "prob_high": 0.2712,
+      "context": {
+        "chirps_rain_7d_mm": null,
+        "chirps_rain_30d_mm": null,
+        "chirps_context_available": false,
+        "enso_value": null,
+        "enso_available": false,
+        "soil": {
+          "soil_clay": 271.60486263999235,
+          "soil_sand": 323.33339714750645,
+          "soil_silt": 377.0146453527328,
+          "soil_soc": 12.650196228582368,
+          "soil_ph": 7.703675696372164
+        }
+      }
+    },
+    {
+      "block_name": "Lehra",
+      "daily_rainfall_mm": [
+        0.0,
+        0.0,
+        0.6,
+        0.47,
+        7.3,
+        5.15,
+        9.29
+      ],
+      "forecast_7d_total_rainfall_mm": 22.81,
+      "max_daily_rainfall_mm": 9.29,
+      "max_daily_rainfall_day": 7,
+      "dry_days_in_next_7d": 4,
+      "wet_days_in_next_7d": 3,
+      "rainfall_category": "NORMAL",
+      "prob_low": 0.1984,
+      "prob_normal": 0.5253,
+      "prob_high": 0.2763,
+      "context": {
+        "chirps_rain_7d_mm": null,
+        "chirps_rain_30d_mm": null,
+        "chirps_context_available": false,
+        "enso_value": null,
+        "enso_available": false,
+        "soil": {
+          "soil_clay": 254.91306981674995,
+          "soil_sand": 414.3031955171892,
+          "soil_silt": 309.57352718461306,
+          "soil_soc": 11.039694078449191,
+          "soil_ph": 7.871361502347417
+        }
+      }
+    },
+    {
+      "block_name": "Malerkotla",
+      "daily_rainfall_mm": [
+        0.0,
+        0.0,
+        0.17,
+        1.62,
+        5.78,
+        5.82,
+        4.43
+      ],
+      "forecast_7d_total_rainfall_mm": 17.82,
+      "max_daily_rainfall_mm": 5.82,
+      "max_daily_rainfall_day": 6,
+      "dry_days_in_next_7d": 3,
+      "wet_days_in_next_7d": 4,
+      "rainfall_category": "NORMAL",
+      "prob_low": 0.2534,
+      "prob_normal": 0.5372,
+      "prob_high": 0.2094,
+      "context": {
+        "chirps_rain_7d_mm": null,
+        "chirps_rain_30d_mm": null,
+        "chirps_context_available": false,
+        "enso_value": null,
+        "enso_available": false,
+        "soil": {
+          "soil_clay": 292.24928703237714,
+          "soil_sand": 292.9849018621037,
+          "soil_silt": 385.5811105519208,
+          "soil_soc": 12.779374266062742,
+          "soil_ph": 7.658152994464016
+        }
+      }
+    },
+    {
+      "block_name": "Moonak",
+      "daily_rainfall_mm": [
+        0.0,
+        0.0,
+        0.55,
+        0.66,
+        5.49,
+        3.63,
+        7.48
+      ],
+      "forecast_7d_total_rainfall_mm": 17.81,
+      "max_daily_rainfall_mm": 7.48,
+      "max_daily_rainfall_day": 7,
+      "dry_days_in_next_7d": 4,
+      "wet_days_in_next_7d": 3,
+      "rainfall_category": "NORMAL",
+      "prob_low": 0.2534,
+      "prob_normal": 0.5379,
+      "prob_high": 0.2087,
+      "context": {
+        "chirps_rain_7d_mm": null,
+        "chirps_rain_30d_mm": null,
+        "chirps_context_available": false,
+        "enso_value": null,
+        "enso_available": false,
+        "soil": {
+          "soil_clay": 246.17985720795988,
+          "soil_sand": 415.1828953364727,
+          "soil_silt": 316.90110891690716,
+          "soil_soc": 10.861537293027494,
+          "soil_ph": 7.851496278292572
+        }
+      }
+    },
+    {
+      "block_name": "Sangrur",
+      "daily_rainfall_mm": [
+        0.0,
+        0.0,
+        0.29,
+        0.91,
+        7.42,
+        6.9,
+        6.47
+      ],
+      "forecast_7d_total_rainfall_mm": 21.99,
+      "max_daily_rainfall_mm": 7.42,
+      "max_daily_rainfall_day": 5,
+      "dry_days_in_next_7d": 4,
+      "wet_days_in_next_7d": 3,
+      "rainfall_category": "NORMAL",
+      "prob_low": 0.2066,
+      "prob_normal": 0.5321,
+      "prob_high": 0.2613,
+      "context": {
+        "chirps_rain_7d_mm": null,
+        "chirps_rain_30d_mm": null,
+        "chirps_context_available": false,
+        "enso_value": null,
+        "enso_available": false,
+        "soil": {
+          "soil_clay": 273.19281788200806,
+          "soil_sand": 331.9454745327959,
+          "soil_silt": 362.60872114327594,
+          "soil_soc": 12.245415903261268,
+          "soil_ph": 7.69876877977281
+        }
+      }
+    },
+    {
+      "block_name": "Sunam",
+      "daily_rainfall_mm": [
+        0.0,
+        0.0,
+        0.41,
+        0.62,
+        6.64,
+        5.18,
+        6.63
+      ],
+      "forecast_7d_total_rainfall_mm": 19.48,
+      "max_daily_rainfall_mm": 6.64,
+      "max_daily_rainfall_day": 5,
+      "dry_days_in_next_7d": 4,
+      "wet_days_in_next_7d": 3,
+      "rainfall_category": "NORMAL",
+      "prob_low": 0.2326,
+      "prob_normal": 0.5389,
+      "prob_high": 0.2285,
+      "context": {
+        "chirps_rain_7d_mm": null,
+        "chirps_rain_30d_mm": null,
+        "chirps_context_available": false,
+        "enso_value": null,
+        "enso_available": false,
+        "soil": {
+          "soil_clay": 264.08,
+          "soil_sand": 368.5585046728972,
+          "soil_silt": 339.69667289719627,
+          "soil_soc": 12.158168224299065,
+          "soil_ph": 7.7732261682243
+        }
+      }
+    }
+  ],
+  "model": {
+    "type": "raw_gefs",
+    "name": "Raw CHIRPS-GEFS baseline"
+  }
+}

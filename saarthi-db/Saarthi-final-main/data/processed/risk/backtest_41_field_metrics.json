@@ -1,0 +1,167 @@
+{
+  "arms": {
+    "JJAS/FIELD_HIGH": {
+      "n": 522,
+      "prevalence": 0.5211,
+      "TP": 220,
+      "FP": 85,
+      "TN": 165,
+      "FN": 52,
+      "precision": 0.7213,
+      "recall": 0.8088,
+      "f1": 0.7626,
+      "false_alarm_rate": 0.34,
+      "miss_rate": 0.1912
+    },
+    "JJAS/FIELD_HIGH_NEVER": {
+      "n": 522,
+      "prevalence": 0.5211,
+      "TP": 0,
+      "FP": 0,
+      "TN": 250,
+      "FN": 272,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "false_alarm_rate": 0.0,
+      "miss_rate": 1.0
+    },
+    "JJAS/FIELD_HIGH_ALWAYS": {
+      "n": 522,
+      "prevalence": 0.5211,
+      "TP": 272,
+      "FP": 250,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.5211,
+      "recall": 1.0,
+      "f1": 0.6851,
+      "false_alarm_rate": 1.0,
+      "miss_rate": 0.0
+    }
+  },
+  "baseline_prevalence_train": {
+    "FIELD_HIGH": 0.499,
+    "tier_obs_train": {
+      "HIGH": 0.499,
+      "LOW": 0.3113,
+      "MODERATE": 0.1897
+    }
+  },
+  "ci": {
+    "JJAS/FIELD_HIGH/precision": {
+      "lo": 0.6074,
+      "hi": 0.8271
+    },
+    "JJAS/FIELD_HIGH/recall": {
+      "lo": 0.7036,
+      "hi": 0.9031
+    },
+    "JJAS/FIELD_HIGH/f1": {
+      "lo": 0.6679,
+      "hi": 0.8364
+    }
+  },
+  "block": {
+    "FIELD_HIGH": {
+      "Dhuri": {
+        "n": 87,
+        "prevalence": 0.5517,
+        "TP": 37,
+        "FP": 15,
+        "TN": 24,
+        "FN": 11,
+        "precision": 0.7115,
+        "recall": 0.7708,
+        "f1": 0.74,
+        "false_alarm_rate": 0.3846,
+        "miss_rate": 0.2292
+      },
+      "Lehra": {
+        "n": 87,
+        "prevalence": 0.5057,
+        "TP": 36,
+        "FP": 13,
+        "TN": 30,
+        "FN": 8,
+        "precision": 0.7347,
+        "recall": 0.8182,
+        "f1": 0.7742,
+        "false_alarm_rate": 0.3023,
+        "miss_rate": 0.1818
+      },
+      "Malerkotla": {
+        "n": 87,
+        "prevalence": 0.5747,
+        "TP": 39,
+        "FP": 14,
+        "TN": 23,
+        "FN": 11,
+        "precision": 0.7358,
+        "recall": 0.78,
+        "f1": 0.7573,
+        "false_alarm_rate": 0.3784,
+        "miss_rate": 0.22
+      },
+      "Moonak": {
+        "n": 87,
+        "prevalence": 0.4713,
+        "TP": 36,
+        "FP": 13,
+        "TN": 33,
+        "FN": 5,
+        "precision": 0.7347,
+        "recall": 0.878,
+        "f1": 0.8,
+        "false_alarm_rate": 0.2826,
+        "miss_rate": 0.122
+      },
+      "Sangrur": {
+        "n": 87,
+        "prevalence": 0.4828,
+        "TP": 34,
+        "FP": 17,
+        "TN": 28,
+        "FN": 8,
+        "precision": 0.6667,
+        "recall": 0.8095,
+        "f1": 0.7312,
+        "false_alarm_rate": 0.3778,
+        "miss_rate": 0.1905
+      },
+      "Sunam": {
+        "n": 87,
+        "prevalence": 0.5402,
+        "TP": 38,
+        "FP": 13,
+        "TN": 27,
+        "FN": 9,
+        "precision": 0.7451,
+        "recall": 0.8085,
+        "f1": 0.7755,
+        "false_alarm_rate": 0.325,
+        "miss_rate": 0.1915
+      }
+    }
+  },
+  "tier": {
+    "pred_distribution": {
+      "HIGH": 305,
+      "LOW": 159,
+      "MODERATE": 58
+    },
+    "obs_distribution": {
+      "HIGH": 272,
+      "LOW": 151,
+      "MODERATE": 99
+    },
+    "tier_agreement": 0.6379
+  },
+  "method": {
+    "source": "HISTORICAL GEFS PSEUDO-FORECAST, explicitly NOT live IFS",
+    "rule": "field-v1: HIGH if >=2 wet days (>=1mm) in D+1..D+3; proposed a priori",
+    "prob_flag": "FIELD_HIGH_PRECIP_PROB unit-tested + IFS-compatible; NOT in GEFS validation",
+    "issues": "weekly Wednesday JJAS eval 2021-01-01.., n_issues=87",
+    "uncertainty": "issue-clustered bootstrap 2000 reps seed 11"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "blocks",
+  "type": "object",
+  "required": [
+    "blocks",
+    "count"
+  ],
+  "properties": {
+    "count": {
+      "type": "integer",
+      "const": 6
+    },
+    "blocks": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": [
+          "block_id",
+          "block_name",
+          "district",
+          "state",
+          "centroid_latitude",
+          "centroid_longitude"
+        ]
+      }
+    }
+  }
+}

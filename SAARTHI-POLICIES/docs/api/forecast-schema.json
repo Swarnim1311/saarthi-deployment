@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "latest_forecast",
+  "type": "object",
+  "required": [
+    "system",
+    "forecast"
+  ],
+  "properties": {
+    "system": {
+      "type": "object",
+      "required": [
+        "district",
+        "spatial_unit",
+        "forecast_horizon_days",
+        "forecast_method"
+      ],
+      "properties": {
+        "district": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "spatial_unit": {
+          "type": "string",
+          "const": "block"
+        },
+        "forecast_horizon_days": {
+          "type": "integer",
+          "const": 7
+        },
+        "forecast_method": {
+          "type": "string"
+        }
+      }
+    },
+    "forecast": {
+      "type": "object",
+      "required": [
+        "issue_date",
+        "valid_from",
+        "valid_to",
+        "blocks"
+      ],
+      "properties": {
+        "issue_date": {
+          "type": "string",
+          "format": "date"
+        },
+        "valid_from": {
+          "type": "string",
+          "format": "date"
+        },
+        "valid_to": {
+          "type": "string",
+          "format": "date"
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": [
+              "block_id",
+              "block_name",
+              "forecast_7d_total_rainfall_mm",
+              "category",
+              "probability",
+              "daily_forecast",
+              "indicators"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

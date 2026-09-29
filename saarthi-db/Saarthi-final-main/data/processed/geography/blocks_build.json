@@ -1,0 +1,2153 @@
+{
+ "sources": {
+  "lgd_blocks": "https://ckandev.indiadataportal.com/dataset/a7419751-ac37-46ad-b938-638cda7b7b60/resource/bdf22015-a213-4e23-b693-ca40bec4346e/download/block-lgd-codes.csv",
+  "lgd_polygons": "bharatlas LGD Blocks (2024), CC0 (true polygon bbox-centres; CKAN names kept on join)",
+  "geocoder": "https://geocoding-api.open-meteo.com/v1/search",
+  "seed": "verified 2026-09-23 (Bhuvan polygons + admin-verified geocodes)"
+ },
+ "lgd_source_rows": 7245,
+ "n_polygon_rows": 7113,
+ "n_polygon_attached": 7018,
+ "n_parquet_only": 82,
+ "collisions": [],
+ "n_collisions": 0,
+ "name_canonicalizations": [
+  {
+   "code": "379",
+   "from": "Janjgir-champa",
+   "to": "Janjgir-Champa",
+   "level": "district"
+  },
+  {
+   "code": "379",
+   "from": "Janjgir-champa",
+   "to": "Janjgir-Champa",
+   "level": "district"
+  },
+  {
+   "code": "379",
+   "from": "Janjgir-champa",
+   "to": "Janjgir-Champa",
+   "level": "district"
+  },
+  {
+   "code": "379",
+   "from": "Janjgir-champa",
+   "to": "Janjgir-Champa",
+   "level": "district"
+  },
+  {
+   "code": "379",
+   "from": "Janjgir-champa",
+   "to": "Janjgir-Champa",
+   "level": "district"
+  },
+  {
+   "code": "1",
+   "from": "JAMMU & KASHMIR",
+   "to": "Jammu and Kashmir",
+   "level": "state"
+  },
+  {
+   "code": "1",
+   "from": "JAMMU & KASHMIR",
+   "to": "Jammu and Kashmir",
+   "level": "state"
+  },
+  {
+   "code": "1",
+   "from": "JAMMU & KASHMIR",
+   "to": "Jammu and Kashmir",
+   "level": "state"
+  },
+  {
+   "code": "1",
+   "from": "JAMMU & KASHMIR",
+   "to": "Jammu and Kashmir",
+   "level": "state"
+  },
+  {
+   "code": "1",
+   "from": "JAMMU & KASHMIR",
+   "to": "Jammu and Kashmir",
+   "level": "state"
+  },
+  {
+   "code": "11",
+   "from": "SIKKIM",
+   "to": "Sikkim",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "12",
+   "from": "ARUNACHAL PRADESH",
+   "to": "Arunachal Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "13",
+   "from": "NAGALAND",
+   "to": "Nagaland",
+   "level": "state"
+  },
+  {
+   "code": "14",
+   "from": "MANIPUR",
+   "to": "Manipur",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "18",
+   "from": "ASSAM",
+   "to": "Assam",
+   "level": "state"
+  },
+  {
+   "code": "19",
+   "from": "WEST BENGAL",
+   "to": "West Bengal",
+   "level": "state"
+  },
+  {
+   "code": "20",
+   "from": "JHARKHAND",
+   "to": "Jharkhand",
+   "level": "state"
+  },
+  {
+   "code": "20",
+   "from": "JHARKHAND",
+   "to": "Jharkhand",
+   "level": "state"
+  },
+  {
+   "code": "20",
+   "from": "JHARKHAND",
+   "to": "Jharkhand",
+   "level": "state"
+  },
+  {
+   "code": "20",
+   "from": "JHARKHAND",
+   "to": "Jharkhand",
+   "level": "state"
+  },
+  {
+   "code": "22",
+   "from": "CHHATTISGARH",
+   "to": "Chhattisgarh",
+   "level": "state"
+  },
+  {
+   "code": "22",
+   "from": "CHHATTISGARH",
+   "to": "Chhattisgarh",
+   "level": "state"
+  },
+  {
+   "code": "29",
+   "from": "KARNATAKA",
+   "to": "Karnataka",
+   "level": "state"
+  },
+  {
+   "code": "30",
+   "from": "GOA",
+   "to": "Goa",
+   "level": "state"
+  },
+  {
+   "code": "33",
+   "from": "TAMIL NADU",
+   "to": "Tamil Nadu",
+   "level": "state"
+  },
+  {
+   "code": "33",
+   "from": "TAMIL NADU",
+   "to": "Tamil Nadu",
+   "level": "state"
+  },
+  {
+   "code": "33",
+   "from": "TAMIL NADU",
+   "to": "Tamil Nadu",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "36",
+   "from": "TELANGANA",
+   "to": "Telangana",
+   "level": "state"
+  },
+  {
+   "code": "9",
+   "from": "UTTAR PRADESH",
+   "to": "Uttar Pradesh",
+   "level": "state"
+  },
+  {
+   "code": "9",
+   "from": "UTTAR PRADESH",
+   "to": "Uttar Pradesh",
+   "level": "state"
+  }
+ ],
+ "n_canonicalizations": 87,
+ "n_kept": 7179,
+ "n_states": 35,
+ "n_districts": 751,
+ "n_skipped_no_coords": 149,
+ "skipped_no_coords": [
+  {
+   "block": "Dachnipora",
+   "district": "Anantnag",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:1:3"
+  },
+  {
+   "block": "Nangali Sahib Sain Baba",
+   "district": "Poonch",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:10:6963"
+  },
+  {
+   "block": "Lassana",
+   "district": "Poonch",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:10:6967"
+  },
+  {
+   "block": "Shadimarg",
+   "district": "Pulwama",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:11:6900"
+  },
+  {
+   "block": "Qamarwari",
+   "district": "Srinagar",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:13:7087"
+  },
+  {
+   "block": "Majalta",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:129"
+  },
+  {
+   "block": "Jaganoo",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:6924"
+  },
+  {
+   "block": "Kulwanta",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:6926"
+  },
+  {
+   "block": "Latti",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:6927"
+  },
+  {
+   "block": "Moungri",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:6928"
+  },
+  {
+   "block": "Narsoo",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:6929"
+  },
+  {
+   "block": "Chanunta Dalsar",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:6930"
+  },
+  {
+   "block": "Parli Dhar",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:6931"
+  },
+  {
+   "block": "Sewna",
+   "district": "Udhampur",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:14:6932"
+  },
+  {
+   "block": "Chandil Wangam",
+   "district": "Baramulla",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:3:7007"
+  },
+  {
+   "block": "Maira Mandrian",
+   "district": "Jammu",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:5:6864"
+  },
+  {
+   "block": "Chowki Choura",
+   "district": "Jammu",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:5:6865"
+  },
+  {
+   "block": "Baktoor",
+   "district": "Bandipora",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:623:6914"
+  },
+  {
+   "block": "Nud",
+   "district": "Samba",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:624:6934"
+  },
+  {
+   "block": "Panthal",
+   "district": "Reasi",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:627:6940"
+  },
+  {
+   "block": "Jig Bagli",
+   "district": "Reasi",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:627:6942"
+  },
+  {
+   "block": "Meliyal",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:6993"
+  },
+  {
+   "block": "Reddi Chowkibal",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:6994"
+  },
+  {
+   "block": "Qadirabad",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:6995"
+  },
+  {
+   "block": "Nutnoosa",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:6997"
+  },
+  {
+   "block": "Hayhama",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:6998"
+  },
+  {
+   "block": "Machil",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:6999"
+  },
+  {
+   "block": "Tarathpora",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:7000"
+  },
+  {
+   "block": "Mawar Kalamabad",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:7003"
+  },
+  {
+   "block": "Qaziabad Supernagama",
+   "district": "Kupwara",
+   "state": "Jammu and Kashmir",
+   "reason": "no verified geocode match (cached)",
+   "key": "1:8:7004"
+  },
+  {
+   "block": "Hee Martam",
+   "district": "Gyalshing",
+   "state": "Sikkim",
+   "reason": "no verified geocode match (cached)",
+   "key": "11:228:7139"
+  },
+  {
+   "block": "Parkha",
+   "district": "Pakyong",
+   "state": "Sikkim",
+   "reason": "no verified geocode match (cached)",
+   "key": "11:741:7137"
+  },
+  {
+   "block": "Mangalbarey",
+   "district": "Soreng",
+   "state": "Sikkim",
+   "reason": "no verified geocode match (cached)",
+   "key": "11:742:7141"
+  },
+  {
+   "block": "Baiguney",
+   "district": "Soreng",
+   "state": "Sikkim",
+   "reason": "no verified geocode match (cached)",
+   "key": "11:742:7501"
+  },
+  {
+   "block": "Vijoynagar",
+   "district": "Changlang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:229:6817"
+  },
+  {
+   "block": "Yatdam",
+   "district": "Changlang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:229:7179"
+  },
+  {
+   "block": "Kantang",
+   "district": "Changlang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:229:7532"
+  },
+  {
+   "block": "Sawa",
+   "district": "East Kameng",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:231:7345"
+  },
+  {
+   "block": "Lada",
+   "district": "East Kameng",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:231:7539"
+  },
+  {
+   "block": "Bilat",
+   "district": "East Siang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:232:7544"
+  },
+  {
+   "block": "Phassang",
+   "district": "Kurung Kumey",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:233:7535"
+  },
+  {
+   "block": "Paniasang",
+   "district": "Kurung Kumey",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:233:7541"
+  },
+  {
+   "block": "Polosang",
+   "district": "Kurung Kumey",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:233:7542"
+  },
+  {
+   "block": "Doimukh",
+   "district": "Papum Pare",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:237:2238"
+  },
+  {
+   "block": "Balijan",
+   "district": "Papum Pare",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:237:6812"
+  },
+  {
+   "block": "Borduria",
+   "district": "Tirap",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:239:7146"
+  },
+  {
+   "block": "Bari Basip",
+   "district": "Tirap",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:239:7543"
+  },
+  {
+   "block": "Singa Gelling",
+   "district": "Upper Siang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:240:7067"
+  },
+  {
+   "block": "Jengging",
+   "district": "Upper Siang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:240:7068"
+  },
+  {
+   "block": "Payeng",
+   "district": "Upper Subansiri",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:241:6799"
+  },
+  {
+   "block": "Chetam",
+   "district": "Upper Subansiri",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:241:6800"
+  },
+  {
+   "block": "Taksing",
+   "district": "Upper Subansiri",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:241:7538"
+  },
+  {
+   "block": "Bagra",
+   "district": "West Siang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:243:7534"
+  },
+  {
+   "block": "Niausa",
+   "district": "Longding",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:666:6796"
+  },
+  {
+   "block": "Lawnu",
+   "district": "Longding",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:666:7530"
+  },
+  {
+   "block": "Chambang",
+   "district": "Kra Daadi",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:677:2192"
+  },
+  {
+   "block": "Gangte",
+   "district": "Kra Daadi",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:677:7084"
+  },
+  {
+   "block": "Kaying",
+   "district": "Siang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:679:2305"
+  },
+  {
+   "block": "Payum",
+   "district": "Siang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:679:7533"
+  },
+  {
+   "block": "Puchi Geko",
+   "district": "Kamle",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:718:6802"
+  },
+  {
+   "block": "Gepen",
+   "district": "Kamle",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:718:7531"
+  },
+  {
+   "block": "Persin Dollungmukh",
+   "district": "Kamle",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:718:7536"
+  },
+  {
+   "block": "Kamporijo",
+   "district": "Kamle",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:718:7537"
+  },
+  {
+   "block": "Ramle Bango",
+   "district": "Lower Siang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:719:7056"
+  },
+  {
+   "block": "Kangku",
+   "district": "Lower Siang",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:719:7540"
+  },
+  {
+   "block": "Manigoan",
+   "district": "Shi Yomi",
+   "state": "Arunachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "12:725:7059"
+  },
+  {
+   "block": "Aghunaqa",
+   "district": "Dimapur",
+   "state": "Nagaland",
+   "reason": "no verified geocode match (cached)",
+   "key": "13:244:6749"
+  },
+  {
+   "block": "Chunlikha",
+   "district": "Kohima",
+   "state": "Nagaland",
+   "reason": "no verified geocode match (cached)",
+   "key": "13:245:6739"
+  },
+  {
+   "block": "Thonoknyu",
+   "district": "Tuensang",
+   "state": "Nagaland",
+   "reason": "no verified geocode match (cached)",
+   "key": "13:249:2348"
+  },
+  {
+   "block": "Khengjoy",
+   "district": "Chandel",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:253:6580"
+  },
+  {
+   "block": "Khangbarol",
+   "district": "Chandel",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:253:7317"
+  },
+  {
+   "block": "Lamka",
+   "district": "Churachandpur",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:254:6571"
+  },
+  {
+   "block": "Sangaikot",
+   "district": "Churachandpur",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:254:6574"
+  },
+  {
+   "block": "Suangdoh",
+   "district": "Churachandpur",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:254:7313"
+  },
+  {
+   "block": "Mualnuam",
+   "district": "Churachandpur",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:254:7314"
+  },
+  {
+   "block": "Lanva",
+   "district": "Churachandpur",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:254:7315"
+  },
+  {
+   "block": "Kshetrigao Cd Block",
+   "district": "Imphal East",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:255:7161"
+  },
+  {
+   "block": "Heingang Cd Block",
+   "district": "Imphal East",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:255:7187"
+  },
+  {
+   "block": "Hiyangthang",
+   "district": "Imphal West",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:256:7153"
+  },
+  {
+   "block": "Willong",
+   "district": "Senapati",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:257:7324"
+  },
+  {
+   "block": "Song Song",
+   "district": "Senapati",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:257:7325"
+  },
+  {
+   "block": "Phaibung Khullen",
+   "district": "Senapati",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:257:7328"
+  },
+  {
+   "block": "Wangjing Cd Block",
+   "district": "Thoubal",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:259:7160"
+  },
+  {
+   "block": "Lungchong Meiphai",
+   "district": "Ukhrul",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:260:6607"
+  },
+  {
+   "block": "Jessami Td",
+   "district": "Ukhrul",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:260:7306"
+  },
+  {
+   "block": "Langmeidong",
+   "district": "Kakching",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:711:7178"
+  },
+  {
+   "block": "Champhai",
+   "district": "Kangpokpi",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:712:7320"
+  },
+  {
+   "block": "Island",
+   "district": "Kangpokpi",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:712:7322"
+  },
+  {
+   "block": "Borobekra Cd Block",
+   "district": "Jiribam",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:713:7164"
+  },
+  {
+   "block": "Longmai",
+   "district": "Noney",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:714:7309"
+  },
+  {
+   "block": "Vangai Range",
+   "district": "Pherzawl",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:715:7327"
+  },
+  {
+   "block": "Sahamphung Td Block",
+   "district": "Kamjong",
+   "state": "Manipur",
+   "reason": "no verified geocode match (cached)",
+   "key": "14:717:7308"
+  },
+  {
+   "block": "Namdong",
+   "district": "West Jaintia Hills",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:275:7523"
+  },
+  {
+   "block": "Bhoirymbong",
+   "district": "Ri Bhoi",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:276:7182"
+  },
+  {
+   "block": "Siju",
+   "district": "South Garo Hills",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:277:7520"
+  },
+  {
+   "block": "Batabari",
+   "district": "West Garo Hills",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:278:7527"
+  },
+  {
+   "block": "Ri-muliang",
+   "district": "West Khasi Hills",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:279:7524"
+  },
+  {
+   "block": "Shallang",
+   "district": "West Khasi Hills",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:279:7526"
+  },
+  {
+   "block": "Adokgre",
+   "district": "North Garo Hills",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:656:7522"
+  },
+  {
+   "block": "Lumshnong",
+   "district": "East Jaintia Hills",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:657:7525"
+  },
+  {
+   "block": "Rerapara",
+   "district": "South West Garo Hills",
+   "state": "Meghalaya",
+   "reason": "no verified geocode match (cached)",
+   "key": "17:663:7180"
+  },
+  {
+   "block": "Jamadarhat",
+   "district": "Dhubri",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:285:2557"
+  },
+  {
+   "block": "Bilashipara-btc",
+   "district": "Kokrajhar",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:294:6567"
+  },
+  {
+   "block": "Mahamaya-btc",
+   "district": "Kokrajhar",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:294:6568"
+  },
+  {
+   "block": "Golakganj-btc",
+   "district": "Kokrajhar",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:294:6569"
+  },
+  {
+   "block": "Rupshi-btc",
+   "district": "Kokrajhar",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:294:6570"
+  },
+  {
+   "block": "Debitola-btc",
+   "district": "Kokrajhar",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:294:6595"
+  },
+  {
+   "block": "Batabraba (part)",
+   "district": "Marigaon",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:296:2649"
+  },
+  {
+   "block": "Naduar",
+   "district": "Sonitpur",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:301:2711"
+  },
+  {
+   "block": "Dalgaon-sialmari",
+   "district": "Udalguri",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:617:6556"
+  },
+  {
+   "block": "South Salmara  Part",
+   "district": "South Salmara Mancachar",
+   "state": "Assam",
+   "reason": "no verified geocode match (cached)",
+   "key": "18:707:7482"
+  },
+  {
+   "block": "Ausgram-ii",
+   "district": "Purba Bardhaman",
+   "state": "West Bengal",
+   "reason": "no verified geocode match (cached)",
+   "key": "19:306:2797"
+  },
+  {
+   "block": "Kranti",
+   "district": "Jalpaiguri",
+   "state": "West Bengal",
+   "reason": "no verified geocode match (cached)",
+   "key": "19:314:7484"
+  },
+  {
+   "block": "Bhunter",
+   "district": "Kullu",
+   "state": "Himachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "2:20:7507"
+  },
+  {
+   "block": "Tilordhar",
+   "district": "Sirmaur",
+   "state": "Himachal Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "2:24:7493"
+  },
+  {
+   "block": "Manjhiaon",
+   "district": "Garhwa",
+   "state": "Jharkhand",
+   "reason": "no verified geocode match (cached)",
+   "key": "20:328:3125"
+  },
+  {
+   "block": "Bargad",
+   "district": "Garhwa",
+   "state": "Jharkhand",
+   "reason": "no verified geocode match (cached)",
+   "key": "20:328:7366"
+  },
+  {
+   "block": "Saryu",
+   "district": "Latehar",
+   "state": "Jharkhand",
+   "reason": "no verified geocode match (cached)",
+   "key": "20:335:7365"
+  },
+  {
+   "block": "Manjhgaon",
+   "district": "West Singhbhum",
+   "state": "Jharkhand",
+   "reason": "no verified geocode match (cached)",
+   "key": "20:343:3270"
+  },
+  {
+   "block": "Yaragatti",
+   "district": "Belagavi",
+   "state": "Karnataka",
+   "reason": "no verified geocode match (cached)",
+   "key": "29:527:7528"
+  },
+  {
+   "block": "Thiruvennainallur",
+   "district": "Villupuram",
+   "state": "Tamil Nadu",
+   "reason": "no verified geocode match (cached)",
+   "key": "33:596:6468"
+  },
+  {
+   "block": "St.thomas Mount",
+   "district": "Chengalpattu",
+   "state": "Tamil Nadu",
+   "reason": "no verified geocode match (cached)",
+   "key": "33:730:6183"
+  },
+  {
+   "block": "Ganneruvaram",
+   "district": "Karimnagar",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:508:7205"
+  },
+  {
+   "block": "Mohammadabad",
+   "district": "Mahabubnagar",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:512:7505"
+  },
+  {
+   "block": "Regode",
+   "district": "Medak",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:513:5300"
+  },
+  {
+   "block": "Khila Warangal",
+   "district": "Warangal",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:522:7230"
+  },
+  {
+   "block": "Peddavangara",
+   "district": "Mahabubabad",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:688:7217"
+  },
+  {
+   "block": "Julurupadu",
+   "district": "Bhadradri Kothagudem",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:690:5068"
+  },
+  {
+   "block": "Vatpally",
+   "district": "Sangareddy",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:691:7304"
+  },
+  {
+   "block": "Chowtakur",
+   "district": "Sangareddy",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:691:7502"
+  },
+  {
+   "block": "Dhoolmitta",
+   "district": "Siddipet",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:692:7503"
+  },
+  {
+   "block": "Urkonda",
+   "district": "Nagarkurnool",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:694:7303"
+  },
+  {
+   "block": "Chowdapur",
+   "district": "Vikarabad",
+   "state": "Telangana",
+   "reason": "no verified geocode match (cached)",
+   "key": "36:698:7506"
+  },
+  {
+   "block": "Soudh",
+   "district": "Kargil",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:6:7038"
+  },
+  {
+   "block": "Bhimbat",
+   "district": "Kargil",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:6:7039"
+  },
+  {
+   "block": "Pashkum",
+   "district": "Kargil",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:6:7040"
+  },
+  {
+   "block": "Lotsum",
+   "district": "Kargil",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:6:7041"
+  },
+  {
+   "block": "Barsoo",
+   "district": "Kargil",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:6:7042"
+  },
+  {
+   "block": "Thiksay",
+   "district": "Leh Ladakh",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:9:7044"
+  },
+  {
+   "block": "Nimoo",
+   "district": "Leh Ladakh",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:9:7045"
+  },
+  {
+   "block": "Turtuk",
+   "district": "Leh Ladakh",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:9:7048"
+  },
+  {
+   "block": "Sukerbachan",
+   "district": "Leh Ladakh",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:9:7049"
+  },
+  {
+   "block": "Singay Lalok Wanla",
+   "district": "Leh Ladakh",
+   "state": "Ladakh",
+   "reason": "no verified geocode match (cached)",
+   "key": "37:9:7050"
+  },
+  {
+   "block": "Bajju Khalsa",
+   "district": "Bikaner",
+   "state": "Rajasthan",
+   "reason": "no verified geocode match (cached)",
+   "key": "8:93:7424"
+  },
+  {
+   "block": "Baijupada",
+   "district": "Dausa",
+   "state": "Rajasthan",
+   "reason": "no verified geocode match (cached)",
+   "key": "8:97:7436"
+  },
+  {
+   "block": "Bharohiya",
+   "district": "Gorakhpur",
+   "state": "Uttar Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "9:148:7480"
+  },
+  {
+   "block": "Kone",
+   "district": "Sonbhadra",
+   "state": "Uttar Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "9:184:7380"
+  },
+  {
+   "block": "Karaudikala",
+   "district": "Sultanpur",
+   "state": "Uttar Pradesh",
+   "reason": "no verified geocode match (cached)",
+   "key": "9:185:6714"
+  },
+  {
+   "key": "1:0:6992",
+   "block": "Keran",
+   "reason": "blank or zero key field"
+  }
+ ],
+ "states": [
+  "10|Bihar",
+  "11|Sikkim",
+  "12|Arunachal Pradesh",
+  "13|Nagaland",
+  "14|Manipur",
+  "15|Mizoram",
+  "16|Tripura",
+  "17|Meghalaya",
+  "18|Assam",
+  "19|West Bengal",
+  "1|Jammu and Kashmir",
+  "20|Jharkhand",
+  "21|Odisha",
+  "22|Chhattisgarh",
+  "23|Madhya Pradesh",
+  "24|Gujarat",
+  "27|Maharashtra",
+  "28|Andhra Pradesh",
+  "29|Karnataka",
+  "2|Himachal Pradesh",
+  "30|Goa",
+  "31|Lakshadweep",
+  "32|Kerala",
+  "33|Tamil Nadu",
+  "34|Puducherry",
+  "35|Andaman and Nicobar Islands",
+  "36|Telangana",
+  "37|Ladakh",
+  "38|The Dadra and Nagar Haveli and Daman and Diu",
+  "3|Punjab",
+  "4|Chandigarh",
+  "5|Uttarakhand",
+  "6|Haryana",
+  "8|Rajasthan",
+  "9|Uttar Pradesh"
+ ],
+ "geocoded_provenance": {
+  "1:10:6964": {
+   "query": "Sathra, Jammu and Kashmir, India",
+   "matched_name": "S\u0101thra",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "Poonch District",
+   "matched_lat": 33.77015,
+   "matched_lon": 74.20312
+  },
+  "1:10:6965": {
+   "query": "Loran, Jammu and Kashmir, India",
+   "matched_name": "Loran",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "Rajauri",
+   "matched_lat": 33.27879,
+   "matched_lon": 74.12113
+  },
+  "1:14:6933": {
+   "query": "Tikri, Jammu and Kashmir, India",
+   "matched_name": "Tikri",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "Udhampur district",
+   "matched_lat": 32.94249,
+   "matched_lon": 74.9859
+  },
+  "1:624:64": {
+   "query": "Samba, Jammu and Kashmir, India",
+   "matched_name": "S\u0101mba",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "Samba District",
+   "matched_lat": 32.56245,
+   "matched_lon": 75.11993
+  },
+  "1:624:6935": {
+   "query": "Sumb, Jammu and Kashmir, India",
+   "matched_name": "Sumbal",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "Bandipora District",
+   "matched_lat": 34.23072,
+   "matched_lon": 74.6472
+  },
+  "1:624:6937": {
+   "query": "Ramgarh, Jammu and Kashmir, India",
+   "matched_name": "R\u0101mgarh",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "Samba District",
+   "matched_lat": 32.5084,
+   "matched_lon": 74.96449
+  },
+  "1:8:6992": {
+   "query": "Keran, Jammu and Kashmir, India",
+   "matched_name": "Keran",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "Kupwara District",
+   "matched_lat": 34.65371,
+   "matched_lon": 73.95308
+  },
+  "1:8:7001": {
+   "query": "Magam, Jammu and Kashmir, India",
+   "matched_name": "M\u0101g\u0101m",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "B\u0101ram\u016bla District",
+   "matched_lat": 34.09256,
+   "matched_lon": 74.59016
+  },
+  "1:8:7002": {
+   "query": "Handwara, Jammu and Kashmir, India",
+   "matched_name": "Handw\u0101ra",
+   "matched_admin1": "Jammu and Kashmir",
+   "matched_admin2": "Kupwara District",
+   "matched_lat": 34.39677,
+   "matched_lon": 74.28138
+  },
+  "11:225:6562": {
+   "query": "Martam, Sikkim, India",
+   "matched_name": "M\u0101rtam",
+   "matched_admin1": "Sikkim",
+   "matched_admin2": "West Sikkim",
+   "matched_lat": 27.24512,
+   "matched_lon": 88.22314
+  },
+  "11:227:6563": {
+   "query": "Jorethang, Sikkim, India",
+   "matched_name": "Jorethang",
+   "matched_admin1": "Sikkim",
+   "matched_admin2": "",
+   "matched_lat": 27.10696,
+   "matched_lon": 88.32332
+  },
+  "11:227:6564": {
+   "query": "Namthang, Sikkim, India",
+   "matched_name": "N\u0101mth\u0101ng",
+   "matched_admin1": "Sikkim",
+   "matched_admin2": "South District",
+   "matched_lat": 27.1629,
+   "matched_lon": 88.4775
+  },
+  "11:741:6533": {
+   "query": "Duga, Sikkim, India",
+   "matched_name": "Duga",
+   "matched_admin1": "Sikkim",
+   "matched_admin2": "Pakyong",
+   "matched_lat": 27.19928,
+   "matched_lon": 88.53322
+  },
+  "13:244:2313": {
+   "query": "Dhansiripar, Nagaland, India",
+   "matched_name": "Dhansiripar",
+   "matched_admin1": "Nagaland",
+   "matched_admin2": "Chumoukedima",
+   "matched_lat": 25.78116,
+   "matched_lon": 93.62323
+  },
+  "13:244:2315": {
+   "query": "Medziphema, Nagaland, India",
+   "matched_name": "Medziphema",
+   "matched_admin1": "Nagaland",
+   "matched_admin2": "Chumoukedima",
+   "matched_lat": 25.75759,
+   "matched_lon": 93.86545
+  },
+  "13:244:2316": {
+   "query": "Niuland, Nagaland, India",
+   "matched_name": "Niuland",
+   "matched_admin1": "Nagaland",
+   "matched_admin2": "Dimapur",
+   "matched_lat": 25.90758,
+   "matched_lon": 93.98774
+  },
+  "13:244:6748": {
+   "query": "Chumukedima, Nagaland, India",
+   "matched_name": "Chumukedima",
+   "matched_admin1": "Nagaland",
+   "matched_admin2": "Chumoukedima",
+   "matched_lat": 25.82483,
+   "matched_lon": 93.77592
+  },
+  "13:245:2323": {
+   "query": "Tseminyu, Nagaland, India",
+   "matched_name": "Tseminyu",
+   "matched_admin1": "Nagaland",
+   "matched_admin2": "Tseminyu",
+   "matched_lat": 25.92474,
+   "matched_lon": 94.21615
+  },
+  "13:249:2344": {
+   "query": "Noklak, Nagaland, India",
+   "matched_name": "Noklak",
+   "matched_admin1": "Nagaland",
+   "matched_admin2": "Noklak",
+   "matched_lat": 26.19845,
+   "matched_lon": 95.01658
+  },
+  "13:249:6752": {
+   "query": "Panso, Nagaland, India",
+   "matched_name": "Panso",
+   "matched_admin1": "Nagaland",
+   "matched_admin2": "Noklak",
+   "matched_lat": 26.11726,
+   "matched_lon": 94.92957
+  },
+  "14:254:7312": {
+   "query": "Kangvai, Manipur, India",
+   "matched_name": "Kangvai",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Bishnupur",
+   "matched_lat": 24.43287,
+   "matched_lon": 93.71848
+  },
+  "14:712:7318": {
+   "query": "Bungte Chiru, Manipur, India",
+   "matched_name": "Bungte Chiru",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Kangpokpi",
+   "matched_lat": 24.64396,
+   "matched_lon": 93.73288
+  },
+  "14:712:7319": {
+   "query": "Kangchup Geljang, Manipur, India",
+   "matched_name": "Kangchup Geljang",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Kangpokpi",
+   "matched_lat": 24.86955,
+   "matched_lon": 93.80585
+  },
+  "14:712:7321": {
+   "query": "Lhungtin, Manipur, India",
+   "matched_name": "Lhungtin",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Kangpokpi",
+   "matched_lat": 25.08067,
+   "matched_lon": 94.11713
+  },
+  "14:712:7323": {
+   "query": "T Vaichong, Manipur, India",
+   "matched_name": "T Vaichong",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Kangpokpi",
+   "matched_lat": 25.20722,
+   "matched_lon": 93.82008
+  },
+  "14:714:2376": {
+   "query": "Nungba, Manipur, India",
+   "matched_name": "Nungba",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Noney",
+   "matched_lat": 24.74349,
+   "matched_lon": 93.41751
+  },
+  "14:714:7311": {
+   "query": "Haochong, Manipur, India",
+   "matched_name": "Haochong",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Noney",
+   "matched_lat": 24.88172,
+   "matched_lon": 93.6927
+  },
+  "14:715:7326": {
+   "query": "Tipaimukh, Manipur, India",
+   "matched_name": "Tipaimukh",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Pherzawl",
+   "matched_lat": 24.23592,
+   "matched_lon": 93.02464
+  },
+  "14:716:7310": {
+   "query": "Moreh, Manipur, India",
+   "matched_name": "Moreh",
+   "matched_admin1": "Manipur",
+   "matched_admin2": "Tengnoupal",
+   "matched_lat": 24.2508,
+   "matched_lon": 94.30073
+  },
+  "17:274:7183": {
+   "query": "Sohiong, Meghalaya, India",
+   "matched_name": "Sohiong",
+   "matched_admin1": "Meghalaya",
+   "matched_admin2": "East Khasi Hills District",
+   "matched_lat": 25.49676,
+   "matched_lon": 91.71406
+  },
+  "17:274:7185": {
+   "query": "Mawlai, Meghalaya, India",
+   "matched_name": "Mawlai-Maw\u00efong",
+   "matched_admin1": "Meghalaya",
+   "matched_admin2": "East Khasi Hills District",
+   "matched_lat": 25.62322,
+   "matched_lon": 91.88175
+  },
+  "17:274:7186": {
+   "query": "Mawpat, Meghalaya, India",
+   "matched_name": "Mawpat",
+   "matched_admin1": "Meghalaya",
+   "matched_admin2": "East Khasi Hills District",
+   "matched_lat": 25.59902,
+   "matched_lon": 91.92501
+  },
+  "17:278:7181": {
+   "query": "Demdema, Meghalaya, India",
+   "matched_name": "Demdema",
+   "matched_admin1": "Meghalaya",
+   "matched_admin2": "West Garo Hills District",
+   "matched_lat": 25.83614,
+   "matched_lon": 90.0583
+  },
+  "17:279:7521": {
+   "query": "Rambrai, Meghalaya, India",
+   "matched_name": "Rambrai",
+   "matched_admin1": "Meghalaya",
+   "matched_admin2": "West Khasi Hills District",
+   "matched_lat": 25.65192,
+   "matched_lon": 91.31924
+  },
+  "17:656:7184": {
+   "query": "Bajengdoba, Meghalaya, India",
+   "matched_name": "B\u0101jengdoba",
+   "matched_admin1": "Meghalaya",
+   "matched_admin2": "North Garo Hills",
+   "matched_lat": 25.89401,
+   "matched_lon": 90.50455
+  },
+  "18:283:2528": {
+   "query": "Kalaigaon, Assam, India",
+   "matched_name": "K\u0101l\u0101igaon",
+   "matched_admin1": "Assam",
+   "matched_admin2": "Udalguri",
+   "matched_lat": 26.5741,
+   "matched_lon": 91.97605
+  },
+  "18:285:2562": {
+   "query": "South Salmara, Assam, India",
+   "matched_name": "South Salmara",
+   "matched_admin1": "Assam",
+   "matched_admin2": "Dhubri",
+   "matched_lat": 25.90542,
+   "matched_lon": 90.01805
+  },
+  "19:314:7483": {
+   "query": "Banarhat, West Bengal, India",
+   "matched_name": "Banarhat",
+   "matched_admin1": "West Bengal",
+   "matched_admin2": "Jalpaiguri District",
+   "matched_lat": 26.792,
+   "matched_lon": 89.02869
+  },
+  "19:320:7115": {
+   "query": "Kalyani, West Bengal, India",
+   "matched_name": "Kalyani",
+   "matched_admin1": "West Bengal",
+   "matched_admin2": "Nadia",
+   "matched_lat": 22.9757,
+   "matched_lon": 88.4337
+  },
+  "19:702:7355": {
+   "query": "Pedong, West Bengal, India",
+   "matched_name": "Pedong",
+   "matched_admin1": "West Bengal",
+   "matched_admin2": "Kalimpong",
+   "matched_lat": 27.15393,
+   "matched_lon": 88.61448
+  },
+  "2:18:7496": {
+   "query": "Badoh, Himachal Pradesh, India",
+   "matched_name": "Badohrkar",
+   "matched_admin1": "Himachal Pradesh",
+   "matched_admin2": "K\u0101ngra District",
+   "matched_lat": 31.96374,
+   "matched_lon": 76.38913
+  },
+  "2:22:7490": {
+   "query": "Dhanotu, Himachal Pradesh, India",
+   "matched_name": "Dhanotu",
+   "matched_admin1": "Himachal Pradesh",
+   "matched_admin2": "K\u0101ngra District",
+   "matched_lat": 32.1904,
+   "matched_lon": 76.22591
+  },
+  "2:22:7491": {
+   "query": "Nihri, Himachal Pradesh, India",
+   "matched_name": "Nihri",
+   "matched_admin1": "Himachal Pradesh",
+   "matched_admin2": "Mandi",
+   "matched_lat": 31.61419,
+   "matched_lon": 77.09257
+  },
+  "2:22:7494": {
+   "query": "Churag, Himachal Pradesh, India",
+   "matched_name": "Chur\u0101g",
+   "matched_admin1": "Himachal Pradesh",
+   "matched_admin2": "Mandi",
+   "matched_lat": 31.352,
+   "matched_lon": 77.15883
+  },
+  "2:23:7481": {
+   "query": "Totu, Himachal Pradesh, India",
+   "matched_name": "Totu",
+   "matched_admin1": "Himachal Pradesh",
+   "matched_admin2": "Shimla district",
+   "matched_lat": 31.10181,
+   "matched_lon": 77.12113
+  },
+  "20:331:3154": {
+   "query": "Chainpur, Jharkhand, India",
+   "matched_name": "Chainpur",
+   "matched_admin1": "Jharkhand",
+   "matched_admin2": "Pal\u0101mau District",
+   "matched_lat": 24.01163,
+   "matched_lon": 84.04672
+  },
+  "20:338:3205": {
+   "query": "Chainpur, Jharkhand, India",
+   "matched_name": "Chainpur",
+   "matched_admin1": "Jharkhand",
+   "matched_admin2": "Pal\u0101mau District",
+   "matched_lat": 24.01163,
+   "matched_lon": 84.04672
+  },
+  "22:650:3638": {
+   "query": "Nawagarh, Chhattisgarh, India",
+   "matched_name": "Nawagarh",
+   "matched_admin1": "Chhattisgarh",
+   "matched_admin2": "Bemetara",
+   "matched_lat": 21.90083,
+   "matched_lon": 81.61346
+  },
+  "29:631:7529": {
+   "query": "Harohalli, Karnataka, India",
+   "matched_name": "H\u0101rohalli",
+   "matched_admin1": "Karnataka",
+   "matched_admin2": "Ramanagara District",
+   "matched_lat": 12.68073,
+   "matched_lon": 77.47426
+  },
+  "30:552:5932": {
+   "query": "Ponda, Goa, India",
+   "matched_name": "Ponda",
+   "matched_admin1": "Goa",
+   "matched_admin2": "North Goa",
+   "matched_lat": 15.40341,
+   "matched_lon": 74.01519
+  },
+  "33:571:7477": {
+   "query": "Eriyur, Tamil Nadu, India",
+   "matched_name": "Eriy\u016br",
+   "matched_admin1": "Tamil Nadu",
+   "matched_admin2": "Erode",
+   "matched_lat": 11.62599,
+   "matched_lon": 77.33756
+  },
+  "33:573:6156": {
+   "query": "Andiyur, Tamil Nadu, India",
+   "matched_name": "Anthiyur",
+   "matched_admin1": "Tamil Nadu",
+   "matched_admin2": "Erode",
+   "matched_lat": 11.57506,
+   "matched_lon": 77.59043
+  },
+  "33:733:6388": {
+   "query": "Kadayam, Tamil Nadu, India",
+   "matched_name": "K\u0101day\u0101mhalli",
+   "matched_admin1": "Tamil Nadu",
+   "matched_admin2": "Dharmapuri",
+   "matched_lat": 12.22241,
+   "matched_lon": 78.27956
+  },
+  "36:513:7504": {
+   "query": "Masaipet, Telangana, India",
+   "matched_name": "M\u0101saipet",
+   "matched_admin1": "Telangana",
+   "matched_admin2": "Medak District",
+   "matched_lat": 17.90533,
+   "matched_lon": 78.46162
+  },
+  "36:522:7231": {
+   "query": "Warangal, Telangana, India",
+   "matched_name": "Warangal",
+   "matched_admin1": "Telangana",
+   "matched_admin2": "Hanamkonda",
+   "matched_lat": 18.0,
+   "matched_lon": 79.58333
+  },
+  "36:683:7240": {
+   "query": "Rudrangi, Telangana, India",
+   "matched_name": "Rudr\u0101ngi",
+   "matched_admin1": "Telangana",
+   "matched_admin2": "Rajanna Sircilla",
+   "matched_lat": 18.62575,
+   "matched_lon": 78.70198
+  },
+  "36:690:5056": {
+   "query": "Bhadrachalam, Telangana, India",
+   "matched_name": "Bhadr\u0101chalam",
+   "matched_admin1": "Telangana",
+   "matched_admin2": "Bhadradri Kothagudem",
+   "matched_lat": 17.66846,
+   "matched_lon": 80.88887
+  },
+  "36:697:5330": {
+   "query": "Gundala, Telangana, India",
+   "matched_name": "Gund\u0101la",
+   "matched_admin1": "Telangana",
+   "matched_admin2": "Khammam district",
+   "matched_lat": 17.64583,
+   "matched_lon": 80.93515
+  },
+  "37:9:7046": {
+   "query": "Rong, Ladakh, India",
+   "matched_name": "Rong",
+   "matched_admin1": "Ladakh",
+   "matched_admin2": "Leh Ladakh",
+   "matched_lat": 33.6877,
+   "matched_lon": 77.73301
+  },
+  "6:67:7495": {
+   "query": "Chirao, Haryana, India",
+   "matched_name": "Chirao",
+   "matched_admin1": "Haryana",
+   "matched_admin2": "Karn\u0101l District",
+   "matched_lat": 29.67488,
+   "matched_lon": 76.92098
+  },
+  "8:102:7442": {
+   "query": "Jobner, Rajasthan, India",
+   "matched_name": "Jobner",
+   "matched_admin1": "Rajasthan",
+   "matched_admin2": "Jaipur district",
+   "matched_lat": 26.97257,
+   "matched_lon": 75.38752
+  },
+  "8:107:7459": {
+   "query": "Chamu, Rajasthan, India",
+   "matched_name": "Chamu",
+   "matched_admin1": "Rajasthan",
+   "matched_admin2": "Jodhpur",
+   "matched_lat": 26.65452,
+   "matched_lon": 72.57905
+  },
+  "8:111:7512": {
+   "query": "Bagari, Rajasthan, India",
+   "matched_name": "B\u0101gariy\u0101n",
+   "matched_admin1": "Rajasthan",
+   "matched_admin2": "Jaipur district",
+   "matched_lat": 26.70904,
+   "matched_lon": 76.00686
+  },
+  "9:120:7360": {
+   "query": "Sahson, Uttar Pradesh, India",
+   "matched_name": "Sahson",
+   "matched_admin1": "Uttar Pradesh",
+   "matched_admin2": "Prayagraj",
+   "matched_lat": 25.48764,
+   "matched_lon": 81.98429
+  },
+  "9:171:1417": {
+   "query": "Chhajlet, Uttar Pradesh, India",
+   "matched_name": "Chhajlet",
+   "matched_admin1": "Uttar Pradesh",
+   "matched_admin2": "Moradabad",
+   "matched_lat": 28.98724,
+   "matched_lon": 78.62366
+  },
+  "9:184:7381": {
+   "query": "Karma, Uttar Pradesh, India",
+   "matched_name": "Karma",
+   "matched_admin1": "Uttar Pradesh",
+   "matched_admin2": "Ghazipur",
+   "matched_lat": 25.45771,
+   "matched_lon": 83.67193
+  }
+ }
+}

@@ -1,0 +1,26 @@
+{
+  "source": "data\\raw\\rainfall\\Sangrur_Block_Daily_Rainfall_2010_2025.csv",
+  "span_used": [
+    "2010-01-01",
+    "2025-12-31"
+  ],
+  "rows_used": 35064,
+  "kind": "deployment",
+  "causal_cutoff": null,
+  "leakage_statement": "DEPLOYMENT artifact over the full verified span; do NOT use for leakage-free historical backtests.",
+  "wet_threshold_mm": 1.0,
+  "leap_handling": "Feb-29 pooled into DOY 60 (Feb 28)",
+  "pooling": "circular +- 7 days, no post-smoothing",
+  "w3_def": "sum of rain over issue+17..issue+23",
+  "w4_def": "sum of rain over issue+24..issue+30",
+  "terciles": "33rd/66th percentiles, linear interpolation",
+  "zeros": "source has zero NaNs; all 0.0 are observed no-rain days",
+  "blocks": [
+    "Dhuri",
+    "Lehra",
+    "Malerkotla",
+    "Moonak",
+    "Sangrur",
+    "Sunam"
+  ]
+}

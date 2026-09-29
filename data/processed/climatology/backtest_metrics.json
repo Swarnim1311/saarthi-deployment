@@ -1,0 +1,328 @@
+{
+  "n_issues": {
+    "JJAS": 105,
+    "FULLYR": 309
+  },
+  "arms": {
+    "JJAS/W3/mjolag0/CLIM": {
+      "n": 630,
+      "brier": 0.6667,
+      "rps": 0.4683,
+      "accuracy": 0.3317
+    },
+    "JJAS/W3/mjolag0/CLIM+RECENT": {
+      "n": 630,
+      "brier": 0.674,
+      "rps": 0.475,
+      "accuracy": 0.2714,
+      "brier_skill_vs_clim": -0.0109
+    },
+    "JJAS/W3/mjolag0/CLIM+RECENT+MJO": {
+      "n": 630,
+      "brier": 0.6896,
+      "rps": 0.4888,
+      "accuracy": 0.2619,
+      "brier_skill_vs_clim": -0.0343
+    },
+    "JJAS/W4/mjolag0/CLIM": {
+      "n": 630,
+      "brier": 0.6667,
+      "rps": 0.4656,
+      "accuracy": 0.3333
+    },
+    "JJAS/W4/mjolag0/CLIM+RECENT": {
+      "n": 630,
+      "brier": 0.677,
+      "rps": 0.4754,
+      "accuracy": 0.3,
+      "brier_skill_vs_clim": -0.0154
+    },
+    "JJAS/W4/mjolag0/CLIM+RECENT+MJO": {
+      "n": 630,
+      "brier": 0.6835,
+      "rps": 0.4782,
+      "accuracy": 0.2968,
+      "brier_skill_vs_clim": -0.0252
+    },
+    "JJAS/W3/mjolag3/CLIM": {
+      "n": 630,
+      "brier": 0.6667,
+      "rps": 0.4683,
+      "accuracy": 0.3317
+    },
+    "JJAS/W3/mjolag3/CLIM+RECENT": {
+      "n": 630,
+      "brier": 0.674,
+      "rps": 0.475,
+      "accuracy": 0.2714
+    },
+    "JJAS/W3/mjolag3/CLIM+RECENT+MJO": {
+      "n": 630,
+      "brier": 0.6873,
+      "rps": 0.4866,
+      "accuracy": 0.273
+    },
+    "JJAS/W4/mjolag3/CLIM": {
+      "n": 630,
+      "brier": 0.6667,
+      "rps": 0.4656,
+      "accuracy": 0.3333
+    },
+    "JJAS/W4/mjolag3/CLIM+RECENT": {
+      "n": 630,
+      "brier": 0.677,
+      "rps": 0.4754,
+      "accuracy": 0.3
+    },
+    "JJAS/W4/mjolag3/CLIM+RECENT+MJO": {
+      "n": 630,
+      "brier": 0.6844,
+      "rps": 0.4807,
+      "accuracy": 0.2794
+    },
+    "FULLYR/W3/mjolag0/CLIM": {
+      "n": 1854,
+      "brier": 0.6667,
+      "rps": 0.4649,
+      "accuracy": 0.4056
+    },
+    "FULLYR/W3/mjolag0/CLIM+RECENT": {
+      "n": 1854,
+      "brier": 0.6669,
+      "rps": 0.4657,
+      "accuracy": 0.3571
+    },
+    "FULLYR/W3/mjolag0/CLIM+RECENT+MJO": {
+      "n": 1854,
+      "brier": 0.6716,
+      "rps": 0.4678,
+      "accuracy": 0.3463
+    },
+    "FULLYR/W4/mjolag0/CLIM": {
+      "n": 1854,
+      "brier": 0.6667,
+      "rps": 0.466,
+      "accuracy": 0.4083
+    },
+    "FULLYR/W4/mjolag0/CLIM+RECENT": {
+      "n": 1854,
+      "brier": 0.6654,
+      "rps": 0.465,
+      "accuracy": 0.37
+    },
+    "FULLYR/W4/mjolag0/CLIM+RECENT+MJO": {
+      "n": 1854,
+      "brier": 0.6676,
+      "rps": 0.4644,
+      "accuracy": 0.3598
+    },
+    "FULLYR/W3/mjolag3/CLIM": {
+      "n": 1854,
+      "brier": 0.6667,
+      "rps": 0.4649,
+      "accuracy": 0.4056
+    },
+    "FULLYR/W3/mjolag3/CLIM+RECENT": {
+      "n": 1854,
+      "brier": 0.6669,
+      "rps": 0.4657,
+      "accuracy": 0.3571
+    },
+    "FULLYR/W3/mjolag3/CLIM+RECENT+MJO": {
+      "n": 1854,
+      "brier": 0.6694,
+      "rps": 0.4668,
+      "accuracy": 0.3646
+    },
+    "FULLYR/W4/mjolag3/CLIM": {
+      "n": 1854,
+      "brier": 0.6667,
+      "rps": 0.466,
+      "accuracy": 0.4083
+    },
+    "FULLYR/W4/mjolag3/CLIM+RECENT": {
+      "n": 1854,
+      "brier": 0.6654,
+      "rps": 0.465,
+      "accuracy": 0.37
+    },
+    "FULLYR/W4/mjolag3/CLIM+RECENT+MJO": {
+      "n": 1854,
+      "brier": 0.6703,
+      "rps": 0.4693,
+      "accuracy": 0.342
+    }
+  },
+  "confusion": {
+    "W3/CLIM": [
+      [
+        209,
+        0,
+        0
+      ],
+      [
+        165,
+        0,
+        0
+      ],
+      [
+        256,
+        0,
+        0
+      ]
+    ],
+    "W3/CLIM+RECENT": [
+      [
+        95,
+        58,
+        56
+      ],
+      [
+        100,
+        35,
+        30
+      ],
+      [
+        144,
+        71,
+        41
+      ]
+    ],
+    "W3/CLIM+RECENT+MJO": [
+      [
+        84,
+        74,
+        51
+      ],
+      [
+        93,
+        42,
+        30
+      ],
+      [
+        143,
+        74,
+        39
+      ]
+    ],
+    "W4/CLIM": [
+      [
+        210,
+        0,
+        0
+      ],
+      [
+        170,
+        0,
+        0
+      ],
+      [
+        250,
+        0,
+        0
+      ]
+    ],
+    "W4/CLIM+RECENT": [
+      [
+        82,
+        48,
+        80
+      ],
+      [
+        81,
+        29,
+        60
+      ],
+      [
+        121,
+        51,
+        78
+      ]
+    ],
+    "W4/CLIM+RECENT+MJO": [
+      [
+        90,
+        86,
+        34
+      ],
+      [
+        77,
+        42,
+        51
+      ],
+      [
+        115,
+        80,
+        55
+      ]
+    ]
+  },
+  "reliability_P_above": {
+    "W3/CLIM": [
+      {
+        "bin": "0.2-0.4",
+        "n": 630,
+        "mean_p": 0.333,
+        "obs_freq": 0.406
+      }
+    ],
+    "W3/CLIM+RECENT": [
+      {
+        "bin": "0.2-0.4",
+        "n": 630,
+        "mean_p": 0.331,
+        "obs_freq": 0.406
+      }
+    ],
+    "W3/CLIM+RECENT+MJO": [
+      {
+        "bin": "0.2-0.4",
+        "n": 571,
+        "mean_p": 0.312,
+        "obs_freq": 0.419
+      },
+      {
+        "bin": "0.4-0.6",
+        "n": 55,
+        "mean_p": 0.432,
+        "obs_freq": 0.291
+      }
+    ],
+    "W4/CLIM": [
+      {
+        "bin": "0.2-0.4",
+        "n": 630,
+        "mean_p": 0.333,
+        "obs_freq": 0.397
+      }
+    ],
+    "W4/CLIM+RECENT": [
+      {
+        "bin": "0.2-0.4",
+        "n": 630,
+        "mean_p": 0.327,
+        "obs_freq": 0.397
+      }
+    ],
+    "W4/CLIM+RECENT+MJO": [
+      {
+        "bin": "0.2-0.4",
+        "n": 595,
+        "mean_p": 0.312,
+        "obs_freq": 0.395
+      },
+      {
+        "bin": "0.4-0.6",
+        "n": 35,
+        "mean_p": 0.429,
+        "obs_freq": 0.429
+      }
+    ]
+  },
+  "notes": {
+    "split": "fit 2010-2019, test JJAS/full-year weekly 2020-2025 (last issue 2025-12-01)",
+    "laplace": "conditional tables Laplace-smoothed (+0.5); empty key -> (1/3,1/3,1/3)",
+    "combination": "independence product renormalized; assumption judged by backtest, not claimed",
+    "mjo_state": "primary lag0 (date-D obs); lag3 = operations-latency proxy"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "selected_model_type": "raw_gefs",
+  "selected_method": "Raw CHIRPS-GEFS baseline",
+  "forecast_horizon_days": 7,
+  "spatial_unit": "Sangrur legacy Bhuvan blocks",
+  "blocks": [
+    "Dhuri",
+    "Lehra",
+    "Malerkotla",
+    "Moonak",
+    "Sangrur",
+    "Sunam"
+  ],
+  "required_gefs_leads": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "lead_0_forbidden": true,
+  "target_definition": "actual CHIRPS rainfall D+1 through D+7",
+  "category_thresholds_mm": {
+    "low_upper": 10.939151985384193,
+    "high_lower": 34.66167447031182
+  },
+  "threshold_source": "training_only",
+  "probability_method": "residual_ecdf",
+  "probability_detail": "P(low)=F(T33-p), P(high)=1-F(T66-p) with F=ECDF of winner train residuals; train-only params",
+  "calibration_artifact": "models/probability_calibration.npz",
+  "model_artifact": "models/best_model.joblib",
+  "required_input_datasets": [
+    "CHIRPS-GEFS v3 daily (issue folder D, target files D+1..D+7)",
+    "CHIRPS observations (context only, <=D)",
+    "ENSO monthly index (context only)",
+    "SoilGrids (static context)"
+  ],
+  "training_period": [
+    "2016-06-01",
+    "2019-09-30"
+  ],
+  "validation_period": [
+    "2021-06-01",
+    "2022-09-30"
+  ],
+  "test_period": [
+    "2023-06-01",
+    "2025-09-30"
+  ],
+  "feature_dataset": "data/processed/final_ml_dataset.parquet",
+  "artifact_version": "nb04-2026-09-10",
+  "random_seed": 42
+}

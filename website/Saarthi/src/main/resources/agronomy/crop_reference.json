@@ -1,0 +1,278 @@
+{
+  "dataset": "saarthi-crop-reference",
+  "version": "1.0.0",
+  "note": "Versioned, source-cited crop agronomy reference. Values marked not_available mean the consulted source does not state them for that variety; Saarthi must not invent them. Do not add values without adding a citation.",
+  "sources": [
+    {
+      "id": "PAU_POP_KHARIF",
+      "title": "Package of Practices for Kharif Crops of Punjab",
+      "publisher": "Punjab Agricultural University (PAU), Ludhiana",
+      "url": "https://www.pau.edu/"
+    },
+    {
+      "id": "PAU_POP_RABI",
+      "title": "Package of Practices for Rabi Crops of Punjab",
+      "publisher": "Punjab Agricultural University (PAU), Ludhiana",
+      "url": "https://www.pau.edu/"
+    },
+    {
+      "id": "ICAR_IARI",
+      "title": "ICAR-Indian Agricultural Research Institute crop production guidelines",
+      "publisher": "ICAR",
+      "url": "https://www.iari.res.in/"
+    }
+  ],
+  "crops": [
+    {
+      "id": "Paddy (PR-126)",
+      "aliases": ["PR-126", "PR 126"],
+      "season": "kharif",
+      "duration_days": 123,
+      "duration_days_note": "PR-126 is a short-duration variety (~120-125 days).",
+      "sowing_window": {
+        "transplant_start": "06-15",
+        "transplant_end": "07-15",
+        "note": "PAU advises nursery sowing and transplanting inside the notified window; late transplanting pushes the crop into terminal heat."
+      },
+      "water_need_class": "very_high",
+      "water_need_note": "Puddled transplanted rice; high and stage-critical water demand.",
+      "sensitivities": {
+        "waterlogging_tolerance": "high",
+        "drought_sensitivity": "very_high",
+        "heat_sensitive_stages": ["flowering", "grain_filling"]
+      },
+      "stages": [
+        {"name": "transplanting", "start_day": 0, "end_day": 0},
+        {"name": "establishment", "start_day": 1, "end_day": 14},
+        {"name": "tillering", "start_day": 15, "end_day": 45},
+        {"name": "panicle_initiation", "start_day": 46, "end_day": 70},
+        {"name": "flowering", "start_day": 71, "end_day": 95},
+        {"name": "grain_filling_maturity", "start_day": 96, "end_day": 123}
+      ],
+      "irrigation_rule_hint": "Keep 2-5 cm standing water through tillering; a drained/dry surface in the forecast warrants a watch during panicle initiation and flowering.",
+      "source_ids": ["PAU_POP_KHARIF", "ICAR_IARI"]
+    },
+    {
+      "id": "Paddy (Pusa-44)",
+      "aliases": ["Pusa-44", "Pusa 44"],
+      "season": "kharif",
+      "duration_days": 145,
+      "duration_days_note": "Pusa-44 is a long-duration variety (~140-150 days).",
+      "sowing_window": {
+        "transplant_start": "06-10",
+        "transplant_end": "06-30",
+        "note": "Long duration means the transplanting window closes earlier so maturity avoids late-season cold."
+      },
+      "water_need_class": "very_high",
+      "sensitivities": {
+        "waterlogging_tolerance": "high",
+        "drought_sensitivity": "very_high",
+        "heat_sensitive_stages": ["flowering", "grain_filling"]
+      },
+      "stages": [
+        {"name": "transplanting", "start_day": 0, "end_day": 0},
+        {"name": "establishment", "start_day": 1, "end_day": 14},
+        {"name": "tillering", "start_day": 15, "end_day": 55},
+        {"name": "panicle_initiation", "start_day": 56, "end_day": 85},
+        {"name": "flowering", "start_day": 86, "end_day": 112},
+        {"name": "grain_filling_maturity", "start_day": 113, "end_day": 145}
+      ],
+      "irrigation_rule_hint": "Maintain standing water; long duration means a mid-season dry spell is more damaging than for short-duration rice.",
+      "source_ids": ["PAU_POP_KHARIF", "ICAR_IARI"]
+    },
+    {
+      "id": "Basmati (PB-1121)",
+      "aliases": ["PB-1121", "PB 1121", "Pusa Basmati 1121"],
+      "season": "kharif",
+      "duration_days": 140,
+      "duration_days_note": "PB-1121 matures in roughly 135-145 days after transplanting.",
+      "sowing_window": {
+        "transplant_start": "06-20",
+        "transplant_end": "07-20",
+        "note": "Basmati is transplanted slightly later than coarse paddy; PAU basmati guidance governs."
+      },
+      "water_need_class": "very_high",
+      "sensitivities": {
+        "waterlogging_tolerance": "high",
+        "drought_sensitivity": "very_high",
+        "heat_sensitive_stages": ["flowering"]
+      },
+      "stages": [
+        {"name": "transplanting", "start_day": 0, "end_day": 0},
+        {"name": "establishment", "start_day": 1, "end_day": 14},
+        {"name": "tillering", "start_day": 15, "end_day": 55},
+        {"name": "panicle_initiation", "start_day": 56, "end_day": 85},
+        {"name": "flowering", "start_day": 86, "end_day": 110},
+        {"name": "grain_filling_maturity", "start_day": 111, "end_day": 140}
+      ],
+      "irrigation_rule_hint": "Aromatic quality and grain elongation depend on avoiding moisture stress at flowering.",
+      "source_ids": ["PAU_POP_KHARIF", "ICAR_IARI"]
+    },
+    {
+      "id": "Basmati (PB-1509)",
+      "aliases": ["PB-1509", "PB 1509", "Pusa Basmati 1509"],
+      "season": "kharif",
+      "duration_days": 120,
+      "duration_days_note": "PB-1509 is an early-duration basmati (~115-125 days).",
+      "sowing_window": {
+        "transplant_start": "06-25",
+        "transplant_end": "07-25"
+      },
+      "water_need_class": "very_high",
+      "sensitivities": {
+        "waterlogging_tolerance": "high",
+        "drought_sensitivity": "very_high",
+        "heat_sensitive_stages": ["flowering"]
+      },
+      "stages": [
+        {"name": "transplanting", "start_day": 0, "end_day": 0},
+        {"name": "establishment", "start_day": 1, "end_day": 14},
+        {"name": "tillering", "start_day": 15, "end_day": 45},
+        {"name": "panicle_initiation", "start_day": 46, "end_day": 70},
+        {"name": "flowering", "start_day": 71, "end_day": 92},
+        {"name": "grain_filling_maturity", "start_day": 93, "end_day": 120}
+      ],
+      "irrigation_rule_hint": "Shorter duration compresses stage transitions; dry-spell watches apply earlier in the season.",
+      "source_ids": ["PAU_POP_KHARIF", "ICAR_IARI"]
+    },
+    {
+      "id": "Cotton (Bt hybrid)",
+      "aliases": ["Cotton", "Bt Cotton", "Bt cotton hybrid"],
+      "season": "kharif",
+      "duration_days": 160,
+      "duration_days_note": "Bt cotton hybrids in Punjab run ~155-170 days to last picking; a 160-day representative value is used.",
+      "sowing_window": {
+        "sow_start": "04-15",
+        "sow_end": "05-15",
+        "note": "PAU recommends mid-April to mid-May sowing for cotton."
+      },
+      "water_need_class": "high",
+      "sensitivities": {
+        "waterlogging_tolerance": "low",
+        "drought_sensitivity": "medium",
+        "heat_sensitive_stages": ["squaring", "flowering", "boll_development"]
+      },
+      "stages": [
+        {"name": "sowing_emergence", "start_day": 0, "end_day": 15},
+        {"name": "seedling", "start_day": 16, "end_day": 45},
+        {"name": "squaring", "start_day": 46, "end_day": 70},
+        {"name": "flowering", "start_day": 71, "end_day": 100},
+        {"name": "boll_development", "start_day": 101, "end_day": 135},
+        {"name": "picking", "start_day": 136, "end_day": 160}
+      ],
+      "irrigation_rule_hint": "Cotton is far more tolerant of dry surface soil than rice; excessive rain/waterlogging at squaring-boll stage is the bigger risk.",
+      "source_ids": ["PAU_POP_KHARIF", "ICAR_IARI"]
+    },
+    {
+      "id": "Maize (PMH-1)",
+      "aliases": ["PMH-1", "PMH 1", "Maize"],
+      "season": "kharif",
+      "duration_days": 95,
+      "duration_days_note": "PMH-1 is a short-duration composite (~90-100 days).",
+      "sowing_window": {
+        "sow_start": "06-15",
+        "sow_end": "07-10"
+      },
+      "water_need_class": "medium",
+      "sensitivities": {
+        "waterlogging_tolerance": "low",
+        "drought_sensitivity": "high",
+        "heat_sensitive_stages": ["tasseling", "silking"]
+      },
+      "stages": [
+        {"name": "sowing_emergence", "start_day": 0, "end_day": 10},
+        {"name": "seedling", "start_day": 11, "end_day": 30},
+        {"name": "vegetative", "start_day": 31, "end_day": 55},
+        {"name": "tasseling_silking", "start_day": 56, "end_day": 70},
+        {"name": "grain_filling_maturity", "start_day": 71, "end_day": 95}
+      ],
+      "irrigation_rule_hint": "Tasseling-silking is the most moisture-critical window; waterlogging at seedling stage also needs a watch.",
+      "source_ids": ["PAU_POP_KHARIF", "ICAR_IARI"]
+    },
+    {
+      "id": "Wheat (HD-2967)",
+      "aliases": ["HD-2967", "HD 2967", "Wheat"],
+      "season": "rabi",
+      "duration_days": 140,
+      "duration_days_note": "Timely-sown HD-2967 matures in ~140-145 days.",
+      "sowing_window": {
+        "sow_start": "11-01",
+        "sow_end": "11-25",
+        "note": "PAU timely-sowing window; late sowing past ~10 December is a different regime."
+      },
+      "water_need_class": "high",
+      "sensitivities": {
+        "waterlogging_tolerance": "low",
+        "drought_sensitivity": "high",
+        "heat_sensitive_stages": ["grain_filling"]
+      },
+      "stages": [
+        {"name": "sowing_emergence", "start_day": 0, "end_day": 15},
+        {"name": "crown_root", "start_day": 16, "end_day": 40},
+        {"name": "tillering", "start_day": 41, "end_day": 70},
+        {"name": "jointing_boot", "start_day": 71, "end_day": 100},
+        {"name": "anthesis", "start_day": 101, "end_day": 115},
+        {"name": "grain_filling_maturity", "start_day": 116, "end_day": 140}
+      ],
+      "irrigation_rule_hint": "PAU schedules four irrigations (crown root, tillering, jointing, flowering); a dry 7-day ET0-heavy stretch near a scheduled irrigation moves the advisory.",
+      "source_ids": ["PAU_POP_RABI", "ICAR_IARI"]
+    },
+    {
+      "id": "Wheat (PBW-725)",
+      "aliases": ["PBW-725", "PBW 725"],
+      "season": "rabi",
+      "duration_days": 145,
+      "duration_days_note": "PBW-725 is a timely-sown variety with ~140-150 days duration.",
+      "sowing_window": {
+        "sow_start": "10-25",
+        "sow_end": "11-20"
+      },
+      "water_need_class": "high",
+      "sensitivities": {
+        "waterlogging_tolerance": "low",
+        "drought_sensitivity": "high",
+        "heat_sensitive_stages": ["grain_filling"]
+      },
+      "stages": [
+        {"name": "sowing_emergence", "start_day": 0, "end_day": 15},
+        {"name": "crown_root", "start_day": 16, "end_day": 40},
+        {"name": "tillering", "start_day": 41, "end_day": 72},
+        {"name": "jointing_boot", "start_day": 73, "end_day": 102},
+        {"name": "anthesis", "start_day": 103, "end_day": 118},
+        {"name": "grain_filling_maturity", "start_day": 119, "end_day": 145}
+      ],
+      "irrigation_rule_hint": "Same PAU four-irrigation schedule applies; stage timing shifts with the slightly longer duration.",
+      "source_ids": ["PAU_POP_RABI", "ICAR_IARI"]
+    },
+    {
+      "id": "Sugarcane (Co-0238)",
+      "aliases": ["Co-0238", "CO 0238", "Co 0238", "Sugarcane"],
+      "season": "annual",
+      "duration_days": 330,
+      "duration_days_note": "Sugarcane Co-0238 is an annual crop (~330-360 days).",
+      "sowing_window": {
+        "plant_start": "02-15",
+        "plant_end": "03-31",
+        "note": "PAU spring planting window; autumn planting is a separate regime."
+      },
+      "water_need_class": "very_high",
+      "sensitivities": {
+        "waterlogging_tolerance": "medium",
+        "drought_sensitivity": "high",
+        "heat_sensitive_stages": ["grand_growth"]
+      },
+      "stages": [
+        {"name": "germination", "start_day": 0, "end_day": 45},
+        {"name": "tillering", "start_day": 46, "end_day": 100},
+        {"name": "grand_growth", "start_day": 101, "end_day": 270},
+        {"name": "maturity", "start_day": 271, "end_day": 330}
+      ],
+      "irrigation_rule_hint": "Grand growth is the peak water-demand phase; ET0-driven irrigation guidance matters most there.",
+      "source_ids": ["PAU_POP_KHARIF", "ICAR_IARI"]
+    }
+  ],
+  "not_available_notes": [
+    "Variety-specific Kc (crop coefficient) curves are not published in the consulted PAU/ICAR package-of-practices documents; irrigation rules use water_need_class + live ET0 instead of invented Kc values.",
+    "Stage day-ranges above are representative banding of PAU duration guidance, not per-variety measured phenology; the advisory presents them as approximate stages."
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "rule": "GO iff >=2 phases with |mean pct|>=15%, CI excludes 0, same sign in >=5/6 blocks, same sign in both halves (train JJAS, active, offset 17)",
+  "scope": "train 2010-2019, JJAS issues, active (amp>=1.0), W3 offset 17",
+  "active_amp_threshold": 1.0,
+  "phases": {
+    "1": {
+      "n_pooled": 846,
+      "n_per_block": 141,
+      "mean_pct": 4.62,
+      "mean_mm": 4.729,
+      "ci_mm": [
+        2.29,
+        7.167
+      ],
+      "ci_excludes_zero": true,
+      "block_signs": {
+        "Dhuri": 1,
+        "Lehra": 1,
+        "Malerkotla": 1,
+        "Moonak": 1,
+        "Sangrur": 1,
+        "Sunam": 1
+      },
+      "n_blocks_same_sign_as_pooled": 6,
+      "halves_mean_mm": {
+        "2010-2014": 9.041,
+        "2015-2019": -1.626
+      },
+      "halves_same_sign": false
+    },
+    "2": {
+      "n_pooled": 654,
+      "n_per_block": 109,
+      "mean_pct": 19.19,
+      "mean_mm": 6.9,
+      "ci_mm": [
+        3.815,
+        9.986
+      ],
+      "ci_excludes_zero": true,
+      "block_signs": {
+        "Dhuri": 1,
+        "Lehra": 1,
+        "Malerkotla": 1,
+        "Moonak": 1,
+        "Sangrur": 1,
+        "Sunam": 1
+      },
+      "n_blocks_same_sign_as_pooled": 6,
+      "halves_mean_mm": {
+        "2010-2014": 6.555,
+        "2015-2019": 7.73
+      },
+      "halves_same_sign": true
+    },
+    "3": {
+      "n_pooled": 372,
+      "n_per_block": 62,
+      "mean_pct": -6.16,
+      "mean_mm": 0.559,
+      "ci_mm": [
+        -2.025,
+        3.143
+      ],
+      "ci_excludes_zero": false,
+      "block_signs": {
+        "Dhuri": -1,
+        "Lehra": 1,
+        "Malerkotla": -1,
+        "Moonak": 1,
+        "Sangrur": -1,
+        "Sunam": 1
+      },
+      "n_blocks_same_sign_as_pooled": 3,
+      "halves_mean_mm": {
+        "2010-2014": 13.477,
+        "2015-2019": -10.793
+      },
+      "halves_same_sign": false
+    },
+    "4": {
+      "n_pooled": 456,
+      "n_per_block": 76,
+      "mean_pct": -12.22,
+      "mean_mm": -2.5,
+      "ci_mm": [
+        -4.562,
+        -0.438
+      ],
+      "ci_excludes_zero": true,
+      "block_signs": {
+        "Dhuri": -1,
+        "Lehra": -1,
+        "Malerkotla": -1,
+        "Moonak": -1,
+        "Sangrur": -1,
+        "Sunam": -1
+      },
+      "n_blocks_same_sign_as_pooled": 6,
+      "halves_mean_mm": {
+        "2010-2014": -10.648,
+        "2015-2019": 3.752
+      },
+      "halves_same_sign": false
+    },
+    "5": {
+      "n_pooled": 594,
+      "n_per_block": 99,
+      "mean_pct": -6.23,
+      "mean_mm": -2.867,
+      "ci_mm": [
+        -4.36,
+        -1.374
+      ],
+      "ci_excludes_zero": true,
+      "block_signs": {
+        "Dhuri": -1,
+        "Lehra": -1,
+        "Malerkotla": -1,
+        "Moonak": -1,
+        "Sangrur": -1,
+        "Sunam": -1
+      },
+      "n_blocks_same_sign_as_pooled": 6,
+      "halves_mean_mm": {
+        "2010-2014": -1.791,
+        "2015-2019": -4.157
+      },
+      "halves_same_sign": true
+    },
+    "6": {
+      "n_pooled": 480,
+      "n_per_block": 80,
+      "mean_pct": -20.83,
+      "mean_mm": -8.77,
+      "ci_mm": [
+        -11.485,
+        -6.056
+      ],
+      "ci_excludes_zero": true,
+      "block_signs": {
+        "Dhuri": -1,
+        "Lehra": -1,
+        "Malerkotla": -1,
+        "Moonak": -1,
+        "Sangrur": -1,
+        "Sunam": -1
+      },
+      "n_blocks_same_sign_as_pooled": 6,
+      "halves_mean_mm": {
+        "2010-2014": -11.514,
+        "2015-2019": -7.794
+      },
+      "halves_same_sign": true
+    },
+    "7": {
+      "n_pooled": 198,
+      "n_per_block": 33,
+      "mean_pct": -58.1,
+      "mean_mm": -22.72,
+      "ci_mm": [
+        -25.47,
+        -19.97
+      ],
+      "ci_excludes_zero": true,
+      "block_signs": {
+        "Dhuri": -1,
+        "Lehra": -1,
+        "Malerkotla": -1,
+        "Moonak": -1,
+        "Sangrur": -1,
+        "Sunam": -1
+      },
+      "n_blocks_same_sign_as_pooled": 6,
+      "halves_mean_mm": {
+        "2010-2014": -26.85,
+        "2015-2019": -18.333
+      },
+      "halves_same_sign": true
+    },
+    "8": {
+      "n_pooled": 258,
+      "n_per_block": 43,
+      "mean_pct": -7.15,
+      "mean_mm": 0.643,
+      "ci_mm": [
+        -2.358,
+        3.645
+      ],
+      "ci_excludes_zero": false,
+      "block_signs": {
+        "Dhuri": -1,
+        "Lehra": 1,
+        "Malerkotla": -1,
+        "Moonak": 1,
+        "Sangrur": 1,
+        "Sunam": 1
+      },
+      "n_blocks_same_sign_as_pooled": 4,
+      "halves_mean_mm": {
+        "2010-2014": -7.243,
+        "2015-2019": 5.8
+      },
+      "halves_same_sign": false
+    }
+  },
+  "qualifying_phases": [
+    2,
+    6,
+    7
+  ],
+  "decision": "GO"
+}

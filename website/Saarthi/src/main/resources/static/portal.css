@@ -1,0 +1,921 @@
+/* SAARTHI Decision Platform Stylesheet */
+:root {
+  --ink: #1d241f;
+  --moss: #335b42;
+  /* Alias of the design token --botanical (same value): single source of truth. */
+  --dark-moss: var(--botanical);
+  --lime: #d8e87e;
+  --lime-soft: #abc87d;
+  --lime-bright: #9ed683;
+  /* NOTE: --paper / --line intentionally override saarthi-design.css on portal
+     pages (this file loads after it). Values below are the live portal theme. */
+  --paper: #f8f7f2;
+  /* Alias of the design token --sage-soft (same value): single source of truth. */
+  --mist: var(--sage-soft);
+  --line: #d8ddd4;
+  --coral: #f27256;
+  /* Used at runtime by portal.js (pillar status colors). */
+  --gold: #d8bc60;
+  --gold-light: #f0c35e;
+  --sky: #427c9c;
+  --sky-soft: #82b7c7;
+}
+
+/* Base Portal Shell (visual shell now provided by saarthi-shell.css) */
+.portal-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* NOTE: horizontal top navigation (.portal-nav, .nav-tabs), the language
+   switcher (.lang-switcher) and the legacy live pill (.live-pill/.live-dot)
+   were removed: navigation is the hover-expand vertical rail only. */
+
+/* Portal Main Container (inside the shared floating shell — keep padding slim
+   so viewport space goes to content, not nested containers). */
+.portal-main {
+  flex: 1;
+  padding: 12px 4px 8px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+/* NOTE: .portal-header/.portal-grid retired with the old page composition;
+   portal pages now use .page-head + shared shell grids. */
+
+.farm-form {
+  background: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: 28px;
+  box-shadow: 0 10px 25px rgba(51, 91, 66, 0.05);
+}
+
+.farm-form h3 {
+  font-size: 18px;
+  letter-spacing: normal;
+  margin: 0 0 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+
+.farm-form label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: #3b4d3e;
+  margin-bottom: 16px;
+}
+
+.farm-form select, .farm-form input[type="date"], .farm-form input[type="text"] {
+  width: 100%;
+  margin-top: 6px;
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: var(--r-md);
+  padding: 11px 36px 11px 13px;
+  font: 600 13px Manrope, sans-serif;
+  color: #f2f7ef;
+  background-color: rgba(8, 16, 11, .52);
+  outline: none;
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.farm-form select:focus, .farm-form input:focus {
+  border-color: rgba(158, 214, 131, .8);
+  background-color: rgba(10, 20, 13, .66);
+  box-shadow: 0 0 0 3px rgba(158, 214, 131, .18);
+}
+.farm-form select option { background: #101c14; color: #eef4ea; }
+
+.farm-form .primary-button {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Decision Board */
+.decision-board {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.decision-hero-card {
+  background:linear-gradient(155deg,rgba(255,255,255,.10),rgba(255,255,255,.035));
+  backdrop-filter:blur(20px) saturate(1.4);-webkit-backdrop-filter:blur(20px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.16);border-radius:var(--r-lg);
+  color: #f7f7f0;
+  padding: 32px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 16px 36px rgba(0,0,0,.30);
+}
+
+.decision-badge-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.decision-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 16px;
+  border-radius: var(--r-pill);
+  font: 800 12px 'DM Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.decision-tag.sow, .tag-low {
+  background: rgba(158, 214, 131, 0.2);
+  color: var(--lime-bright);
+  border: 1px solid var(--lime-bright);
+}
+
+.decision-tag.review, .tag-mod {
+  background: rgba(240, 195, 94, 0.2);
+  color: var(--gold-light);
+  border: 1px solid var(--gold-light);
+}
+
+.decision-tag.wait, .tag-high {
+  background: rgba(242, 114, 86, 0.2);
+  color: #ff9b86;
+  border: 1px solid var(--coral);
+}
+
+.window-badge {
+  font: 11px 'DM Mono', monospace;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 6px 12px;
+  border-radius: var(--r-pill);
+  color: #e2ede0;
+}
+
+.decision-hero-card h2 {
+  font: 600 clamp(24px, 2.8vw, 34px) 'Playfair Display', Georgia, serif;
+  margin: 0 0 14px;
+  letter-spacing: normal;
+  line-height: 1.25;
+}
+
+.decision-hero-card p.decision-rationale {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #d1ded0;
+  max-width: 820px;
+  margin: 0 0 24px;
+}
+
+.decision-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font: 11px 'DM Mono', monospace;
+  color: #abc0a9;
+}
+
+.decision-meta-row strong {
+  color: #fff;
+  font-size: 13px;
+  margin-left: 6px;
+}
+
+/* 4-Pillar Risk Grid */
+.pillars-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.pillar-card {
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(16px) saturate(1.35);-webkit-backdrop-filter:blur(16px) saturate(1.35);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:var(--r-md);
+  padding:18px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pillar-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+.pillar-card span {
+  display: block;
+  font: 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+  color: #657566;
+  letter-spacing: 0.6px;
+  margin-bottom: 6px;
+}
+
+.pillar-card strong {
+  display: block;
+  font-size: 20px;
+  letter-spacing: normal;
+}
+
+.pillar-card small {
+  display: block;
+  font-size: 10px;
+  color: #839184;
+  margin-top: 4px;
+}
+
+/* Soil Gauge & Actions Row */
+.gauge-actions-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.soil-gauge-card {
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(16px) saturate(1.35);-webkit-backdrop-filter:blur(16px) saturate(1.35);
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:var(--r-md);
+  padding:24px;
+  display:flex;
+  align-items:center;
+  gap:24px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.gauge-dial-wrap {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.gauge-dial {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: conic-gradient(var(--lime-soft) 0% 60%, #e6ece0 60% 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.gauge-dial::after {
+  content: '';
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  background:rgba(10,20,14,.55);
+  border-radius: 50%;
+}
+
+.gauge-inner-val {
+  position: relative;
+  z-index: 2;
+  font: 800 20px 'DM Mono', monospace;
+  letter-spacing: normal;
+  color:#e9f2d8;
+}
+
+.gauge-info h3 {
+  font-size: 18px;
+  letter-spacing: normal;
+  margin: 4px 0 6px;
+}
+
+.gauge-info p {
+  font-size: 11px;
+  color: #607062;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* WhatsApp Share Card */
+.share-action-card {
+  background:rgba(216,232,126,.08);
+  backdrop-filter:blur(16px) saturate(1.35);-webkit-backdrop-filter:blur(16px) saturate(1.35);
+  border:1px dashed rgba(216,232,126,.35);
+  border-radius:var(--r-md);
+  padding:24px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.12);
+}
+
+.share-action-card h3 {
+  font-size: 16px;
+  letter-spacing: normal;
+  margin: 0 0 6px;
+  color: var(--dark-moss);
+}
+
+.share-action-card p {
+  font-size: 11px;
+  color: #556658;
+  margin: 0 0 16px;
+  line-height: 1.5;
+}
+
+.share-buttons-group {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.share-kisan-btn {
+  background: #25d366;
+  color: white;
+  border: 0;
+  border-radius: var(--r-pill);
+  padding: 10px 18px;
+  font: 700 11px Manrope, sans-serif;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.share-kisan-btn:hover {
+  background: #1eb956;
+  transform: translateY(-1px);
+}
+
+/* Section: Map Layout */
+.map-layout-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.map-controls-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  border: 1px solid var(--line);
+  padding: 14px 20px;
+  border-radius: var(--r-md);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.map-filters {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.map-filters select {
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  border-radius: var(--r-xs);
+  font: 11px Manrope, sans-serif;
+  background: #fafbfa;
+}
+
+.map-legend-pills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font: 10px 'DM Mono', monospace;
+}
+
+.legend-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend-pill i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.legend-pill.low i { background: #9ed683; }
+.legend-pill.mod i { background: #f0c35e; }
+.legend-pill.high i { background: #f27256; }
+
+#leaflet-map-canvas {
+  height: 580px;
+  border-radius: var(--r-lg);
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.06);
+  z-index: 1;
+}
+
+/* Timeline & Forecast Matrix */
+.timeline-card-wrap {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 28px;
+  margin-bottom: 28px;
+}
+
+.timeline-header-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.timeline-header-bar h2 {
+  font-size: 26px;
+  letter-spacing: -0.01em;
+  margin: 4px 0 0;
+  font-weight: 700;
+}
+
+.timeline-header-bar h2 em {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+  margin-left: 5px;
+  color: var(--moss);
+}
+
+.timeline-horizon-buttons {
+  display: flex;
+  gap: 6px;
+  background: #eef2e9;
+  padding: 3px;
+  border-radius: var(--r-pill);
+}
+
+.timeline-horizon-buttons button {
+  border: 0;
+  background: transparent;
+  font: 700 11px 'DM Mono', monospace;
+  padding: 6px 14px;
+  border-radius: var(--r-pill);
+  cursor: pointer;
+  color: #556658;
+}
+
+.timeline-horizon-buttons button.active {
+  background: var(--dark-moss);
+  color: white;
+}
+
+/* Rich SVG Timeline Graph Container */
+.recharts-forecast-container {
+  background: #fbfcf9;
+  border: 1px solid #e2e7dd;
+  border-radius: var(--r-md);
+  padding: 16px 20px 20px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.chart-legend-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 11px 'DM Mono', monospace;
+  color: #526354;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chart-legend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: #f1f4ed;
+}
+
+.chart-legend-badge.rain { color: #d8e87e; }
+.chart-legend-badge.moisture { color: var(--moss); }
+.chart-legend-badge.danger { color: #c44026; background: #fdeee9; }
+
+/* Premium forecast chart rhythm: breathing room, no clipping */
+.forecast-chart { padding: 24px; }
+.forecast-chart .chart-svg-wrap { padding: 4px 2px 2px; }
+.forecast-chart svg text { letter-spacing: .01em; }
+.map-side { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.fc-dash { gap: 18px; }
+
+.chart-svg-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* 7-Day Matrix Table (prototype serves 7 days only) */
+.matrix-table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  background: white;
+}
+
+.matrix-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.matrix-table th {
+  background: #f1f4ed;
+  padding: 12px 16px;
+  font: 700 10px 'DM Mono', monospace;
+  text-transform: uppercase;
+  color: #4b5a4d;
+  letter-spacing: 0.6px;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+}
+
+.matrix-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #edf0ea;
+  color: #333d35;
+}
+
+.matrix-table tr:nth-child(even) {
+  background: #fafbf9;
+}
+
+.matrix-table tr:hover {
+  background: #f3f6ee;
+}
+
+.risk-status-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  font: 700 9px 'DM Mono', monospace;
+  text-transform: uppercase;
+}
+
+.risk-status-pill.low { background: #e5f5dd; color: #2c6e26; }
+.risk-status-pill.moderate { background: #fdf5d6; color: #876a0c; }
+.risk-status-pill.high { background: #fde8e4; color: #b7321a; }
+
+/* Toast Notifications */
+.toast-notification {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: var(--dark-moss);
+  color: #f6f8f2;
+  padding: 14px 22px;
+  border-radius: var(--r-pill);
+  font: 700 12px Manrope, sans-serif;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 1000;
+  animation: slide-up 0.3s ease;
+}
+
+@keyframes slide-up {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ---- UX polish pass: two-layer information hierarchy ---- */
+
+/* Primary takeaway vs secondary explanation on the Forecast page. */
+.plain-box {
+  margin-top: 12px;
+  padding: 14px 16px;
+  border-radius: var(--r-sm);
+  background: #f2f5ef;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--lime-soft);
+}
+.plain-kicker {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 3px 10px;
+  border-radius: var(--r-pill);
+  background: #e4efe0;
+  border: 1px solid #b9d2bd;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--moss);
+}
+.plain-text {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: #3c4a3e;
+  white-space: pre-line;
+}
+
+/* Secondary guide notes under section headings (climatology honesty). */
+.section-note {
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #556658;
+  background: #fbfcf9;
+  border: 1px dashed var(--line);
+  border-radius: var(--r-sm);
+  padding: 8px 12px;
+  margin: 0 0 12px;
+}
+
+/* Farmer hero: takeaway-first hierarchy, calmer metadata. */
+.decision-meta-row {
+  flex-wrap: wrap;
+  gap: 10px 22px;
+}
+.decision-meta-row div {
+  font-size: 11px;
+}
+#advisory-actions ul, #advisory-sources ul {
+  margin: 6px 0 0;
+  padding-left: 18px;
+}
+#advisory-actions li, #advisory-sources li {
+  margin-bottom: 5px;
+}
+
+/* Intentional loading / empty states (never a bare "Loading..."). */
+.api-loading-note, .api-error-note {
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  background: #eef1ea;
+  color: #657566;
+  border: 1px solid var(--line);
+  margin: 0 0 12px;
+}
+.api-error-note {
+  background: #fbe3dc;
+  color: #a33;
+  border-color: #e0a08e;
+}
+
+/* Map controls stay compact and touch-friendly. */
+.map-filters {
+  flex-wrap: wrap;
+}
+.map-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.map-filters select {
+  min-height: 34px;
+  min-width: 130px;
+}
+.map-controls-bar {
+  align-items: flex-end;
+}
+
+/* Responsive Overrides */
+@media (max-width: 960px) {
+  .portal-grid, .gauge-actions-row {
+    grid-template-columns: 1fr;
+  }
+  .pillars-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 580px) {
+  .pillars-grid {
+    grid-template-columns: 1fr;
+  }
+  .portal-main {
+    padding: 24px 4% 50px;
+  }
+  #leaflet-map-canvas {
+    height: 380px;
+  }
+}
+
+/* NOTE: header/footer brand-logo rules retired with the old top navbar. */
+/* ==========================================================================
+   Final polish pass — Farmer Portal / Advisory / Forecast layout.
+   Additive only: no rule here changes a calculation, a threshold or an API
+   value. Everything below is presentation.
+   ========================================================================== */
+
+/* ---- Task 1: forecast-page stacking --------------------------------------
+   The D+1–D+16 chart card, the D+1–D+16 table card, the field-work risk card,
+   the climate-context card and the 17–30 day (W3/W4) climatology card are all
+   siblings inside .fc-dash / .fc-cols. The only element in that subtree that
+   leaves normal flow is the sticky table header (.matrix-table th), so that is
+   what has to be bounded: the header now sticks inside its own scroll wrapper
+   only (contain:paint), and the chart card keeps its own isolated stacking
+   context and clipping. Result: the climatology card can never paint over the
+   D-range bars, and no sticky header can escape its table. */
+.fc-dash { min-width: 0; }
+.fc-dash > * { min-width: 0; max-width: 100%; }
+.forecast-chart { position: relative; isolation: isolate; overflow: hidden; }
+.forecast-chart .chart-svg-wrap { overflow-x: auto; overflow-y: hidden; }
+.forecast-chart .chart-legend-row { position: static; }
+.matrix-table-wrap { overflow-x: auto; overflow-y: hidden; contain: paint; }
+.matrix-table-wrap > * { max-width: 100%; }
+.fc-card { position: relative; isolation: isolate; }
+.matrix-table th { position: sticky; top: 0; }
+/* Long labels (block names, watch text) must wrap, never widen a card. */
+.fc-card h3, .fc-card p, .fc-card td, .fc-card th { overflow-wrap: anywhere; }
+
+/* ---- Task 2: advisory typography ------------------------------------------
+   Playfair Display carries the crop / advisory heading. Manrope carries every
+   farmer-facing label, pill, value and action. DM Mono is reserved for
+   genuinely technical metadata (issue stamp, model string, file/source ids). */
+.decision-hero-card h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(25px, 2.9vw, 36px);
+  line-height: 1.22;
+  letter-spacing: -.005em;
+}
+.decision-hero-card p.decision-rationale {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.72;
+  color: #dae5d8;
+  max-width: 78ch;
+}
+.decision-tag {
+  font-family: var(--sans);
+  font-weight: 800;
+  font-size: 12px;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+.window-badge { font: 600 12px/1.4 var(--sans); color: #e6efe4; }
+.decision-meta-row {
+  font: 600 11px/1.5 var(--sans);
+  letter-spacing: .01em;
+  color: #a9bda2;
+}
+.decision-meta-row div { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 6px; min-width: 0; }
+.decision-meta-row strong { font: 700 13.5px/1.35 var(--sans); color: #fff; margin-left: 0; }
+/* The one genuinely technical value keeps mono for legibility of the id stamp. */
+.decision-meta-row strong#decision-confidence { font: 500 11.5px/1.4 var(--mono); color: #dfe8d8; }
+.pillar-card span { font-family: var(--sans); font-weight: 700; font-size: 10.5px; letter-spacing: .06em; }
+.pillar-card strong { font-family: var(--sans); font-weight: 800; font-size: 19px; letter-spacing: -.005em; }
+.pillar-card small { font-family: var(--sans); font-size: 11px; line-height: 1.5; }
+#advisory-actions { font-family: var(--sans); font-size: 13.5px; line-height: 1.65; color: #dfe8d8; }
+#advisory-actions ul { margin: 6px 0 0; padding-left: 18px; }
+#advisory-actions li { margin-bottom: 6px; }
+/* ---- Task 3: "What this means for you" ------------------------------------
+   A prominent, plain-language card directly under the advisory hero. Hidden
+   until real forecast inputs exist; every line inside is generated from the
+   loaded advisory payload (see buildFarmerAdvice in portal.js). */
+.farmer-advice {
+  margin: 0;
+  padding: 22px 24px;
+  border-left: 3px solid var(--lime);
+  background: linear-gradient(150deg, rgba(216,232,126,.10), rgba(255,255,255,.03));
+}
+.farmer-advice[hidden] { display: none; }
+.fa-kicker {
+  font: 700 10.5px var(--sans);
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #d8e87e;
+  margin: 0 0 10px;
+}
+.fa-lead {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.72;
+  color: #eef4ea;
+  margin: 0 0 16px;
+  max-width: 88ch;
+}
+.fa-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.fa-col { min-width: 0; }
+.fa-head {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 17px;
+  letter-spacing: 0;
+  color: #fff;
+  margin: 0 0 8px;
+}
+.fa-list { list-style: none; margin: 0; padding: 0; }
+.fa-list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 7px;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: #dfe8d8;
+}
+.fa-list li::before {
+  content: '';
+  position: absolute;
+  left: 2px;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9ed683;
+}
+.fa-list li.fa-watch::before { background: #f0c35e; }
+.fa-foot {
+  margin: 14px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  font: 500 11px/1.6 var(--mono);
+  color: #9fb198;
+}
+
+/* ---- Task 5: forecast surface soil-moisture gauge readability --------------
+   The dial used to render a value such as "0.42 m³/m³" as one 20px mono line
+   inside a 72px disc: the string was wider than the disc and the transparent
+   inner disc let the dial gradient show through the digits. The dial is
+   larger, the inner disc is opaque, the value wraps to two lines, and every
+   flex child may shrink so the long status sentence can never overflow the
+   card into its neighbour. The number itself is unchanged. */
+.soil-gauge-card { align-items: center; gap: 22px; min-width: 0; }
+.soil-gauge-card > * { min-width: 0; }
+.gauge-dial-wrap { width: 112px; height: 112px; flex: 0 0 112px; }
+.gauge-dial::after {
+  width: 88px;
+  height: 88px;
+  background: rgba(8,15,11,.9);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.10);
+}
+.gauge-inner-val {
+  font: 800 15px/1.15 var(--mono);
+  color: #f4f8ea;
+  text-align: center;
+  max-width: 80px;
+  overflow-wrap: anywhere;
+  text-shadow: 0 1px 3px rgba(0,0,0,.7);
+}
+.gauge-info { flex: 1; min-width: 0; }
+.gauge-info h3 {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
+  margin: 4px 0 6px;
+  color: #fff;
+}
+.gauge-info p { font-family: var(--sans); font-size: 11.5px; line-height: 1.55; }
+
+@media (max-width: 820px) {
+  .fa-cols { grid-template-columns: 1fr; gap: 14px; }
+}
+@media (max-width: 560px) {
+  .soil-gauge-card { flex-direction: column; align-items: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .farmer-advice { animation: none !important; }
+}
+
+/* ---------- premium policy cards ---------- */
+.policy-card { margin-bottom: 16px; padding: 0; overflow: hidden; }
+.policy-card-body { padding: 22px 24px; }
+.policy-card-meta {
+  margin: 0 0 8px; font: 700 10px var(--mono); letter-spacing: .12em;
+  text-transform: uppercase; color: #9fb198;
+}
+.policy-card-title {
+  margin: 0 0 10px; font-size: 17px; line-height: 1.45; letter-spacing: -.005em;
+  color: #fff; text-wrap: pretty;
+}
+.policy-card-summary { margin: 0; font-size: 13.5px; line-height: 1.65; color: #c6d2c0; }
+.policy-card-link {
+  display: inline-block; margin-top: 14px; font-size: 13px; font-weight: 800;
+  color: #d8e87e; text-decoration: none;
+}
+.policy-card-link:hover { text-decoration: underline; }
+.policy-card-link:focus-visible { outline: 2px solid #d8e87e; outline-offset: 3px; border-radius: 4px; }
+@media (max-width: 600px) { .policy-card-body { padding: 18px; } }

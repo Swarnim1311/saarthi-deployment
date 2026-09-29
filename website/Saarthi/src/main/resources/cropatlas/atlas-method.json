@@ -1,0 +1,58 @@
+{
+  "_provenance": "CropAtlas method parameters. These are the BLOCK-SIDE classification bands and the overall combination rule. They are CropAtlas rule-based planning defaults, NOT calibrated per-block science and NOT validated against a yield outcome. Crop-side requirements live in crop-requirements.json and come from the source-cited agronomy reference; this file only describes how an observed block is classified so the two can be compared. Adjusting these bands changes displayed compatibility labels only — no data is modified and no probability is produced.",
+  "method_version": "cropatlas-method-v1",
+
+  "water_balance_window_days": 7,
+  "_water_balance_note": "LIVE forecast rainfall minus reference crop evapotranspiration (ET0) summed over the first N served forecast days. Null unless every day in the window is present; never zero-filled.",
+
+  "block_water_supply_bands": {
+    "_note": "Classified from the live 7-day water balance (mm). Higher = more surplus water available to the crop.",
+    "abundant": {"min_balance_mm": 15.0, "ordinal": 3, "label": "Water supply abundant"},
+    "adequate": {"min_balance_mm": 0.0, "ordinal": 2, "label": "Water supply adequate"},
+    "marginal": {"min_balance_mm": -20.0, "ordinal": 1, "label": "Water supply marginal"},
+    "deficit": {"min_balance_mm": -1000000.0, "ordinal": 0, "label": "Water supply deficit"}
+  },
+  "dry_run_drying_step_days": 5,
+  "_dry_run_note": "When the first N forecast days contain at least this many days below 1.0 mm, the supply class is stepped one band drier. Mirrors the frozen FIELD_HIGH dry-day rule.",
+
+  "water_compatibility_ordinal_step": {
+    "_note": "Compatibility of the crop's water_need_class against the block's supply class, keyed on (supply ordinal - crop need ordinal).",
+    "excellent": 1,
+    "good": 0,
+    "moderate": -1,
+    "limited": -2,
+    "poor": -3
+  },
+
+  "season_window_days_upcoming": 30,
+  "season_window_days_recently_closed": 30,
+  "_season_note": "Days before / after the reference sowing-transplanting window that still count as 'approaching' or 'recently closed'. Calendar-based, so it says nothing about the weather during the season.",
+
+  "growing_window_days_tolerance": 14,
+  "_growing_window_note": "How far the reference growing-window length (duration_days) may differ from the reference climate-record length before the growing-season climate component reports insufficient data rather than a partial comparison.",
+
+  "overall_label_bands": {
+    "_note": "Applied to the mean of the AVAILABLE component scores only. Never applied when fewer than min_components are available.",
+    "excellent_match": {"min_score": 0.85},
+    "good_match": {"min_score": 0.7},
+    "moderate_match": {"min_score": 0.5},
+    "limited_match": {"min_score": 0.3},
+    "poor_match": {"min_score": 0.0}
+  },
+  "min_components_for_overall": 2,
+  "_min_components_note": "Fewer available components than this yields 'insufficient_data' rather than a thin label. A single passing component is never enough to call a block a strong match.",
+
+  "confidence_bands": {
+    "_note": "Data-confidence label from how much supporting data was actually available for the assessment.",
+    "high": {"min_available_components": 3, "requires_soil": true, "requires_climatology": false},
+    "moderate": {"min_available_components": 2},
+    "low": {"min_available_components": 1}
+  },
+
+  "excluded_dimensions": [
+    "crop_temperature_range (not stated in the repository crop reference)",
+    "crop_soil_ph_range (not stated in the repository crop reference)",
+    "crop_soil_texture_class (not stated in the repository crop reference)",
+    "quantitative_irrigation_mm (not stated in the repository crop reference)"
+  ]
+}

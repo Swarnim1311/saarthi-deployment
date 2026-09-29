@@ -1,0 +1,246 @@
+/* SAARTHI Climate Intelligence page (/intelligence) + sector cards.
+   Additive; reuses the platform's warm/off-white + deep-green language. */
+
+.intel-wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.intel-head { margin-bottom: 18px; }
+.intel-head h2 {
+  font-size: clamp(24px, 2.6vw, 34px);
+  margin: 6px 0 4px;
+  letter-spacing: 0.01em;
+}
+.intel-sub {
+  font-size: 13.5px;
+  color: #5c6f5e;
+  margin: 0;
+}
+
+/* State → District → Block */
+.intel-select-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: flex-end;
+  padding: 14px 16px;
+  background: #fbfcf7;
+  border: 1px solid #e2e7dd;
+  border-radius: 10px;
+}
+.intel-select-bar label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0;
+  min-width: 180px;
+  flex: 1 1 180px;
+  max-width: 260px;
+}
+.intel-select-bar select {
+  width: 100%;
+  font-size: 13px;
+  padding: 8px 10px;
+  border: 1px solid var(--line, #d9ded3);
+  border-radius: 8px;
+  background: #ffffff;
+  color: var(--ink, #22301f);
+}
+
+.intel-summary {
+  margin: 14px 0 4px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--moss, #6f8f5a);
+  background: #ffffff;
+  border-radius: 0 8px 8px 0;
+}
+.intel-location {
+  font-size: 14px;
+  font-weight: 800;
+  margin: 0 0 2px;
+}
+.intel-meta {
+  font-size: 12.5px;
+  color: #5c6f5e;
+  margin: 0;
+}
+
+.intel-section-title {
+  font-size: 15px;
+  margin: 22px 0 10px;
+  letter-spacing: 0.01em;
+}
+
+.intel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+.intel-card {
+  border: 1px solid #e2e7dd;
+  border-radius: 10px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border-top: 3px solid #9db5a0;
+  transition: transform var(--t-fast, .16s ease);
+}
+.intel-card:hover { transform: translateY(-2px); }
+.intel-card.st-HIGH { border-top-color: #f27256; }
+.intel-card.st-MODERATE { border-top-color: #e2be62; }
+.intel-card.st-LOW { border-top-color: #9ed683; }
+.intel-card h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.01em;
+  color: #3f5140;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.intel-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  background: rgba(158,214,131,.16);
+  border: 1px solid rgba(158,214,131,.35);
+  color: #b9e6a8;
+  font-size: 14px;
+  font-style: normal;
+}
+.intel-state {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 11.5px;
+  letter-spacing: 0.04em;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+.intel-state.LOW { background: #e3efd9; color: #3c6b2f; }
+.intel-state.MODERATE { background: #f7ecd2; color: #8a6a1f; }
+.intel-state.HIGH { background: #fbe3dc; color: #a33; }
+.intel-state.UNAVAILABLE { background: #eef1ea; color: #657566; }
+.intel-card p { margin: 0 0 6px; font-size: 12.5px; line-height: 1.6; }
+.intel-card .intel-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  color: #6b7c6d;
+  margin: 8px 0 2px;
+}
+.intel-card ul { margin: 2px 0 0 16px; padding: 0; font-size: 12.5px; line-height: 1.55; }
+.intel-card .intel-note {
+  font-size: 11.5px;
+  opacity: 0.75;
+  margin: 10px 0 0;
+  border-top: 1px dashed #e2e7dd;
+  padding-top: 8px;
+}
+/* Assumptions are a real list: reset the inherited bullet indent/padding so the
+   dashed rule spans the full card width and no layout shift occurs. */
+.intel-card ul.intel-note {
+  list-style: disc;
+  margin: 10px 0 0;
+  padding: 8px 0 0 14px;
+  font-size: 11.5px;
+  line-height: 1.5;
+  opacity: 0.75;
+  border-top: 1px dashed #e2e7dd;
+}
+.intel-card ul.intel-note li { margin: 0 0 2px; }
+
+.intel-assumptions {
+  border: 1px solid #e2e7dd;
+  border-radius: 10px;
+  background: #fbfcf7;
+  padding: 12px 16px;
+}
+.intel-assumptions ul { margin: 0 0 0 16px; padding: 0; }
+.intel-assumptions li {
+  font-size: 12.5px;
+  line-height: 1.65;
+  color: #4c5c4e;
+}
+
+/* ---- Responsive: 4 → 2 → 1 columns, no horizontal overflow ---- */
+@media (max-width: 1100px) {
+  .intel-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .intel-grid { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .intel-select-bar { gap: 10px; padding: 12px; }
+  .intel-select-bar label { flex: 1 1 100%; max-width: none; }
+  .intel-card { padding: 12px; }
+}
+
+/* ---- Task 6: block-specific agricultural reading ("What this block's
+   weather means for the field"). Four columns on desktop, stacked on mobile.
+   Rendered only from the block_advisory section of /api/intelligence/risks. */
+.intel-advisory {
+  margin: 16px 0 4px;
+  padding: 20px 22px;
+  border-left: 3px solid #9ed683;
+}
+.intel-advisory[hidden] { display: none; }
+.intel-adv-title {
+  font-family: var(--serif, 'Playfair Display', Georgia, serif);
+  font-weight: 600;
+  font-size: clamp(18px, 1.8vw, 24px);
+  letter-spacing: 0;
+  color: #fff;
+  margin: 0 0 4px;
+}
+.intel-adv-loc { font-size: 12.5px; color: #9fb198; margin: 0 0 14px; }
+.intel-adv-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  align-items: start;
+}
+.intel-adv-col { min-width: 0; }
+.intel-adv-col h5 {
+  font: 700 10.5px var(--sans, Manrope, sans-serif);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #d8e87e;
+  margin: 0 0 8px;
+}
+.intel-adv-col ul { list-style: none; margin: 0; padding: 0; }
+.intel-adv-col li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 7px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #dfe8d8;
+}
+.intel-adv-col li::before {
+  content: '';
+  position: absolute;
+  left: 1px;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9ed683;
+}
+.intel-adv-basis {
+  margin: 14px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,.10);
+  font: 500 10.5px/1.6 var(--mono, 'DM Mono', monospace);
+  color: #8fa184;
+}
+@media (max-width: 1080px) { .intel-adv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .intel-adv-grid { grid-template-columns: minmax(0, 1fr); gap: 12px; } }
+@media (prefers-reduced-motion: reduce) { .intel-advisory { animation: none !important; } }
+
+

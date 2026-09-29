@@ -1,0 +1,59 @@
+{
+  "blocks": [
+    {
+      "block_id": "bhuvan_b_270",
+      "bhuvan_b_code": 270,
+      "block_name": "Dhuri",
+      "district": "Sangrur",
+      "state": "Punjab",
+      "centroid_latitude": 30.39524,
+      "centroid_longitude": 75.80312
+    },
+    {
+      "block_id": "bhuvan_b_273",
+      "bhuvan_b_code": 273,
+      "block_name": "Lehra",
+      "district": "Sangrur",
+      "state": "Punjab",
+      "centroid_latitude": 29.9371,
+      "centroid_longitude": 75.81171
+    },
+    {
+      "block_id": "bhuvan_b_269",
+      "bhuvan_b_code": 269,
+      "block_name": "Malerkotla",
+      "district": "Sangrur",
+      "state": "Punjab",
+      "centroid_latitude": 30.53949,
+      "centroid_longitude": 75.89141
+    },
+    {
+      "block_id": "bhuvan_b_274",
+      "bhuvan_b_code": 274,
+      "block_name": "Moonak",
+      "district": "Sangrur",
+      "state": "Punjab",
+      "centroid_latitude": 29.81898,
+      "centroid_longitude": 75.96098
+    },
+    {
+      "block_id": "bhuvan_b_271",
+      "bhuvan_b_code": 271,
+      "block_name": "Sangrur",
+      "district": "Sangrur",
+      "state": "Punjab",
+      "centroid_latitude": 30.23743,
+      "centroid_longitude": 75.89491
+    },
+    {
+      "block_id": "bhuvan_b_272",
+      "bhuvan_b_code": 272,
+      "block_name": "Sunam",
+      "district": "Sangrur",
+      "state": "Punjab",
+      "centroid_latitude": 30.08087,
+      "centroid_longitude": 75.86092
+    }
+  ],
+  "count": 6
+}

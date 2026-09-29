@@ -1,0 +1,12 @@
+{
+  "_provenance": "Display-only block soil context derived from data/processed/risk/block_soil_context.csv (Phase 4.0 SoilGrids 0-5cm aggregation, 10447 px/block). Units: texture/SOC in g/kg, pH unitless. NEVER a severity, confidence, or tie-break input.",
+  "method": "soil-display-v1",
+  "blocks": {
+    "Dhuri": {"clay_g_kg": 271.6, "sand_g_kg": 323.3, "silt_g_kg": 377.0, "soc_g_kg": 12.65, "ph": 7.70},
+    "Lehra": {"clay_g_kg": 254.9, "sand_g_kg": 414.3, "silt_g_kg": 309.6, "soc_g_kg": 11.04, "ph": 7.87},
+    "Malerkotla": {"clay_g_kg": 292.2, "sand_g_kg": 293.0, "silt_g_kg": 385.6, "soc_g_kg": 12.78, "ph": 7.66},
+    "Moonak": {"clay_g_kg": 246.2, "sand_g_kg": 415.2, "silt_g_kg": 316.9, "soc_g_kg": 10.86, "ph": 7.85},
+    "Sangrur": {"clay_g_kg": 273.2, "sand_g_kg": 331.9, "silt_g_kg": 362.6, "soc_g_kg": 12.25, "ph": 7.70},
+    "Sunam": {"clay_g_kg": 264.1, "sand_g_kg": 368.6, "silt_g_kg": 339.7, "soc_g_kg": 12.16, "ph": 7.77}
+  }
+}

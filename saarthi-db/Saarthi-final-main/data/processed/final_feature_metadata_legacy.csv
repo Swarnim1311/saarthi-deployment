@@ -1,0 +1,33 @@
+feature,feature_group,description,source,availability_timing,units
+forecast_date,identifier,Forecast issue date,Derived,date,date
+block,identifier,Sangrur block (Bhuvan legacy name),Bhuvan GPKG sangrur_blocks,static,name
+gefs_d1,GEFS,CHIRPS-GEFS daily forecast lead 1 (single-daily file),CHIRPS-GEFS,known at D,mm
+gefs_d2,GEFS,CHIRPS-GEFS daily forecast lead 2 (single-daily file),CHIRPS-GEFS,known at D,mm
+gefs_d3,GEFS,CHIRPS-GEFS daily forecast lead 3 (single-daily file),CHIRPS-GEFS,known at D,mm
+gefs_d4,GEFS,CHIRPS-GEFS daily forecast lead 4 (single-daily file),CHIRPS-GEFS,known at D,mm
+gefs_d5,GEFS,CHIRPS-GEFS daily forecast lead 5 (single-daily file),CHIRPS-GEFS,known at D,mm
+gefs_d6,GEFS,CHIRPS-GEFS daily forecast lead 6 (single-daily file),CHIRPS-GEFS,known at D,mm
+gefs_d7,GEFS,CHIRPS-GEFS daily forecast lead 7 (single-daily file),CHIRPS-GEFS,known at D,mm
+rain_1d,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_3d,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_7d,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_14d,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_30d,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_lag_1,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_lag_2,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_lag_3,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_lag_4,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_lag_5,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_lag_6,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+rain_lag_7,Recent rainfall,Observed CHIRPS rainfall ending at D (window/lag),CHIRPS,known at D,mm
+enso_value,ENSO,"Nino3.4 SSTA, previous calendar month as-of D (NOAA CPC ERSSTv5 91-20)",ersst5.nino.mth.91-20.ascii,as-of D,degC anomaly
+sin_day_of_year,Seasonal,Cyclic day-of-year encoding,Derived from forecast_date,known at D,unitless
+cos_day_of_year,Seasonal,Cyclic day-of-year encoding,Derived from forecast_date,known at D,unitless
+soil_clay,Soil,Block-mean SoilGrids 0-5cm clay (static),data/raw/soil/*.tif,static,"g/kg (raw SoilGrids v2, range-verified 0-1000)"
+soil_sand,Soil,Block-mean SoilGrids 0-5cm sand (static),data/raw/soil/*.tif,static,"g/kg (raw SoilGrids v2, range-verified 0-1000)"
+soil_silt,Soil,Block-mean SoilGrids 0-5cm silt (static),data/raw/soil/*.tif,static,"g/kg (raw SoilGrids v2, range-verified 0-1000)"
+soil_soc,Soil,Block-mean SoilGrids 0-5cm soc (static),data/raw/soil/*.tif,static,g/kg (SoilGrids v2 dg/kg /10)
+soil_ph,Soil,Block-mean SoilGrids 0-5cm ph (static),data/raw/soil/*.tif,static,"unitless (SoilGrids v2 pH x10 /10, verified raw max > 14)"
+latitude,Spatial,"Block centroid latitude (UTM-43N centroid, WGS84)",sangrur_blocks_bhuvan.gpkg,static,degrees
+longitude,Spatial,"Block centroid longitude (UTM-43N centroid, WGS84)",sangrur_blocks_bhuvan.gpkg,static,degrees
+target_7d_rainfall_mm,Target,"Actual CHIRPS rainfall D+1 through D+7 (label only, never a feature)",CHIRPS,future label,mm

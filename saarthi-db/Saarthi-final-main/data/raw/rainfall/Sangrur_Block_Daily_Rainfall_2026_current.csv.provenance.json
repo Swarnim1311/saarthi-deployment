@@ -1,0 +1,18 @@
+{
+  "product": "CHIRPS v3.0 daily sat (UCSB Climate Hazards Center)",
+  "disaggregation": "sat (IMERG-split); rnl (ERA5-split) excluded by design",
+  "window": [
+    "2026-08-20",
+    "2026-09-22"
+  ],
+  "updated_at_utc": "2026-09-22T04:11:34.311557+00:00",
+  "frozen_file_untouched": "data/raw/rainfall/Sangrur_Block_Daily_Rainfall_2010_2025.csv",
+  "blocks": [
+    "Dhuri",
+    "Lehra",
+    "Malerkotla",
+    "Moonak",
+    "Sangrur",
+    "Sunam"
+  ]
+}

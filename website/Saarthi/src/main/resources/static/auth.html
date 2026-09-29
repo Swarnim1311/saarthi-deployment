@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in — SAARTHI</title>
+  <meta name="description" content="Sign in to SAARTHI block weather intelligence as a farmer or a panchayat official.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/saarthi-design.css">
+  <link rel="stylesheet" href="/static/auth.css">
+  <link rel="stylesheet" href="/static/saarthi-refine.css">
+</head>
+<body class="auth">
+  <!-- Cinematic backdrop: one agricultural still, darkened so type stays
+       readable. If the file is missing the CSS gradient stands in, so the
+       page never renders as an empty box. -->
+  <div class="auth-bg" aria-hidden="true">
+    <img src="/static/images/dramaticfarmlands1.jpg" alt="" fetchpriority="high" decoding="async">
+  </div>
+  <div class="auth-veil" aria-hidden="true"></div>
+  <div class="auth-tint" aria-hidden="true"></div>
+  <div class="auth-grain" aria-hidden="true"></div>
+
+  <main class="auth-stage">
+    <div class="auth-card" id="auth-card">
+      <div class="auth-glow" aria-hidden="true"></div>
+
+      <header class="auth-head">
+        <a class="auth-brand" href="/home" aria-label="SAARTHI home">
+          <img src="/static/assets/logo.png" alt="" width="38" height="38">
+          <span class="auth-brand-text"><b>SAARTHI</b><i>Block weather intelligence</i></span>
+        </a>
+        <h1 class="auth-title">Welcome <em>back.</em></h1>
+        <p class="auth-sub">Sign in to see the live forecast for your block, your crop and your advisories.</p>
+      </header>
+
+      <form class="auth-form" id="auth-form" novalidate autocomplete="on">
+        <!-- Role: exactly two options, chosen as one integrated control.
+             There is no social, OTP or phone sign-in on this page. -->
+        <fieldset class="auth-roles" id="auth-roles">
+          <legend class="auth-label">Sign in as</legend>
+          <div class="auth-seg" role="radiogroup" aria-labelledby="auth-role-legend">
+            <span class="auth-seg-thumb" aria-hidden="true"></span>
+            <button type="button" class="auth-seg-btn is-active" role="radio" aria-checked="true" data-role="farmer">Farmer</button>
+            <button type="button" class="auth-seg-btn" role="radio" aria-checked="false" data-role="official">Panchayat Official</button>
+          </div>
+        </fieldset>
+
+        <div class="auth-field">
+          <label class="auth-label" for="auth-user">Username or email</label>
+          <div class="auth-input-wrap">
+            <span class="auth-ico" aria-hidden="true">◎</span>
+            <input class="auth-input" id="auth-user" name="username" type="text"
+                   autocomplete="username" placeholder="you@example.com" required>
+          </div>
+        </div>
+
+        <div class="auth-field">
+          <label class="auth-label" for="auth-pass">Password</label>
+          <div class="auth-input-wrap">
+            <span class="auth-ico" aria-hidden="true">◈</span>
+            <input class="auth-input" id="auth-pass" name="password" type="password"
+                   autocomplete="current-password" placeholder="Your password" required>
+            <button type="button" class="auth-reveal" id="auth-reveal"
+                    aria-label="Show password" aria-pressed="false">Show</button>
+          </div>
+        </div>
+
+        <button class="auth-submit" id="auth-submit" type="submit">
+          <span class="auth-submit-label">Sign in</span>
+          <span class="auth-spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="auth-status" id="auth-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <footer class="auth-foot">
+        <a class="auth-back" href="/home">Continue without signing in →</a>
+      </footer>
+    </div>
+  </main>
+
+  <script src="/static/auth.js"></script>
+</body>
+</html>

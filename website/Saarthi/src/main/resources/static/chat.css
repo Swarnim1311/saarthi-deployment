@@ -1,0 +1,350 @@
+/* SAARTHI Agri-Advisor — floating assistant widget styles.
+ *
+ * Dark translucent glass matching the cinematic shell. The widget mounts to
+ * <body> (outside .app-shell), so it carries its own dark theme here.
+ */
+
+.sa-chat-fab {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 9000;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  border: 1px solid #2f5a42;
+  background: #335b42;
+  color: #f7f7f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(31, 51, 39, 0.24);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.sa-chat-fab svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+.sa-chat-fab:hover { background: #2a4c37; box-shadow: 0 6px 18px rgba(31, 51, 39, 0.3); }
+.sa-chat-fab:focus-visible { outline: 3px solid #8fae72; outline-offset: 2px; }
+.sa-chat-fab.is-open { transform: scale(0.92); }
+.sa-chat-fab.is-open svg { opacity: 0.55; }
+
+/* ---- panel ---- */
+
+.sa-chat-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 84px;
+  z-index: 9001;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  /* Bounded height so it never covers the whole application. */
+  height: min(520px, calc(100vh - 130px));
+  display: flex;
+  flex-direction: column;
+  background:rgba(12,22,15,.82);
+  backdrop-filter:blur(20px) saturate(1.35);-webkit-backdrop-filter:blur(20px) saturate(1.35);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:16px;
+  box-shadow:0 18px 50px rgba(0,0,0,.45),inset 0 1px 0 rgba(255,255,255,.14);
+  overflow: hidden;
+  animation: sa-chat-in 0.16s ease-out;
+}
+.sa-chat-panel[hidden] { display: none; }
+
+@keyframes sa-chat-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-chat-panel { animation: none; }
+  .sa-chat-fab { transition: none; }
+}
+
+/* ---- header: title only, no subtitle ---- */
+
+.sa-chat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 12px 12px 14px;
+  background:rgba(255,255,255,.06);
+  border-bottom:1px solid rgba(255,255,255,.12);
+  color:#f2f5ec;
+  flex: 0 0 auto;
+}
+.sa-chat-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+.sa-chat-close {
+  border: 0;
+  background: transparent;
+  color: #f7f7f0;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 6px;
+  flex: 0 0 auto;
+}
+.sa-chat-close:hover { background: rgba(255, 255, 255, 0.14); }
+.sa-chat-close:focus-visible { outline: 2px solid #d8e87e; outline-offset: 1px; }
+
+/* ---- greeting: UI text, always follows the selected language ---- */
+
+.sa-chat-greeting {
+  flex: 0 0 auto;
+  margin: 12px 12px 0;
+  padding: 9px 12px;
+  max-width: 86%;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  border-bottom-left-radius: 4px;
+  border-radius: 12px 12px 12px 4px;
+  color:#dfe8d8;
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.sa-chat-greeting:empty { display: none; }
+
+/* ---- messages ---- */
+
+.sa-chat-log {
+  flex: 1 1 auto;
+  min-height: 0;               /* lets the log scroll instead of growing */
+  overflow-y: auto;
+  padding: 12px 12px 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  background:transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.sa-chat-msg { display: flex; }
+.sa-chat-msg-user { justify-content: flex-end; }
+
+.sa-chat-bubble {
+  max-width: 86%;
+  padding: 9px 12px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.6;
+  /* Assistant text is inserted with textContent, so long words wrap rather
+     than forcing the panel to scroll sideways. */
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.sa-chat-msg-bot .sa-chat-bubble {
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  color:#e6eee2;
+  border-bottom-left-radius: 4px;
+}
+.sa-chat-msg-user .sa-chat-bubble {
+  background:rgba(158,214,131,.20);
+  border:1px solid rgba(158,214,131,.35);
+  color:#f2f5ec;
+  border-bottom-right-radius: 4px;
+}
+
+/* ---- mode label: says which engine answered ---- */
+
+.sa-chat-mode {
+  margin: 0;
+  padding: 5px 12px;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  border-top:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.04);
+  color:#9fb198;
+  flex: 0 0 auto;
+}
+.sa-chat-mode.is-gemini { color:#b9e6a8; }
+.sa-chat-mode.is-local { color:#f0d48a; }
+
+/* ---- starter prompts ---- */
+
+.sa-chat-starters {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border-top:1px solid rgba(255,255,255,.10);
+  background:rgba(255,255,255,.04);
+}
+.sa-chat-starters-label {
+  margin: 0 0 6px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color:#9fb198;
+}
+.sa-chat-starter-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.sa-chat-starter {
+  font: inherit;
+  font-size: 11.5px;
+  line-height: 1.35;
+  text-align: left;
+  padding: 6px 9px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+  background:rgba(255,255,255,.06);
+  color:#dfe8d8;
+  cursor: pointer;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+.sa-chat-starter:hover { background:rgba(255,255,255,.12); border-color:rgba(216,232,126,.4); }
+.sa-chat-starter:focus-visible { outline: 2px solid #6f8f5a; outline-offset: 1px; }
+
+/* ---- composer ---- */
+
+.sa-chat-form {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 7px;
+  padding: 10px 12px 12px;
+  border-top:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+}
+.sa-chat-input {
+  flex: 1 1 auto;
+  min-width: 0;                /* stops the input forcing horizontal overflow */
+  font: inherit;
+  font-size: 13px;
+  padding: 9px 11px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius: 9px;
+  background:rgba(10,20,13,.55);
+  color:#f2f5ec;
+}
+.sa-chat-input:focus {
+  outline: 2px solid #6f8f5a;
+  outline-offset: 1px;
+}
+.sa-chat-send {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  align-self: flex-end;
+  border: 1px solid #2f5a42;
+  border-radius: 9px;
+  background: #335b42;
+  color: #f7f7f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.sa-chat-send svg { width: 17px; height: 17px; fill: currentColor; }
+.sa-chat-send:hover { background: #2a4c37; }
+.sa-chat-send:focus-visible { outline: 2px solid #8fae72; outline-offset: 2px; }
+.sa-chat-send:disabled { opacity: 0.55; cursor: default; }
+
+/* ---- voice controls (progressive enhancement; hidden when unsupported) ---- */
+
+.sa-chat-mic {
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  align-self: flex-end;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius: 9px;
+  background:rgba(255,255,255,.06);
+  color:#b9e6a8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.sa-chat-mic svg { width: 17px; height: 17px; fill: currentColor; }
+.sa-chat-mic:hover { background:rgba(255,255,255,.12); border-color:rgba(216,232,126,.4); }
+.sa-chat-mic:focus-visible { outline: 2px solid #8fae72; outline-offset: 2px; }
+.sa-chat-mic.is-listening { background: #fbe3dc; border-color: #e0a08e; color: #a33; }
+
+.sa-chat-speak {
+  font: inherit;
+  font-size: 12px;
+  line-height: 1;
+  margin-top: 6px;
+  padding: 4px 8px;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius: 999px;
+  background:rgba(255,255,255,.06);
+  color:#c6d2c0;
+  cursor: pointer;
+  align-self: flex-start;
+}
+.sa-chat-speak:hover { background:rgba(255,255,255,.12); border-color:rgba(216,232,126,.4); }
+.sa-chat-speak:focus-visible { outline: 2px solid #6f8f5a; outline-offset: 1px; }
+.sa-chat-speak.is-speaking { background: #fbe3dc; border-color: #e0a08e; color: #a33; }
+
+/* ---- thinking indicator ---- */
+
+.sa-chat-thinking { display: flex; align-items: center; gap: 4px; }
+.sa-chat-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #6f8f5a;
+  animation: sa-chat-blink 1.1s infinite ease-in-out;
+}
+.sa-chat-dot:nth-child(2) { animation-delay: 0.18s; }
+.sa-chat-dot:nth-child(3) { animation-delay: 0.36s; }
+@keyframes sa-chat-blink {
+  0%, 80%, 100% { opacity: 0.25; }
+  40% { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sa-chat-dot { animation: none; opacity: 0.6; }
+}
+.sa-chat-sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---- mobile: nearly full width, never full height ---- */
+
+@media (max-width: 640px) {
+  .sa-chat-fab {
+    right: 14px;
+    bottom: 14px;
+    width: 48px;
+    height: 48px;
+  }
+  .sa-chat-panel {
+    right: 10px;
+    left: 10px;
+    /* `left` + `right` makes it span the viewport; the width cap must go. */
+    width: auto;
+    max-width: none;
+    bottom: 72px;
+    /* Leaves the FAB and a strip of page visible, so the app is never
+       completely covered. */
+    height: min(66vh, calc(100dvh - 96px));
+  }
+  .sa-chat-bubble { max-width: 92%; }
+}
+
+/* Very small heights (landscape phones): keep the panel usable. */
+@media (max-height: 460px) {
+  .sa-chat-panel { height: calc(100dvh - 96px); bottom: 12px; }
+}

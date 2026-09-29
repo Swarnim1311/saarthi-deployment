@@ -1,0 +1,13 @@
+Model,Split,MAE,RMSE,R2,Bias
+Climatology,val,24.493,30.737,0.017,0.519
+Climatology,test,24.64,35.645,0.097,-3.379
+Persistence,val,26.915,37.106,-0.432,-0.304
+Persistence,test,30.536,44.375,-0.399,0.128
+Raw GEFS,val,19.031,26.955,0.244,-4.429
+Raw GEFS,test,19.539,29.606,0.377,-4.089
+Random Forest,val,22.216,28.734,0.141,0.779
+Random Forest,test,20.176,29.499,0.382,-3.364
+XGBoost,val,21.636,27.469,0.215,1.129
+XGBoost,test,21.082,30.097,0.356,-2.604
+LightGBM,val,23.089,29.669,0.084,3.443
+LightGBM,test,21.344,30.622,0.334,-1.656

@@ -1,0 +1,11 @@
+PIPELINE VALIDATION REPORT (notebooks 02/03 -> Notebook 4 gate)
+rows: 36 | blocks: 6 | dates: 2009-12-31 to 2025-08-01 (6 unique)
+target target_7d_rainfall_mm: missing 0.0%, min 0.17, median 4.37, mean 15.89, max 76.38, negatives 0
+GEFS leads usable: ['gefs_d1']
+leakage: PASS (features <=D, target D+1..D+7, spot-checks match raw CHIRPS)
+soil: static per block, complete, finite (SoilGrids block means)
+PIPELINE STATUS: READY FOR NOTEBOOK 4
+confirmed correct: 6 blocks, unique keys, non-negative finite target, independent D+1..D+7 target match, ENSO global-index constancy, soil static, boundaries match
+acceptable but imperfect: gefs_d2-d7 all-NaN; rain-window NaNs on early dates
+needs fixing: nothing
+notebook 4 may begin: YES

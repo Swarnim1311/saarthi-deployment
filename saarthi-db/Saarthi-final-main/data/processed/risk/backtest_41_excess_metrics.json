@@ -1,0 +1,412 @@
+{
+  "arms": {
+    "JJAS/EXCESS_DAILY": {
+      "n": 522,
+      "prevalence": 0.3008,
+      "TP": 38,
+      "FP": 27,
+      "TN": 338,
+      "FN": 119,
+      "precision": 0.5846,
+      "recall": 0.242,
+      "f1": 0.3423,
+      "false_alarm_rate": 0.074,
+      "miss_rate": 0.758
+    },
+    "JJAS/EXCESS_DAILY_NEVER": {
+      "n": 522,
+      "prevalence": 0.3008,
+      "TP": 0,
+      "FP": 0,
+      "TN": 365,
+      "FN": 157,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "false_alarm_rate": 0.0,
+      "miss_rate": 1.0
+    },
+    "JJAS/EXCESS_DAILY_ALWAYS": {
+      "n": 522,
+      "prevalence": 0.3008,
+      "TP": 157,
+      "FP": 365,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.3008,
+      "recall": 1.0,
+      "f1": 0.4624,
+      "false_alarm_rate": 1.0,
+      "miss_rate": 0.0
+    },
+    "JJAS/EXCESS_3D": {
+      "n": 522,
+      "prevalence": 0.3238,
+      "TP": 55,
+      "FP": 37,
+      "TN": 316,
+      "FN": 114,
+      "precision": 0.5978,
+      "recall": 0.3254,
+      "f1": 0.4215,
+      "false_alarm_rate": 0.1048,
+      "miss_rate": 0.6746
+    },
+    "JJAS/EXCESS_3D_NEVER": {
+      "n": 522,
+      "prevalence": 0.3238,
+      "TP": 0,
+      "FP": 0,
+      "TN": 353,
+      "FN": 169,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "false_alarm_rate": 0.0,
+      "miss_rate": 1.0
+    },
+    "JJAS/EXCESS_3D_ALWAYS": {
+      "n": 522,
+      "prevalence": 0.3238,
+      "TP": 169,
+      "FP": 353,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.3238,
+      "recall": 1.0,
+      "f1": 0.4891,
+      "false_alarm_rate": 1.0,
+      "miss_rate": 0.0
+    },
+    "JJAS/EXCESS_7D": {
+      "n": 522,
+      "prevalence": 0.0881,
+      "TP": 13,
+      "FP": 27,
+      "TN": 449,
+      "FN": 33,
+      "precision": 0.325,
+      "recall": 0.2826,
+      "f1": 0.3023,
+      "false_alarm_rate": 0.0567,
+      "miss_rate": 0.7174
+    },
+    "JJAS/EXCESS_7D_NEVER": {
+      "n": 522,
+      "prevalence": 0.0881,
+      "TP": 0,
+      "FP": 0,
+      "TN": 476,
+      "FN": 46,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "false_alarm_rate": 0.0,
+      "miss_rate": 1.0
+    },
+    "JJAS/EXCESS_7D_ALWAYS": {
+      "n": 522,
+      "prevalence": 0.0881,
+      "TP": 46,
+      "FP": 476,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.0881,
+      "recall": 1.0,
+      "f1": 0.162,
+      "false_alarm_rate": 1.0,
+      "miss_rate": 0.0
+    }
+  },
+  "baseline_prevalence_train": {
+    "EXCESS_DAILY": 0.2385,
+    "EXCESS_3D": 0.2443,
+    "EXCESS_7D": 0.0958
+  },
+  "ci": {
+    "JJAS/EXCESS_DAILY/precision": {
+      "lo": 0.3594,
+      "hi": 0.8
+    },
+    "JJAS/EXCESS_DAILY/recall": {
+      "lo": 0.1066,
+      "hi": 0.3841
+    },
+    "JJAS/EXCESS_DAILY/f1": {
+      "lo": 0.1659,
+      "hi": 0.4937
+    },
+    "JJAS/EXCESS_3D/precision": {
+      "lo": 0.3972,
+      "hi": 0.7876
+    },
+    "JJAS/EXCESS_3D/recall": {
+      "lo": 0.1702,
+      "hi": 0.4859
+    },
+    "JJAS/EXCESS_3D/f1": {
+      "lo": 0.25,
+      "hi": 0.5657
+    },
+    "JJAS/EXCESS_7D/precision": {
+      "lo": 0.0,
+      "hi": 0.6843
+    },
+    "JJAS/EXCESS_7D/recall": {
+      "lo": 0.0,
+      "hi": 0.5652
+    },
+    "JJAS/EXCESS_7D/f1": {
+      "lo": 0.0882,
+      "hi": 0.5512
+    }
+  },
+  "block": {
+    "EXCESS_DAILY": {
+      "Dhuri": {
+        "n": 87,
+        "prevalence": 0.3563,
+        "TP": 8,
+        "FP": 3,
+        "TN": 53,
+        "FN": 23,
+        "precision": 0.7273,
+        "recall": 0.2581,
+        "f1": 0.381,
+        "false_alarm_rate": 0.0536,
+        "miss_rate": 0.7419
+      },
+      "Lehra": {
+        "n": 87,
+        "prevalence": 0.3103,
+        "TP": 8,
+        "FP": 4,
+        "TN": 56,
+        "FN": 19,
+        "precision": 0.6667,
+        "recall": 0.2963,
+        "f1": 0.4103,
+        "false_alarm_rate": 0.0667,
+        "miss_rate": 0.7037
+      },
+      "Malerkotla": {
+        "n": 87,
+        "prevalence": 0.3218,
+        "TP": 5,
+        "FP": 4,
+        "TN": 55,
+        "FN": 23,
+        "precision": 0.5556,
+        "recall": 0.1786,
+        "f1": 0.2703,
+        "false_alarm_rate": 0.0678,
+        "miss_rate": 0.8214
+      },
+      "Moonak": {
+        "n": 87,
+        "prevalence": 0.3103,
+        "TP": 7,
+        "FP": 6,
+        "TN": 54,
+        "FN": 20,
+        "precision": 0.5385,
+        "recall": 0.2593,
+        "f1": 0.35,
+        "false_alarm_rate": 0.1,
+        "miss_rate": 0.7407
+      },
+      "Sangrur": {
+        "n": 87,
+        "prevalence": 0.2529,
+        "TP": 6,
+        "FP": 4,
+        "TN": 61,
+        "FN": 16,
+        "precision": 0.6,
+        "recall": 0.2727,
+        "f1": 0.375,
+        "false_alarm_rate": 0.0615,
+        "miss_rate": 0.7273
+      },
+      "Sunam": {
+        "n": 87,
+        "prevalence": 0.2529,
+        "TP": 4,
+        "FP": 6,
+        "TN": 59,
+        "FN": 18,
+        "precision": 0.4,
+        "recall": 0.1818,
+        "f1": 0.25,
+        "false_alarm_rate": 0.0923,
+        "miss_rate": 0.8182
+      }
+    },
+    "EXCESS_3D": {
+      "Dhuri": {
+        "n": 87,
+        "prevalence": 0.3563,
+        "TP": 9,
+        "FP": 5,
+        "TN": 51,
+        "FN": 22,
+        "precision": 0.6429,
+        "recall": 0.2903,
+        "f1": 0.4,
+        "false_alarm_rate": 0.0893,
+        "miss_rate": 0.7097
+      },
+      "Lehra": {
+        "n": 87,
+        "prevalence": 0.3448,
+        "TP": 10,
+        "FP": 6,
+        "TN": 51,
+        "FN": 20,
+        "precision": 0.625,
+        "recall": 0.3333,
+        "f1": 0.4348,
+        "false_alarm_rate": 0.1053,
+        "miss_rate": 0.6667
+      },
+      "Malerkotla": {
+        "n": 87,
+        "prevalence": 0.3448,
+        "TP": 10,
+        "FP": 7,
+        "TN": 50,
+        "FN": 20,
+        "precision": 0.5882,
+        "recall": 0.3333,
+        "f1": 0.4255,
+        "false_alarm_rate": 0.1228,
+        "miss_rate": 0.6667
+      },
+      "Moonak": {
+        "n": 87,
+        "prevalence": 0.3218,
+        "TP": 10,
+        "FP": 6,
+        "TN": 53,
+        "FN": 18,
+        "precision": 0.625,
+        "recall": 0.3571,
+        "f1": 0.4545,
+        "false_alarm_rate": 0.1017,
+        "miss_rate": 0.6429
+      },
+      "Sangrur": {
+        "n": 87,
+        "prevalence": 0.2759,
+        "TP": 7,
+        "FP": 7,
+        "TN": 56,
+        "FN": 17,
+        "precision": 0.5,
+        "recall": 0.2917,
+        "f1": 0.3684,
+        "false_alarm_rate": 0.1111,
+        "miss_rate": 0.7083
+      },
+      "Sunam": {
+        "n": 87,
+        "prevalence": 0.2989,
+        "TP": 9,
+        "FP": 6,
+        "TN": 55,
+        "FN": 17,
+        "precision": 0.6,
+        "recall": 0.3462,
+        "f1": 0.439,
+        "false_alarm_rate": 0.0984,
+        "miss_rate": 0.6538
+      }
+    },
+    "EXCESS_7D": {
+      "Dhuri": {
+        "n": 87,
+        "prevalence": 0.092,
+        "TP": 2,
+        "FP": 5,
+        "TN": 74,
+        "FN": 6,
+        "precision": 0.2857,
+        "recall": 0.25,
+        "f1": 0.2667,
+        "false_alarm_rate": 0.0633,
+        "miss_rate": 0.75
+      },
+      "Lehra": {
+        "n": 87,
+        "prevalence": 0.092,
+        "TP": 2,
+        "FP": 3,
+        "TN": 76,
+        "FN": 6,
+        "precision": 0.4,
+        "recall": 0.25,
+        "f1": 0.3077,
+        "false_alarm_rate": 0.038,
+        "miss_rate": 0.75
+      },
+      "Malerkotla": {
+        "n": 87,
+        "prevalence": 0.0805,
+        "TP": 2,
+        "FP": 6,
+        "TN": 74,
+        "FN": 5,
+        "precision": 0.25,
+        "recall": 0.2857,
+        "f1": 0.2667,
+        "false_alarm_rate": 0.075,
+        "miss_rate": 0.7143
+      },
+      "Moonak": {
+        "n": 87,
+        "prevalence": 0.092,
+        "TP": 2,
+        "FP": 3,
+        "TN": 76,
+        "FN": 6,
+        "precision": 0.4,
+        "recall": 0.25,
+        "f1": 0.3077,
+        "false_alarm_rate": 0.038,
+        "miss_rate": 0.75
+      },
+      "Sangrur": {
+        "n": 87,
+        "prevalence": 0.0805,
+        "TP": 2,
+        "FP": 6,
+        "TN": 74,
+        "FN": 5,
+        "precision": 0.25,
+        "recall": 0.2857,
+        "f1": 0.2667,
+        "false_alarm_rate": 0.075,
+        "miss_rate": 0.7143
+      },
+      "Sunam": {
+        "n": 87,
+        "prevalence": 0.092,
+        "TP": 3,
+        "FP": 4,
+        "TN": 75,
+        "FN": 5,
+        "precision": 0.4286,
+        "recall": 0.375,
+        "f1": 0.4,
+        "false_alarm_rate": 0.0506,
+        "miss_rate": 0.625
+      }
+    }
+  },
+  "method": {
+    "source": "HISTORICAL GEFS PSEUDO-FORECAST, explicitly NOT live IFS",
+    "thresholds": "excess-v1 fit 2010-2019 JJAS only",
+    "issues": "weekly Wednesday JJAS eval 2021-01-01.., n_issues=87",
+    "uncertainty": "issue-clustered bootstrap 2000 reps seed 11"
+  }
+}

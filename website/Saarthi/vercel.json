@@ -1,0 +1,29 @@
+{
+  "outputDirectory": "src/main/resources/static",
+  "rewrites": [
+    {
+      "source": "/farmer",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/map",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/timeline",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/advisory",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/officer",
+      "destination": "/portal.html"
+    },
+    {
+      "source": "/intelligence",
+      "destination": "/portal.html"
+    }
+  ]
+}

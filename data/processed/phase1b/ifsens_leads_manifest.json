@@ -1,0 +1,11 @@
+{
+  "updated_utc": "2026-09-15T05:52:19+00:00",
+  "completed_dates": [
+    "2026-09-13",
+    "2026-09-14"
+  ],
+  "failed_dates": [
+    "2018-07-15:blocked-no-credentials"
+  ],
+  "history_status": "BLOCKED: TIGGE/ECDS-MARS registration required for IFS ENS history"
+}

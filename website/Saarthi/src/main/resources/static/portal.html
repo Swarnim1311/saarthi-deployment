@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SAARTHI Platform — Agricultural Intelligence</title>
+  <meta name="description" content="SAARTHI decision platform: 16-day block outlook plus 17-30 day climatological reference." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/saarthi-design.css">
+  <link rel="stylesheet" href="/static/saarthi-shell.css">
+  <link rel="stylesheet" href="/static/portal.css">
+  <link rel="stylesheet" href="/static/intelligence.css">
+  <link rel="stylesheet" href="/static/cropatlas.css">
+  <link rel="stylesheet" href="/static/chat.css">
+  <style>
+    /* Portal page layer: composition only (shell/rail/glass/theme in saarthi-shell.css) */
+    .page-head{padding:26px 28px}
+    .page-head h1{font-size:clamp(30px,3.4vw,48px)}
+    .page-head .portal-intro{color:#a9bda2;font-size:14px;line-height:1.65;margin:8px 0 0;max-width:70ch}
+    .farmer-grid{display:grid;grid-template-columns:300px minmax(0,1fr);gap:16px;align-items:start}
+    .farmer-grid .farm-form{position:sticky;top:20px}
+    @media(max-width:1180px){.farmer-grid .farm-form{position:static}}
+    .farm-form{padding:24px}
+    /* Issue 1: map stays the visual focus; side column is compact info only. */
+    .map-grid{display:grid;grid-template-columns:minmax(340px,400px) minmax(0,1fr);gap:16px;align-items:start}
+    #leaflet-map-canvas{min-height:620px;border-radius:var(--r-lg);position:relative;z-index:0}
+    /* Issue 3: forecast hierarchy — full-width 16-day table, balanced
+       risk/climate pair, full-width W3/W4. Chart owns its own clear space. */
+    .forecast-chart{padding:24px;position:relative;overflow:hidden;isolation:isolate;min-height:280px}
+    .forecast-chart .recharts-forecast-container{background:rgba(8,16,11,.42) !important;color:#dfe8d8 !important;
+      border:1px solid rgba(255,255,255,.10) !important;border-radius:var(--r-md)}
+    #recharts-forecast-canvas{position:relative;z-index:0}
+    .chat-stage{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:16px;align-items:start}
+    .fc-dash{display:flex;flex-direction:column;gap:16px;min-width:0}
+    .fc-top{padding:22px 24px}
+    .fc-top h2{margin:0;font-size:clamp(22px,2.4vw,32px)}
+    .fc-loc-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .fc-loc-row label{display:flex;flex-direction:column;gap:5px;font:700 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#a9bda2;flex:1;min-width:140px}
+    .fc-cols{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+    .fc-card{padding:22px 24px;min-width:0}
+    .fc-card h3{font-size:16px;margin:0 0 10px;letter-spacing:-.005em}
+    .fc-wide{width:100%}
+    .fc-card .matrix-table{font-size:13px}
+    .fc-card .matrix-table th,.fc-card .matrix-table td{padding:11px 14px}
+    @media(max-width:1024px){.fc-cols{grid-template-columns:minmax(0,1fr)}}
+    @media(max-width:1180px){.farmer-grid,.map-grid,.chat-stage{grid-template-columns:minmax(0,1fr)}#leaflet-map-canvas{min-height:440px}}
+    @media(max-width:600px){#leaflet-map-canvas{min-height:360px}.page-head{padding:20px}.fc-card{padding:18px}}
+  </style>
+  <link rel="stylesheet" href="/static/saarthi-refine.css">
+</head>
+<body class="app">
+  <div class="app-bg" aria-hidden="true"><img id="app-bg-img" src="/static/images/farmerinfield1.jpg" alt=""></div>
+  <div class="app-veil" aria-hidden="true"></div>
+  <div class="app-tint" aria-hidden="true"></div>
+  <button class="fab-menu" aria-expanded="false" aria-controls="rail-overlay" aria-label="Open navigation">☰</button>
+
+  <div class="app-shell">
+    <div class="app-body">
+      <aside class="rail liq" aria-label="Primary">
+        <a class="rail-brand" href="/home" data-nav="home" aria-label="SAARTHI home"><img src="/static/assets/logo.png" alt="SAARTHI logo"><b>SAARTHI</b></a>
+        <a class="rail-item" href="/home" data-nav="home"><i>⌂</i><span>Home</span></a>
+        <a class="rail-item" href="/weather" data-nav="weather"><i>◎</i><span>Weather</span></a>
+        <a class="rail-item" href="/farmer" data-nav="farmer"><i>♧</i><span>Farmer Portal</span></a>
+        <a class="rail-item" href="/forecast" data-nav="timeline"><i>☔</i><span>Forecast</span></a>
+        <a class="rail-item" href="/risk-map" data-nav="map"><i>◍</i><span>Risk Map</span></a>
+        <a class="rail-item" href="/climate" data-nav="intelligence"><i>◐</i><span>Climate Intelligence</span></a>
+        <a class="rail-item" href="/cropatlas" data-nav="cropatlas"><i>❦</i><span>CropAtlas</span></a>
+        <a class="rail-item" href="/policies" data-nav="policy-alerts"><i>⚖</i><span>Policies</span></a>
+        <span class="rail-live"><i class="sa-dot"></i><em>Live</em></span>
+      </aside>
+
+      <main class="app-content portal-main">
+        <header class="page-head glass">
+          <p class="eyebrow"><i class="sa-dot"></i>SAARTHI Agricultural Intelligence</p>
+          <h1 class="display" id="page-title">Farmer <em>advisory.</em></h1>
+          <p id="page-intro" class="portal-intro"></p>
+        </header>
+
+        <!-- 1. FARMER PORTAL -->
+        <section id="farmer" class="portal-page" style="display:none">
+          <div class="farmer-grid">
+            <aside class="farm-form glass" aria-label="Farm profile">
+              <h3>Farm Profile</h3>
+              <label><span>State</span><select id="form-state"></select></label>
+              <label><span>District</span><select id="form-district"></select></label>
+              <label><span>Block</span><select id="form-block"></select></label>
+              <p id="form-location-note" style="font-size:12px;opacity:.8;margin:-4px 0 8px;"></p>
+              <label><span>Crop Variety</span>
+                <select id="form-crop">
+                  <option value="Paddy (PR-126)" selected>Paddy (PR-126 - Short Duration)</option>
+                  <option value="Paddy (Pusa-44)">Paddy (Pusa-44 - Long Duration)</option>
+                  <option value="Basmati">Basmati (PB-1121 / PB-1509)</option>
+                  <option value="Cotton">Cotton (Bt Hybrid)</option>
+                  <option value="Maize">Maize (PMH-1)</option>
+                  <option value="Wheat">Wheat (HD-2967 / PBW-725)</option>
+                  <option value="Sugarcane">Sugarcane (Co-0238)</option>
+                </select>
+              </label>
+              <label><span>Soil Type</span>
+                <select id="form-soil">
+                  <option value="Clay Loam" selected>Clay Loam (High Retention)</option>
+                  <option value="Alluvial">Alluvial (Balanced Loam)</option>
+                  <option value="Sandy Loam">Sandy Loam (Rapid Drain)</option>
+                  <option value="Silt Loam">Silt Loam (Moderate Retention)</option>
+                </select>
+              </label>
+              <label><span>Planned Sowing Date</span><input type="date" id="form-date" value="2026-09-06"></label>
+              <label><span>Irrigation Source</span>
+                <select id="form-irrigation">
+                  <option value="Canals" selected>Canals (Sirhind/Bhakhra Network)</option>
+                  <option value="Tubewells">Tubewells (Deep Groundwater Pump)</option>
+                  <option value="Rainfed">Rainfed (Pure Monsoon Dependent)</option>
+                </select>
+              </label>
+              <button class="sa-btn primary" id="form-refresh-btn" style="width:100%;justify-content:center">Compute Advisory <span>→</span></button>
+            </aside>
+
+            <div class="decision-board">
+              <div class="decision-hero-card liq liq-hero">
+                <div class="decision-badge-strip">
+                  <span class="decision-tag sow" id="decision-tag">STANDBY</span>
+                  <span class="window-badge">Recommended Window: <strong id="decision-window">—</strong></span>
+                </div>
+                <h2 id="decision-headline">Advisory for your selected block.</h2>
+                <p class="decision-rationale" id="decision-explanation">Select State → District → Block, then Compute Advisory to load the live outlook.</p>
+                <div class="decision-meta-row">
+                  <div><span>Live Weather:</span> <strong id="decision-prob">Loading…</strong></div>
+                  <div><span>Outlook:</span> <strong id="decision-confidence">16-day outlook</strong></div>
+                  <div><span>Location:</span> <strong id="decision-location">—</strong></div>
+                </div>
+              </div>
+              <!-- Farmer-facing plain-language advice (Task 3): built from the SAME live
+                   advisory payload already on this page (forecast rain, wet days, heaviest
+                   rain, temperature, dry spells, soil moisture, sowing date, irrigation source).
+                   No new data source, no fabricated conditions: every line comes from the
+                   loaded API response, and any missing input drops its line. -->
+              <section class="farmer-advice liq" id="farmer-advice" aria-live="polite" hidden>
+                <p class="fa-kicker">What this means for you</p>
+                <p class="fa-lead" id="farmer-advice-lead"></p>
+                <div class="fa-cols">
+                  <div class="fa-col"><h4 class="fa-head">What to do</h4><ul class="fa-list" id="farmer-advice-do"></ul></div>
+                  <div class="fa-col"><h4 class="fa-head">Keep an eye on</h4><ul class="fa-list" id="farmer-advice-watch"></ul></div>
+                </div>
+                <p class="fa-foot" id="farmer-advice-foot"></p>
+              </section>
+
+              <div class="pillars-grid">
+                <div class="pillar-card"><span>Weather Watch</span><strong id="pillar-weather-val">—</strong><small>7-day rain outlook</small></div>
+                <div class="pillar-card"><span>Surface Soil Moisture</span><strong id="pillar-soil-val">—</strong><small>Top-layer outlook, not a field reading</small></div>
+                <div class="pillar-card"><span>Crop Water Need</span><strong id="pillar-crop-val">—</strong><small>Water-need class</small></div>
+                <div class="pillar-card"><span>Dry-Spell Watch</span><strong id="pillar-dry-val">—</strong><small>Worded watch — no fabricated %</small></div>
+              </div>
+              <div class="gauge-actions-row">
+                <div class="share-action-card" style="grid-column:1/-1">
+                  <div><p class="card-kicker">Advisory Actions</p><div id="advisory-actions" style="font-size:13.5px;line-height:1.55">Advisory actions will appear here once the live outlook loads.</div></div>
+                </div>
+                <div class="soil-gauge-card">
+                  <div class="gauge-dial-wrap"><div class="gauge-dial" id="root-gauge-dial"><span class="gauge-inner-val" id="gauge-percent">—</span></div></div>
+                  <div class="gauge-info"><p class="card-kicker">Forecast Surface Soil Moisture</p><h3 id="gauge-status">Awaiting block selection…</h3><p>Top-layer outlook for the block. Modelled outlook — not a field measurement.</p></div>
+                </div>
+                <div class="share-action-card">
+                  <div><p class="card-kicker">Kisan Community Outreach</p><h3>Share WhatsApp Advisory</h3><p>One-click formatted advisory message ready to forward to local Kisan WhatsApp &amp; Telegram groups.</p></div>
+                  <div class="share-buttons-group"><button class="share-kisan-btn" id="share-whatsapp-btn"><span>📱</span> <span id="share-btn-text">Copy WhatsApp Text</span></button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <details class="sa-tech" style="margin-top:16px" hidden><summary>Technical details</summary><div class="sa-tech-body">Unavailable values stay unavailable.</div></details>
+        </section>
+
+        <!-- 2. RISK MAP -->
+        <section id="map" class="portal-page" style="display:none">
+          <div class="map-grid">
+            <div class="map-side">
+              <div class="map-controls-bar glass" style="margin-bottom:2px">
+                <div class="map-filters">
+                  <label style="margin:0;font-weight:700;font-size:11px;"><span>State</span><select id="map-state"></select></label>
+                  <label style="margin:0;font-weight:700;font-size:11px;"><span>District</span><select id="map-district"></select></label>
+                  <label style="margin:0;font-weight:700;font-size:11px;"><span>Block</span><select id="map-block"></select></label>
+                  <label style="margin:0;font-weight:700;font-size:11px;align-self:end;"><input type="checkbox" id="map-show-boundary" checked style="width:auto;"> Show block boundary</label>
+                </div>
+                <div class="map-legend-pills">
+                  <span class="legend-pill low"><i></i> Selected block</span>
+                  <span class="legend-pill mod"><i style="background:#427c9c;"></i> Live forecast marker</span>
+                </div>
+              </div>
+              <div id="map-forecast-card" class="sel-block glass" aria-live="polite"><p style="font-size:12.5px;margin:0">Select a state, district and block to view the live outlook.</p></div>
+              <div class="risk-legend glass"><b>Risk, honestly defined</b>HIGH: rain on ≥2 of next 3 days · MODERATE: possible disruption · LOW: no major field-work issue · UNAVAILABLE: inputs missing. LOW is not “no rain”.</div>
+            </div>
+            <div id="leaflet-map-canvas" role="application" aria-label="Block risk map"></div>
+          </div>
+        </section>
+
+        <!-- 3. FORECAST -->
+        <section id="timeline" class="portal-page" style="display:none">
+          <div class="fc-dash">
+            <div class="fc-top glass">
+              <p class="kicker">16-day forecast</p>
+              <h2 class="display"><span id="timeline-place">Select a block</span> · <em id="timeline-block-title">—</em></h2>
+              <div class="fc-loc-row" role="group" aria-label="Choose your block">
+                <label>State <select id="tl-state"></select></label>
+                <label>District <select id="tl-district"></select></label>
+                <label>Block <select id="live-block-select"></select></label>
+              </div>
+              <p id="live-meta" style="font-size:12.5px;margin:12px 0 4px;" hidden></p>
+              <div class="plain-box" id="live-meaning" hidden><p class="plain-kicker">In simple terms</p><p class="plain-text" id="live-meaning-text"></p></div>
+            </div>
+            <div class="forecast-chart liq">
+              <div><p class="kicker">Rainfall outlook · next 16 days</p></div>
+              <div class="recharts-forecast-container" id="recharts-forecast-canvas" style="margin-top:14px"></div>
+            </div>
+            <div class="matrix-table-wrap fc-card fc-wide">
+              <h3>Rainfall Outlook · D+1–D+16</h3>
+              <table class="matrix-table"><thead><tr><th>Day</th><th>Date</th><th>Rain (mm)</th><th>Rain probability</th></tr></thead><tbody id="live-matrix-tbody"><tr><td colspan="4">Loading live outlook…</td></tr></tbody></table>
+              <p style="font-size:12px;opacity:.75;margin-top:8px;">Days 1–7 operational · 8–15 extended/lower-confidence · 16–30 not served by the 16-day deterministic feed. Missing values are shown as “No data”, never filled with zero.</p>
+            </div>
+            <div class="fc-cols">
+              <div class="matrix-table-wrap fc-card">
+                <h3>Agricultural Risk · D+1–D+3</h3>
+                <p id="risk-meta" style="font-size:12.5px;margin:0 0 4px;">Field-work risk loading…</p>
+                <p id="risk-card" style="margin:0 0 8px;font-size:13px;font-weight:700;padding:8px 12px;border-radius:8px;background:rgba(255,255,255,.06);color:#c6d2c0;">Loading…</p>
+                <p id="risk-primary" style="font-size:12.5px;margin:0 0 4px;"></p>
+                <p id="risk-evidence" style="font-size:12.5px;margin:0 0 4px;"></p>
+                <p id="risk-others" style="font-size:12.5px;margin:0 0 4px;"></p>
+                <p id="risk-advisory" style="font-size:12.5px;margin:0 0 4px;"></p>
+                <p style="font-size:12px;opacity:.75;margin-top:8px;">HIGH when ≥2 of the next 3 forecast days are wet (≥1 mm/day). Dry-spell watch is provisional and never drives HIGH.</p>
+                <div class="plain-box" id="risk-meaning" hidden><p class="plain-kicker">In simple terms</p><p class="plain-text" id="risk-meaning-text"></p></div>
+              </div>
+              <div class="matrix-table-wrap fc-card">
+                <h3>Large-Scale Climate Context</h3>
+                <p class="section-note">Large-scale background only — not a substitute for the 16-day outlook above.</p>
+                <table class="matrix-table"><tbody id="climate-context-tbody"><tr><td>Loading climate context…</td></tr></tbody></table>
+                <p style="font-size:12px;opacity:.75;margin-top:8px;">Climate context is explanatory only.</p>
+                <div class="plain-box" id="climate-meaning" hidden><p class="plain-kicker">Climate context in simple terms</p><p class="plain-text" id="climate-meaning-text"></p></div>
+              </div>
+            </div>
+            <div class="matrix-table-wrap fc-card fc-wide">
+              <h3>17–30 Day Climatological Outlook · W3/W4</h3>
+              <p class="section-note">Longer-range guide from the block's usual rainfall pattern — not a day-by-day forecast.</p>
+              <p id="w34-meta" style="font-size:12.5px;margin:0 0 4px;" hidden></p>
+              <table class="matrix-table"><thead><tr><th>Window</th><th>Period</th><th>Below / Near / Above</th><th>Normal (ref)</th><th>Confidence</th></tr></thead><tbody id="w34-matrix-tbody"><tr><td colspan="5">Loading extended outlook…</td></tr></tbody></table>
+              <p id="w34-narrative" style="font-size:12.5px;margin:8px 0 0;"></p>
+              <p style="font-size:12px;opacity:.75;margin-top:8px;">W3/W4 probabilities are the climatological tercile prior (1/3 each), not a calibrated forecast. Rainfall amounts are normals for reference only.</p>
+              <div class="plain-box" id="w34-meaning" hidden><p class="plain-kicker">In simple terms</p><p class="plain-text" id="w34-meaning-text"></p></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. CLIMATE INTELLIGENCE -->
+        <section id="intelligence" class="portal-page" style="display:none">
+          <div class="intel-wrap">
+            <div class="intel-head"><p class="kicker">Climate Intelligence · context signals, not local predictions</p><h2 class="display" style="font-size:clamp(26px,3vw,40px)">Weather signals → <em>sector decisions.</em></h2><p class="intel-sub">One shared 16-day outlook, interpreted for four sectors.</p></div>
+            <div class="intel-select-bar glass"><label>State <select id="intel-state"></select></label><label>District <select id="intel-district"></select></label><label>Block <select id="intel-block"></select></label></div>
+            <div class="intel-summary"><p id="intel-location" class="intel-location">Select State → District → Block</p><p id="intel-meta" class="intel-meta">Select a block to view sector intelligence.</p></div>
+            <!-- Task 6: block-specific agricultural reading. Every list below is
+                 produced by the backend from THIS block's own live forecast
+                 (wet days, water balance, dry runs, heaviest rain vs the block
+                 reference, temperature, soil moisture) plus the block's
+                 registry identity. It varies between blocks because the weather
+                 and the block vary — not a template with the block name. -->
+            <section class="intel-advisory glass" id="intel-advisory" aria-live="polite" hidden>
+              <h4 class="intel-adv-title">What this block’s weather means for the field</h4>
+              <p class="intel-adv-loc" id="intel-adv-loc"></p>
+              <div class="intel-adv-grid">
+                <div class="intel-adv-col"><h5>What is happening</h5><ul id="intel-adv-happening"></ul></div>
+                <div class="intel-adv-col"><h5>Why it matters</h5><ul id="intel-adv-matters"></ul></div>
+                <div class="intel-adv-col"><h5>What to do</h5><ul id="intel-adv-actions"></ul></div>
+                <div class="intel-adv-col"><h5>What to watch</h5><ul id="intel-adv-watches"></ul></div>
+              </div>
+              <p class="intel-adv-basis" id="intel-adv-basis"></p>
+            </section>
+
+            <h3 class="intel-section-title">Sector risk</h3>
+            <div id="intel-grid" class="intel-grid"></div>
+            <h3 class="intel-section-title">Data &amp; assumptions</h3>
+            <div class="intel-assumptions"><ul>
+              <li>These are rule-based weather indicators, not calibrated probabilities.</li>
+              <li>Road status and traffic are not directly measured.</li>
+              <li>Groundwater levels are not directly measured.</li>
+              <li>Electricity grid load is not directly measured.</li>
+              <li>Warehouse condition is not directly measured; guidance covers moisture-exposure precautions.</li>
+              <li>Rule-based indicator; current IFS risk calibration is pending where applicable.</li>
+            </ul></div>
+          </div>
+        </section>
+
+        <!-- 5. CROPATLAS -->
+        <section id="cropatlas" class="portal-page ca-page" style="display:none">
+          <div class="ca-wrap">
+            <header class="ca-hero"><p class="kicker">Crop intelligence</p><h2 class="display" style="font-size:clamp(26px,3vw,40px)">What can <em>grow here?</em></h2><p class="ca-hero-sub">Understand each crop in seconds — what it is, what it is used for, and one useful thing to know.</p></header>
+            <div class="ca-locator glass"><label>State <select id="ca-state"></select></label><label>District <select id="ca-district"></select></label><label>Block <select id="ca-block"></select></label></div>
+            <div id="ca-standby" class="ca-standby"><p class="ca-standby-title">Select a block to explore crop suitability.</p><p class="ca-standby-sub">CropAtlas needs a block before it can measure anything. No data is requested until you choose one.</p></div>
+            <div id="ca-loading" class="ca-loading" hidden><span class="ca-spinner" aria-hidden="true"></span> Measuring this block's environment…</div>
+            <div id="ca-error" class="ca-error" hidden></div>
+            <div id="ca-result" hidden>
+              <div class="ca-selected"><p id="ca-location" class="ca-location"></p><p id="ca-meta" class="ca-meta"></p></div>
+              <h3 class="ca-section">Environmental fingerprint</h3>
+              <p class="ca-section-note">Only values that are actually available are shown. Nothing is estimated to fill a gap.</p>
+              <div id="ca-fingerprint" class="ca-fingerprint"></div>
+              <div id="ca-fingerprint-missing" class="ca-missing"></div>
+              <h3 class="ca-section">Climate snapshot</h3>
+              <p class="ca-section-note">CropAtlas compares this block's conditions with crop requirements. A 16-day forecast alone does not determine crop suitability.</p>
+              <div id="ca-climate" class="ca-climate"></div>
+              <h3 class="ca-section">Crop candidates for this block</h3>
+              <p class="ca-section-note">Simple crop intelligence for this block.</p>
+              <div id="ca-groups"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. POLICIES -->
+        <section id="policy-alerts" class="portal-page" style="display:none">
+          <div class="timeline-card-wrap glass" style="background:transparent;border:none;box-shadow:none;padding:0">
+            <div class="timeline-header-bar">
+              <div><p class="kicker">Farmer policies &amp; schemes</p><h2 class="display" style="font-size:clamp(24px,2.6vw,36px)">Latest Farmer Policies &amp; <em>Alerts.</em></h2><p style="margin-top:8px;color:#9fb198;">Agriculture, farmer welfare and allied-sector updates.</p></div>
+              <button class="sa-btn primary" id="policy-refresh-btn">Refresh Policies</button>
+            </div>
+            <div id="policy-alert-list"><p style="padding:20px;opacity:.7;">Loading policy alerts...</p></div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <footer class="app-foot">
+      <span>© 2026 SAARTHI · Agricultural intelligence for every block</span>
+      <span><a href="/home">Home</a> · <a href="/forecast">Forecast</a> · <a href="/farmer">Farmer Portal</a></span>
+    </footer>
+  </div>
+
+  <nav class="rail-overlay" id="rail-overlay" aria-label="Sections">
+    <a href="/home" data-nav="home"><i>⌂</i>Home</a>
+    <a href="/weather" data-nav="weather"><i>◎</i>Weather</a>
+    <a href="/farmer" data-nav="farmer"><i>♧</i>Farmer Portal</a>
+    <a href="/forecast" data-nav="timeline"><i>☔</i>Forecast</a>
+    <a href="/risk-map" data-nav="map"><i>◍</i>Risk Map</a>
+    <a href="/climate" data-nav="intelligence"><i>◐</i>Climate Intelligence</a>
+    <a href="/cropatlas" data-nav="cropatlas"><i>❦</i>CropAtlas</a>
+    <a href="/policies" data-nav="policy-alerts"><i>⚖</i>Policies</a>
+    <p class="ov-live">● LIVE MONITORING</p>
+  </nav>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/static/geo-select.js"></script>
+<script src="/static/chat.js"></script>
+<script src="/static/portal.js"></script>
+<script src="/static/saarthi-ui.js"></script>
+<script src="/static/saarthi-liquid.js"></script>
+<script>
+/* Per-page cinematic background: swaps the shared body-level backdrop to the
+   section currently visible. Imagery only — no data logic. */
+(function () {
+  'use strict';
+  var BG = {
+    farmer: '/static/images/farmerinfield1.jpg',
+    map: '/static/images/dryfarm2.jpg',
+    timeline: '/static/images/monsoon1.jpg',
+    intelligence: '/static/images/dryfarm1.jpg',
+    cropatlas: '/static/images/greenagriculturallandscape1.jpg',
+    'policy-alerts': '/static/images/greenagriculturallandscape2.jpg'
+  };
+  function current() {
+    var sections = document.querySelectorAll('.portal-page');
+    for (var i = 0; i < sections.length; i++) {
+      if (sections[i].style.display === 'block') return sections[i].id;
+    }
+    return 'farmer';
+  }
+  function swap() {
+    var img = document.getElementById('app-bg-img');
+    var want = BG[current()] || BG.farmer;
+    if (!img || img.getAttribute('src') === want) return;
+    img.classList.add('fading');
+    var next = new Image();
+    next.onload = function () { img.src = want; img.classList.remove('fading'); };
+    next.onerror = function () { img.classList.remove('fading'); };
+    next.src = want;
+  }
+  /* PERF: explicit bg swap. portal.js updateRouteUI() calls
+     SaarthiBg.swap() after switching sections — no MutationObserver
+     watching style attributes across the whole content subtree. */
+  window.SaarthiBg = { swap: swap };
+  document.addEventListener('DOMContentLoaded', function () {
+    swap();
+  });
+})();
+</script>
+</body>
+</html>

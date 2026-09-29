@@ -1,0 +1,71 @@
+{
+  "issue_date": "2026-09-09",
+  "generated_by": "notebooks/05_live_inference_pipeline.ipynb",
+  "forecast_horizon_days": 7,
+  "district": "Sangrur",
+  "spatial_unit": "block",
+  "blocks": [
+    "Dhuri",
+    "Lehra",
+    "Malerkotla",
+    "Moonak",
+    "Sangrur",
+    "Sunam"
+  ],
+  "selected_method": {
+    "type": "raw_gefs",
+    "name": "Raw CHIRPS-GEFS baseline"
+  },
+  "gefs_source": {
+    "archive": "https://data.chc.ucsb.edu/products/CHIRPS-GEFS/v3/daily/global",
+    "issue_folder": "2026/09/09",
+    "target_files": [
+      "2026.09.10",
+      "2026.09.11",
+      "2026.09.12",
+      "2026.09.13",
+      "2026.09.14",
+      "2026.09.15",
+      "2026.09.16"
+    ],
+    "method": "vsicurl windowed block means (same semantics as Notebook 02)",
+    "lead_0_used": false
+  },
+  "chirps_context": {
+    "source_file": "data/raw/rainfall/Sangrur_Block_Daily_Rainfall_2010_2025.csv",
+    "coverage_end": "2025-12-31",
+    "available_for_D": false,
+    "note": "context only (<=D); never a forecast input"
+  },
+  "enso_context": {
+    "asof_month": "2026-08",
+    "value": null,
+    "available": false,
+    "note": "context only; winner does not use ENSO"
+  },
+  "soil": {
+    "note": "static block means reused from validated final dataset; context only, not a predictor"
+  },
+  "thresholds_mm": {
+    "low_upper": 10.939151985384193,
+    "high_lower": 34.66167447031182,
+    "source": "training_only (Notebook 04)"
+  },
+  "probabilities": {
+    "method": "residual_ecdf (Notebook 04 Cell 23, train-only calibration artifact)"
+  },
+  "indicators": {
+    "wet_day_mm": 1.0,
+    "wet_day_definition": "prototype heuristic, not a validated meteorological threshold"
+  },
+  "scope_limits": [
+    "7-day block outlook only; no 30-day/IOD/MJO/ERA5/SMAP/S2S claims",
+    "block scale only; no village-level claims; no guaranteed onset/yield prediction"
+  ],
+  "artifacts_used": {
+    "model_artifact": "models/best_model.joblib",
+    "inference_config": "models/inference_config.json",
+    "calibration": "models/probability_calibration.npz",
+    "artifact_version": "nb04-2026-09-10"
+  }
+}

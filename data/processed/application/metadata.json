@@ -1,0 +1,31 @@
+{
+  "package": "data/processed/application",
+  "source_notebook": "05_live_inference_pipeline.ipynb",
+  "packaged_by": "notebooks/06_application_integration_validation.ipynb",
+  "issue_date": "2026-09-09",
+  "blocks": [
+    "Dhuri",
+    "Lehra",
+    "Malerkotla",
+    "Moonak",
+    "Sangrur",
+    "Sunam"
+  ],
+  "forecast_method": "Raw CHIRPS-GEFS (raw_gefs)",
+  "notebook04_artifact_version": "nb04-2026-09-10",
+  "files": [
+    "latest_forecast.json",
+    "blocks.json",
+    "sangrur_blocks.geojson (Cell 16)",
+    "metadata.json",
+    "README.md",
+    "api/latest-forecast.json",
+    "api/blocks.json",
+    "api/health.json"
+  ],
+  "probability_method": "residual_ecdf (Notebook 04, train-only)",
+  "thresholds_mm": {
+    "low_upper": 10.939151985384193,
+    "high_lower": 34.66167447031182
+  }
+}

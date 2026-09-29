@@ -1,0 +1,485 @@
+{
+  "arms": {
+    "JJAS/L5/RULE": {
+      "n": 414,
+      "prevalence": 0.4179,
+      "TP": 86,
+      "FP": 30,
+      "TN": 211,
+      "FN": 87,
+      "precision": 0.7414,
+      "recall": 0.4971,
+      "f1": 0.5952,
+      "false_alarm_rate": 0.1245,
+      "miss_rate": 0.5029
+    },
+    "JJAS/L5/ANTECEDENT_ONLY": {
+      "n": 414,
+      "prevalence": 0.4179,
+      "TP": 85,
+      "FP": 42,
+      "TN": 199,
+      "FN": 88,
+      "precision": 0.6693,
+      "recall": 0.4913,
+      "f1": 0.5667,
+      "false_alarm_rate": 0.1743,
+      "miss_rate": 0.5087
+    },
+    "JJAS/L5/NEVER": {
+      "n": 414,
+      "prevalence": 0.4179,
+      "TP": 0,
+      "FP": 0,
+      "TN": 241,
+      "FN": 173,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "false_alarm_rate": 0.0,
+      "miss_rate": 1.0
+    },
+    "JJAS/L5/ALWAYS": {
+      "n": 414,
+      "prevalence": 0.4179,
+      "TP": 173,
+      "FP": 241,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.4179,
+      "recall": 1.0,
+      "f1": 0.5894,
+      "false_alarm_rate": 1.0,
+      "miss_rate": 0.0
+    },
+    "JJAS/L5/RULE_onset_only": {
+      "n": 414,
+      "prevalence": 0.2995,
+      "TP": 48,
+      "FP": 68,
+      "TN": 222,
+      "FN": 76,
+      "precision": 0.4138,
+      "recall": 0.3871,
+      "f1": 0.4,
+      "false_alarm_rate": 0.2345,
+      "miss_rate": 0.6129
+    },
+    "JJAS/L7/RULE": {
+      "n": 414,
+      "prevalence": 0.285,
+      "TP": 67,
+      "FP": 49,
+      "TN": 247,
+      "FN": 51,
+      "precision": 0.5776,
+      "recall": 0.5678,
+      "f1": 0.5726,
+      "false_alarm_rate": 0.1655,
+      "miss_rate": 0.4322
+    },
+    "JJAS/L7/ANTECEDENT_ONLY": {
+      "n": 414,
+      "prevalence": 0.285,
+      "TP": 63,
+      "FP": 64,
+      "TN": 232,
+      "FN": 55,
+      "precision": 0.4961,
+      "recall": 0.5339,
+      "f1": 0.5143,
+      "false_alarm_rate": 0.2162,
+      "miss_rate": 0.4661
+    },
+    "JJAS/L7/NEVER": {
+      "n": 414,
+      "prevalence": 0.285,
+      "TP": 0,
+      "FP": 0,
+      "TN": 296,
+      "FN": 118,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "false_alarm_rate": 0.0,
+      "miss_rate": 1.0
+    },
+    "JJAS/L7/ALWAYS": {
+      "n": 414,
+      "prevalence": 0.285,
+      "TP": 118,
+      "FP": 296,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.285,
+      "recall": 1.0,
+      "f1": 0.4436,
+      "false_alarm_rate": 1.0,
+      "miss_rate": 0.0
+    },
+    "JJAS/L7/RULE_onset_only": {
+      "n": 414,
+      "prevalence": 0.1618,
+      "TP": 27,
+      "FP": 89,
+      "TN": 258,
+      "FN": 40,
+      "precision": 0.2328,
+      "recall": 0.403,
+      "f1": 0.2951,
+      "false_alarm_rate": 0.2565,
+      "miss_rate": 0.597
+    },
+    "JJAS/L10/RULE": {
+      "n": 414,
+      "prevalence": 0.186,
+      "TP": 59,
+      "FP": 57,
+      "TN": 280,
+      "FN": 18,
+      "precision": 0.5086,
+      "recall": 0.7662,
+      "f1": 0.6114,
+      "false_alarm_rate": 0.1691,
+      "miss_rate": 0.2338
+    },
+    "JJAS/L10/ANTECEDENT_ONLY": {
+      "n": 414,
+      "prevalence": 0.186,
+      "TP": 50,
+      "FP": 77,
+      "TN": 260,
+      "FN": 27,
+      "precision": 0.3937,
+      "recall": 0.6494,
+      "f1": 0.4902,
+      "false_alarm_rate": 0.2285,
+      "miss_rate": 0.3506
+    },
+    "JJAS/L10/NEVER": {
+      "n": 414,
+      "prevalence": 0.186,
+      "TP": 0,
+      "FP": 0,
+      "TN": 337,
+      "FN": 77,
+      "precision": null,
+      "recall": 0.0,
+      "f1": null,
+      "false_alarm_rate": 0.0,
+      "miss_rate": 1.0
+    },
+    "JJAS/L10/ALWAYS": {
+      "n": 414,
+      "prevalence": 0.186,
+      "TP": 77,
+      "FP": 337,
+      "TN": 0,
+      "FN": 0,
+      "precision": 0.186,
+      "recall": 1.0,
+      "f1": 0.3136,
+      "false_alarm_rate": 1.0,
+      "miss_rate": 0.0
+    },
+    "JJAS/L10/RULE_onset_only": {
+      "n": 414,
+      "prevalence": 0.0894,
+      "TP": 23,
+      "FP": 93,
+      "TN": 284,
+      "FN": 14,
+      "precision": 0.1983,
+      "recall": 0.6216,
+      "f1": 0.3007,
+      "false_alarm_rate": 0.2467,
+      "miss_rate": 0.3784
+    }
+  },
+  "baseline_prevalence_train": {
+    "L5": 0.4179,
+    "L7": 0.285,
+    "L10": 0.186
+  },
+  "ci": {
+    "JJAS/L5/RULE/precision": {
+      "lo": 0.5625,
+      "hi": 0.8906
+    },
+    "JJAS/L5/RULE/recall": {
+      "lo": 0.3289,
+      "hi": 0.6561
+    },
+    "JJAS/L5/RULE/f1": {
+      "lo": 0.4191,
+      "hi": 0.7319
+    },
+    "JJAS/L7/RULE/precision": {
+      "lo": 0.3734,
+      "hi": 0.7541
+    },
+    "JJAS/L7/RULE/recall": {
+      "lo": 0.3533,
+      "hi": 0.7538
+    },
+    "JJAS/L7/RULE/f1": {
+      "lo": 0.3815,
+      "hi": 0.7179
+    },
+    "JJAS/L10/RULE/precision": {
+      "lo": 0.2947,
+      "hi": 0.7009
+    },
+    "JJAS/L10/RULE/recall": {
+      "lo": 0.5278,
+      "hi": 0.9512
+    },
+    "JJAS/L10/RULE/f1": {
+      "lo": 0.3905,
+      "hi": 0.7729
+    }
+  },
+  "block": {
+    "JJAS/L5/Dhuri": {
+      "n": 69,
+      "prevalence": 0.4203,
+      "TP": 14,
+      "FP": 4,
+      "TN": 36,
+      "FN": 15,
+      "precision": 0.7778,
+      "recall": 0.4828,
+      "f1": 0.5957,
+      "false_alarm_rate": 0.1,
+      "miss_rate": 0.5172
+    },
+    "JJAS/L5/Lehra": {
+      "n": 69,
+      "prevalence": 0.4203,
+      "TP": 14,
+      "FP": 7,
+      "TN": 33,
+      "FN": 15,
+      "precision": 0.6667,
+      "recall": 0.4828,
+      "f1": 0.56,
+      "false_alarm_rate": 0.175,
+      "miss_rate": 0.5172
+    },
+    "JJAS/L5/Malerkotla": {
+      "n": 69,
+      "prevalence": 0.3913,
+      "TP": 15,
+      "FP": 3,
+      "TN": 39,
+      "FN": 12,
+      "precision": 0.8333,
+      "recall": 0.5556,
+      "f1": 0.6667,
+      "false_alarm_rate": 0.0714,
+      "miss_rate": 0.4444
+    },
+    "JJAS/L5/Moonak": {
+      "n": 69,
+      "prevalence": 0.4348,
+      "TP": 15,
+      "FP": 8,
+      "TN": 31,
+      "FN": 15,
+      "precision": 0.6522,
+      "recall": 0.5,
+      "f1": 0.566,
+      "false_alarm_rate": 0.2051,
+      "miss_rate": 0.5
+    },
+    "JJAS/L5/Sangrur": {
+      "n": 69,
+      "prevalence": 0.4203,
+      "TP": 14,
+      "FP": 3,
+      "TN": 37,
+      "FN": 15,
+      "precision": 0.8235,
+      "recall": 0.4828,
+      "f1": 0.6087,
+      "false_alarm_rate": 0.075,
+      "miss_rate": 0.5172
+    },
+    "JJAS/L5/Sunam": {
+      "n": 69,
+      "prevalence": 0.4203,
+      "TP": 14,
+      "FP": 5,
+      "TN": 35,
+      "FN": 15,
+      "precision": 0.7368,
+      "recall": 0.4828,
+      "f1": 0.5833,
+      "false_alarm_rate": 0.125,
+      "miss_rate": 0.5172
+    },
+    "JJAS/L7/Dhuri": {
+      "n": 69,
+      "prevalence": 0.2899,
+      "TP": 11,
+      "FP": 7,
+      "TN": 42,
+      "FN": 9,
+      "precision": 0.6111,
+      "recall": 0.55,
+      "f1": 0.5789,
+      "false_alarm_rate": 0.1429,
+      "miss_rate": 0.45
+    },
+    "JJAS/L7/Lehra": {
+      "n": 69,
+      "prevalence": 0.3043,
+      "TP": 11,
+      "FP": 10,
+      "TN": 38,
+      "FN": 10,
+      "precision": 0.5238,
+      "recall": 0.5238,
+      "f1": 0.5238,
+      "false_alarm_rate": 0.2083,
+      "miss_rate": 0.4762
+    },
+    "JJAS/L7/Malerkotla": {
+      "n": 69,
+      "prevalence": 0.3043,
+      "TP": 12,
+      "FP": 6,
+      "TN": 42,
+      "FN": 9,
+      "precision": 0.6667,
+      "recall": 0.5714,
+      "f1": 0.6154,
+      "false_alarm_rate": 0.125,
+      "miss_rate": 0.4286
+    },
+    "JJAS/L7/Moonak": {
+      "n": 69,
+      "prevalence": 0.2609,
+      "TP": 11,
+      "FP": 12,
+      "TN": 39,
+      "FN": 7,
+      "precision": 0.4783,
+      "recall": 0.6111,
+      "f1": 0.5366,
+      "false_alarm_rate": 0.2353,
+      "miss_rate": 0.3889
+    },
+    "JJAS/L7/Sangrur": {
+      "n": 69,
+      "prevalence": 0.2609,
+      "TP": 10,
+      "FP": 7,
+      "TN": 44,
+      "FN": 8,
+      "precision": 0.5882,
+      "recall": 0.5556,
+      "f1": 0.5714,
+      "false_alarm_rate": 0.1373,
+      "miss_rate": 0.4444
+    },
+    "JJAS/L7/Sunam": {
+      "n": 69,
+      "prevalence": 0.2899,
+      "TP": 12,
+      "FP": 7,
+      "TN": 42,
+      "FN": 8,
+      "precision": 0.6316,
+      "recall": 0.6,
+      "f1": 0.6154,
+      "false_alarm_rate": 0.1429,
+      "miss_rate": 0.4
+    },
+    "JJAS/L10/Dhuri": {
+      "n": 69,
+      "prevalence": 0.1884,
+      "TP": 10,
+      "FP": 8,
+      "TN": 48,
+      "FN": 3,
+      "precision": 0.5556,
+      "recall": 0.7692,
+      "f1": 0.6452,
+      "false_alarm_rate": 0.1429,
+      "miss_rate": 0.2308
+    },
+    "JJAS/L10/Lehra": {
+      "n": 69,
+      "prevalence": 0.2029,
+      "TP": 10,
+      "FP": 11,
+      "TN": 44,
+      "FN": 4,
+      "precision": 0.4762,
+      "recall": 0.7143,
+      "f1": 0.5714,
+      "false_alarm_rate": 0.2,
+      "miss_rate": 0.2857
+    },
+    "JJAS/L10/Malerkotla": {
+      "n": 69,
+      "prevalence": 0.2029,
+      "TP": 11,
+      "FP": 7,
+      "TN": 48,
+      "FN": 3,
+      "precision": 0.6111,
+      "recall": 0.7857,
+      "f1": 0.6875,
+      "false_alarm_rate": 0.1273,
+      "miss_rate": 0.2143
+    },
+    "JJAS/L10/Moonak": {
+      "n": 69,
+      "prevalence": 0.2029,
+      "TP": 10,
+      "FP": 13,
+      "TN": 42,
+      "FN": 4,
+      "precision": 0.4348,
+      "recall": 0.7143,
+      "f1": 0.5405,
+      "false_alarm_rate": 0.2364,
+      "miss_rate": 0.2857
+    },
+    "JJAS/L10/Sangrur": {
+      "n": 69,
+      "prevalence": 0.1594,
+      "TP": 9,
+      "FP": 8,
+      "TN": 50,
+      "FN": 2,
+      "precision": 0.5294,
+      "recall": 0.8182,
+      "f1": 0.6429,
+      "false_alarm_rate": 0.1379,
+      "miss_rate": 0.1818
+    },
+    "JJAS/L10/Sunam": {
+      "n": 69,
+      "prevalence": 0.1594,
+      "TP": 9,
+      "FP": 10,
+      "TN": 48,
+      "FN": 2,
+      "precision": 0.4737,
+      "recall": 0.8182,
+      "f1": 0.6,
+      "false_alarm_rate": 0.1724,
+      "miss_rate": 0.1818
+    }
+  },
+  "method": {
+    "source": "HISTORICAL GEFS PSEUDO-FORECAST, explicitly NOT live IFS",
+    "rule": "WARN=(dry_run_through_D-3>=3 and f_dry_D+1..7>=5) or (f_dry>=6); fixed a priori",
+    "label": "overlap of a >={5,7,10}d <1mm CHIRPS run with D+1..D+7; onset=start after D-3",
+    "issues": "weekly Wednesday JJAS eval 2016-06-01.., n_issues=69",
+    "uncertainty": "issue-clustered bootstrap 2000 reps seed 11"
+  }
+}

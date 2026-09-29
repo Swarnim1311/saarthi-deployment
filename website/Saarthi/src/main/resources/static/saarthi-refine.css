@@ -1,0 +1,516 @@
+/* ==========================================================================
+   SAARTHI — Visual refinement layer (Apple-calm polish pass)
+   --------------------------------------------------------------------------
+   Additive only. This file loads LAST on every page and only refines
+   presentation: hierarchy, materials, depth, controls, typography,
+   micro-interactions and responsive rhythm. It never changes layout
+   structure, data, calculations, routing or API behavior.
+
+   Principles: restraint over effects. One calm surface language, quiet
+   secondary text, tactile controls, 150–250ms motion, content first.
+   Every animation below is disabled under prefers-reduced-motion.
+   ========================================================================== */
+
+/* ---------- 0. Tokens (refinement only; palette untouched) ---------- */
+:root {
+  --rf-ring: 0 0 0 3px rgba(158, 214, 131, .22);
+  --rf-ring-strong: 0 0 0 3px rgba(158, 214, 131, .32);
+  --rf-border-quiet: rgba(255, 255, 255, .10);
+  --rf-border-hover: rgba(255, 255, 255, .18);
+  --rf-lift: translateY(-2px);
+  --rf-press: scale(.98);
+  --rf-t-micro: .18s cubic-bezier(.22, .61, .21, 1);
+  --rf-t-soft: .24s cubic-bezier(.22, .61, .21, 1);
+}
+
+/* ---------- 1. Hierarchy + typography ---------- */
+/* Headings balance instead of ragged edges; metrics use tabular figures so
+   values never jitter as data refreshes. */
+.display,
+.landing-title,
+.wx-statement,
+.ca-hero-title,
+.ca-crop-name,
+.intel-adv-title,
+.decision-hero-card h2,
+.timeline-header-bar h2 {
+  text-wrap: balance;
+}
+.analysis-grid strong,
+.wx-big,
+.pillar-card strong,
+.sel-rains strong,
+.gauge-inner-val,
+.ca-match-value,
+.matrix-table td,
+.wx-rows strong,
+.decision-meta-row strong {
+  font-variant-numeric: tabular-nums;
+}
+/* Quiet card label used across farmer/weather cards (previously unstyled). */
+.card-kicker {
+  font: 700 9.5px var(--sans);
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #9fb198;
+  margin: 0 0 8px;
+}
+/* Body measure: long advisory/policy prose stays readable, never full-bleed. */
+.decision-hero-card p.decision-rationale,
+.fa-lead,
+.policy-card-summary,
+.intel-card p,
+.plain-text {
+  text-wrap: pretty;
+}
+
+/* ---------- 2. Material calm: softer hover lightening ---------- */
+/* Hover states brighten less than before — presence without noise. */
+.glass:hover {
+  border-color: var(--rf-border-hover);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .16), 0 14px 36px rgba(0, 0, 0, .30);
+}
+.glass-lite:hover {
+  border-color: var(--rf-border-hover);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 10px 26px rgba(0, 0, 0, .24);
+}
+.glass-strong:hover {
+  border-color: var(--rf-border-hover);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .14), 0 14px 36px rgba(0, 0, 0, .32);
+}
+
+/* ---------- 3. Navigation: calm, legible, tactile ---------- */
+.rail-item {
+  transition: background var(--rf-t-micro), color var(--rf-t-micro);
+}
+.rail-item:hover {
+  background: rgba(255, 255, 255, .10);
+  color: #fff;
+  transform: none;
+}
+.rail-item:hover i {
+  transform: scale(1.06);
+  color: #d8e87e;
+}
+.rail-item:focus-visible {
+  outline: 2px solid rgba(216, 232, 126, .9);
+  outline-offset: 2px;
+}
+/* Active marker: depth cue without neon bleed. */
+.rail-item.active::before {
+  box-shadow: 0 0 6px rgba(216, 232, 126, .45);
+}
+/* Overlay + landing links: visible keyboard focus, calm hover. */
+.rail-overlay a {
+  transition: background var(--rf-t-micro), color var(--rf-t-micro);
+}
+.rail-overlay a:focus-visible,
+.landing-meta a:focus-visible,
+.landing-cta a:focus-visible {
+  outline: 2px solid rgba(216, 232, 126, .9);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+.fab-menu {
+  transition: transform var(--rf-t-micro), background var(--rf-t-micro), border-color var(--rf-t-micro);
+}
+.fab-menu:active {
+  transform: scale(.96);
+}
+.fab-menu:focus-visible {
+  outline: 2px solid rgba(216, 232, 126, .9);
+  outline-offset: 3px;
+}
+
+/* ---------- 4. Buttons: tactile, consistent, 44px targets ---------- */
+.sa-btn {
+  min-height: 44px;
+}
+.sa-btn:active {
+  transform: var(--rf-press);
+}
+.sa-btn:focus-visible {
+  outline: 2px solid rgba(216, 232, 126, .9);
+  outline-offset: 3px;
+}
+.sa-btn.primary {
+  box-shadow: 0 4px 16px rgba(158, 214, 131, .3), inset 0 1px 0 rgba(255, 255, 255, .35);
+}
+.share-kisan-btn {
+  min-height: 44px;
+}
+.share-kisan-btn:active {
+  transform: var(--rf-press);
+}
+.share-kisan-btn:focus-visible {
+  outline: 2px solid rgba(216, 232, 126, .9);
+  outline-offset: 2px;
+}
+/* Segmented control (forecast horizon): tighter, calmer, even rhythm. */
+.timeline-horizon-buttons {
+  padding: 4px;
+  gap: 2px;
+}
+.timeline-horizon-buttons button {
+  min-height: 32px;
+  padding: 6px 14px;
+}
+
+/* ---------- 5. Form controls: even rhythm, calm focus ---------- */
+.app-shell select,
+.app-shell input[type="date"],
+.app-shell input[type="text"],
+.app-shell input[type="number"],
+.app-shell input[type="email"],
+.app-shell input[type="search"],
+.app-shell textarea,
+.farm-form select,
+.farm-form input[type="date"],
+.farm-form input[type="text"] {
+  min-height: 44px;
+}
+.fc-loc-row label,
+.map-filters label,
+.intel-select-bar label,
+.ca-locator label,
+.wx-geo label {
+  gap: 6px;
+}
+.map-filters select {
+  min-height: 40px;
+}
+
+/* ---------- 6. Heroes: calm editorial rhythm ---------- */
+.page-head {
+  padding: 28px 30px;
+}
+.page-head .portal-intro {
+  margin: 10px 0 0;
+  max-width: 68ch;
+}
+.page-head .eyebrow {
+  margin-bottom: 10px;
+}
+
+/* ---------- 7. Cards: consistent lift language ---------- */
+/* Interactive cards share one hover dialect: 2px lift, quiet edge light.
+   List rows (policies) and grouped mini-cells stay put — calm over motion. */
+.analysis-grid > div:hover,
+.wx-mini:hover,
+.wx-card:hover,
+.intel-card:hover,
+.pillar-card:hover,
+#sowing-card a:hover {
+  transform: var(--rf-lift);
+}
+/* Entry animation uses fill-backwards (identical entrance, no delay here)
+   so its final keyframe releases the card — :hover lift actually applies. */
+.ca-card {
+  animation-fill-mode: backwards;
+}
+.ca-card:hover {
+  transform: var(--rf-lift);
+}
+.ca-card .ca-img {
+  transition: transform .5s cubic-bezier(.22, .61, .21, 1);
+}
+.ca-card:hover .ca-img {
+  transform: scale(1.025);
+}
+/* Match meter stays integrated: tabular figure, no extra glow. */
+.ca-match-value {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- 8. Weather presentation (data untouched) ---------- */
+.wx-forecast-head {
+  margin-bottom: 12px;
+}
+#rainfall-timeline .rain-day {
+  font-size: 9.5px;
+}
+#rainfall-timeline .rain-day span {
+  color: #c6d2c0;
+}
+.wx-mini strong,
+.wx-place,
+.analysis-grid strong {
+  letter-spacing: -.015em;
+}
+.chart-legend-row {
+  gap: 8px 12px;
+}
+
+/* ---------- 9. Farmer portal coherence ---------- */
+.pillar-card {
+  transition: transform var(--rf-t-micro), border-color var(--rf-t-micro), box-shadow var(--rf-t-micro);
+}
+.pillar-card:hover {
+  box-shadow: 0 8px 22px rgba(0, 0, 0, .28);
+}
+.pillar-card:hover {
+  border-color: var(--rf-border-hover);
+}
+.farmer-advice {
+  transition: border-color var(--rf-t-micro);
+}
+
+/* ---------- 10. Risk map: floating controls, quiet legend ---------- */
+.map-controls-bar {
+  gap: 12px 16px;
+}
+.risk-legend {
+  border-radius: var(--r-md);
+}
+.sel-block {
+  padding: 20px 22px;
+}
+/* Grouped mini-cells read as one surface: flatter fill, hairline edge. */
+.sel-rains div {
+  background: rgba(255, 255, 255, .035);
+}
+#leaflet-map-canvas {
+  box-shadow: 0 16px 44px rgba(0, 0, 0, .35), inset 0 1px 0 rgba(255, 255, 255, .08);
+}
+
+/* ---------- 11. Policies: editorial list rhythm ---------- */
+.policy-card-title {
+  max-width: 72ch;
+  overflow-wrap: break-word;
+}
+.policy-card-summary {
+  color: #c9d4c5;
+  max-width: 78ch;
+}
+.policy-card-meta {
+  margin-bottom: 10px;
+}
+.policy-card-link {
+  transition: color var(--rf-t-micro), opacity var(--rf-t-micro);
+}
+/* Loading / empty placeholder breathes gently instead of sitting dead. */
+#policy-alert-list > p:only-child {
+  animation: rfBreathe 1.8s ease-in-out infinite;
+  border-radius: var(--r-md);
+}
+@keyframes rfBreathe {
+  0%, 100% { opacity: .55; }
+  50% { opacity: .9; }
+}
+
+/* ---------- 12. Loading / empty / error states ---------- */
+/* Honest activity shimmer (opacity only — cheap, calm) for genuine loading
+   notes. Standby notes are static text and stay still. */
+.api-loading-note:not(.api-standby-note),
+.ca-loading {
+  position: relative;
+  overflow: hidden;
+}
+.api-loading-note:not(.api-standby-note)::after,
+.ca-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(100deg, transparent 20%, rgba(255, 255, 255, .07) 50%, transparent 80%);
+  animation: rfSheen 1.8s cubic-bezier(.4, 0, .2, 1) infinite;
+}
+@keyframes rfSheen {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+.sa-empty,
+.ca-empty {
+  border-radius: var(--r-md);
+  line-height: 1.7;
+}
+
+/* ---------- 13. Fingerprint: scannable metrics ---------- */
+.ca-fp {
+  transition: border-color var(--rf-t-micro);
+}
+.ca-fp:hover {
+  border-color: var(--rf-border-hover);
+}
+.ca-fp-value,
+.ca-cl .ca-cl-val {
+  letter-spacing: -.005em;
+}
+.ca-prov {
+  letter-spacing: .1em;
+}
+
+/* ---------- 14. Chat widget: same tactile dialect ---------- */
+.sa-chat-fab:active {
+  transform: scale(.94);
+}
+.sa-chat-panel {
+  border-radius: 18px;
+}
+
+/* ---------- 15. Responsive refinements ---------- */
+@media (max-width: 1180px) {
+  .app-body {
+    gap: 14px;
+  }
+}
+@media (max-width: 960px) {
+  .page-head {
+    padding: 22px 20px;
+  }
+  .decision-hero-card {
+    padding: 24px 20px;
+  }
+  .fc-top {
+    padding: 18px;
+  }
+  .fc-card {
+    padding: 18px;
+  }
+  .farm-form {
+    padding: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .timeline-header-bar {
+    align-items: stretch;
+  }
+  .timeline-header-bar .sa-btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .decision-hero-card {
+    padding: 22px 18px;
+  }
+  .farmer-advice {
+    padding: 18px;
+  }
+  .ca-card.ca-simple .ca-crop-name {
+    font-size: 20px;
+  }
+  .rail-overlay a {
+    font-size: 19px;
+    padding: 12px 10px;
+  }
+  .toast-notification {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+    justify-content: center;
+  }
+}
+
+/* ---------- 16. Global loading system ----------
+   One SAARTHI loading language: thin indeterminate bars (reuses the
+   .sa-loading-bar sweep — never a fake %), low-contrast skeleton blocks
+   with a soft sheen, pulsing dots, compact busy buttons. Skeletons are
+   decorative (aria-hidden in markup); the accompanying status line carries
+   the announcement via aria-live. No numeric progress is ever fabricated. */
+.sa-skel {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .055);
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 8px;
+  pointer-events: none;
+}
+.sa-skel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(100deg, transparent 25%, rgba(255, 255, 255, .08) 50%, transparent 75%);
+  animation: rfSheen 1.7s cubic-bezier(.4, 0, .2, 1) infinite;
+}
+.sa-skel-text { height: 12px; }
+.sa-skel-title { height: 17px; width: 58%; border-radius: 6px; }
+.sa-skel-metric { height: 30px; width: 44%; border-radius: 6px; }
+.sa-skel-img { aspect-ratio: 16 / 9; border-radius: 10px 10px 0 0; border: none; border-bottom: 1px solid rgba(255, 255, 255, .07); }
+.sa-skel-row { height: 11px; }
+.sa-skel-chart { min-height: 240px; border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; }
+.sa-skel-stack { display: flex; flex-direction: column; gap: 10px; padding: 20px; }
+/* Skeleton cards reuse the real card geometry so layout barely shifts when
+   data arrives (loading → content, no jump). */
+.intel-card.sa-skel-live,
+.policy-card.sa-skel-live,
+.ca-card.sa-skel-live { pointer-events: none; }
+.sa-skel-pad { padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+/* Busy buttons: dimensions locked in JS; spinner slot + label, no jumping. */
+.sa-btn.is-busy { pointer-events: none; opacity: .92; }
+.sa-btn .sa-spinner-xs {
+  width: 14px; height: 14px; min-width: 14px;
+  border-width: 2px;
+}
+/* Refreshing regions dim slightly (opacity only) while stale content waits
+   to be replaced — old data visibly reads as "updating", never as fresh. */
+.is-refreshing { opacity: .55; }
+.decision-board, #intel-grid, #ca-groups, #policy-alert-list,
+#recharts-forecast-canvas, .analysis-panel {
+  transition: opacity var(--rf-t-soft);
+}
+/* Floating map status chip: never blocks map interaction. */
+.sa-map-loading {
+  position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  z-index: 500; pointer-events: none;
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 14px; border-radius: var(--r-pill);
+  background: rgba(10, 20, 14, .78); color: #e9f2d8;
+  border: 1px solid rgba(255, 255, 255, .16);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  font: 700 11.5px var(--sans); white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .35);
+}
+.sa-map-loading .sa-spinner { width: 13px; height: 13px; min-width: 13px; border-width: 2px; }
+/* Screen-reader-only status text (visual users get the animation + label). */
+.sa-sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+/* Voice transcribe state on the chat mic. */
+.sa-chat-mic[aria-busy="true"] { animation: rfBreathe 1.4s ease-in-out infinite; }
+
+/* ---------- 17. Reduced motion: every refinement above goes still ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .rail-item,
+  .rail-item:hover i,
+  .rail-overlay a,
+  .fab-menu,
+  .sa-btn,
+  .share-kisan-btn,
+  .pillar-card,
+  .ca-card,
+  .ca-card .ca-img,
+  .policy-card-link,
+  .ca-fp {
+    transition: none !important;
+  }
+  .rail-item:hover,
+  .analysis-grid > div:hover,
+  .wx-mini:hover,
+  .wx-card:hover,
+  .intel-card:hover,
+  .pillar-card:hover,
+  .ca-card:hover,
+  #sowing-card a:hover {
+    transform: none !important;
+  }
+  .ca-card:hover .ca-img {
+    transform: none !important;
+  }
+  #policy-alert-list > p:only-child,
+  .api-loading-note:not(.api-standby-note)::after,
+  .ca-loading::after,
+  .sa-skel::after,
+  .sa-chat-mic[aria-busy="true"] {
+    animation: none !important;
+  }
+  .api-loading-note:not(.api-standby-note)::after,
+  .ca-loading::after,
+  .sa-skel::after {
+    display: none !important;
+  }
+  .is-refreshing {
+    opacity: .8 !important;
+  }
+}

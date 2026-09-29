@@ -1,0 +1,55 @@
+{
+ "dataset": {
+  "file": "data/raw/mjo/MJO_RMM_cleaned_core.csv",
+  "rows": 18802,
+  "coverage": "1974-06-01..2026-09-07",
+  "gap": "1978-03-16..1979-01-01 (290 missing days, never bridged)",
+  "provenance": "PROVENANCE NOT VERIFIED"
+ },
+ "split": {
+  "train": "target<=2005-12-31 (11067)",
+  "val": "2006..2015 (3652)",
+  "test": ">=2016-01-01 (3903)",
+  "method": "chronological"
+ },
+ "lookback": 84,
+ "horizon": 7,
+ "features": [
+  "RMM1",
+  "RMM2"
+ ],
+ "targets": [
+  "RMM1",
+  "RMM2"
+ ],
+ "scaler": "StandardScaler fit on train inputs only",
+ "architecture": "Conv1D(32,3,relu,causal)->LSTM(32,dropout=0.2)->Dense(16,relu)->Dense(2)",
+ "hyperparameters": {
+  "lr": 0.001,
+  "batch": 128,
+  "epochs_max": 40,
+  "patience": 6,
+  "loss": "mse",
+  "seed": 42
+ },
+ "test_metrics": {
+  "RMM1_MAE": 0.6267193260729914,
+  "RMM2_MAE": 0.5602080992226952,
+  "RMM1_RMSE": 0.7887287996516982,
+  "RMM2_RMSE": 0.7056442039823616,
+  "phase_acc": 0.3487061234947476,
+  "phase_macroF1": 0.3469584842348832
+ },
+ "baseline_test": {
+  "persist_RMM1_MAE": 0.8834746612714707,
+  "persist_RMM2_MAE": 0.8488385084148593
+ },
+ "phase_method": "angle-sector 1..8 from predicted RMM (agreement with CSV phases 1.000)",
+ "versions": {
+  "tensorflow": "2.21.0",
+  "sklearn": "1.8.0",
+  "pandas": "2.3.3",
+  "numpy": "2.4.1"
+ },
+ "timestamp": "2026-09-11T10:46:31"
+}

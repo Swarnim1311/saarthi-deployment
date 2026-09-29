@@ -1,0 +1,24 @@
+{
+  "_provenance": "Global agricultural-region reference for the CropAtlas 'Comparable agricultural environments' panel. This file is INTENTIONALLY EMPTY. The repository contains no verified global agricultural-region dataset (no FAO/ agro-ecological-zone reference, no non-Indian region profiles), so CropAtlas ships the matching architecture with zero regions rather than inventing well-known farming regions to populate the UI. Adding a region here is the single step required to make the feature return matches.",
+  "method_version": "cropatlas-regions-v1",
+  "_region_schema": {
+    "region_id": "stable identifier",
+    "display_name": "human label",
+    "_note": "Free-text; keep factual and neutral",
+    "country": "ISO country name or null",
+    "climate": {
+      "temp_min_c": "number or null",
+      "temp_max_c": "number or null",
+      "annual_rain_mm": "number or null"
+    },
+    "soil": {
+      "clay_g_kg": "number or null",
+      "soc_g_kg": "number or null",
+      "ph": "number or null"
+    },
+    "sources": [
+      {"id": "stable id", "title": "source title", "publisher": "publisher", "url": "source url"}
+    ]
+  },
+  "regions": []
+}

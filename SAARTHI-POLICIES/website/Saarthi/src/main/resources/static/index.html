@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saarthi — Hyperlocal Monsoon Intelligence | Sangrur District</title>
+  <meta name="description" content="7-day block-level rainfall outlook for Sangrur District, Punjab. Covering 6 validated Bhuvan blocks with probabilistic categories." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="stylesheet" href="/static/hero-image.css" />
+  <link rel="stylesheet" href="/static/outlook.css" />
+  <link rel="stylesheet" href="/static/rainfall-map.css" />
+  <link rel="stylesheet" href="/static/rainfall-map-detail.css" />
+  <link rel="stylesheet" href="/static/multilingual.css" />
+  <link rel="stylesheet" href="/static/action-panels.css" />
+  <link rel="stylesheet" href="/static/seasonal.css" />
+  <link rel="stylesheet" href="/static/portal.css" />
+</head>
+<body>
+<div class="page-shell">
+  <!-- Navigation Header with Trilingual Switcher & Live Monitoring Pill -->
+  <nav>
+    <a class="brand" href="/"><span class="brand-mark">⌁</span>Saarthi</a>
+    <div class="nav-links">
+      <a href="/farmer" data-i18n="nav_farmer">Farmer Portal</a>
+      <a href="/map" data-i18n="nav_map">Risk Map</a>
+      <a href="/timeline" data-i18n="nav_timeline">Forecast</a>
+    </div>
+    <div class="portal-nav-group">
+      <span class="live-pill"><i class="live-dot"></i> <span data-i18n="live_monitoring">Sangrur Live Monitoring</span></span>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="hi">हिं</button>
+        <button class="lang-btn" data-lang="pa">ਪੰ</button>
+      </div>
+      <a class="nav-cta" href="/farmer" data-i18n="nav_check_block">Farmer Portal <span>↗</span></a>
+    </div>
+  </nav>
+
+  <main id="top">
+    <!-- Asgardia-styled Hero Banner -->
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><i class="live-dot"></i> <span data-i18n="hero_eyebrow">Hyperlocal Climate Intelligence</span></p>
+        <h1><span data-i18n="hero_title_1">Know the</span> <em data-i18n="hero_title_em">monsoon</em><br><span data-i18n="hero_title_2">before it arrives.</span></h1>
+        <p class="hero-text" data-i18n="hero_desc">Validated 7-day rainfall outlook for Sangrur's 6 blocks, with probabilistic LOW / NORMAL / HIGH categories.</p>
+        <div style="display: flex; gap: 14px; align-items: center; flex-wrap: wrap;">
+          <a class="primary-button" href="/farmer"><span data-i18n="hero_cta">Open Farmer Portal</span> <span>→</span></a>
+          <a class="nav-cta" href="/map" style="background: white; border-color: var(--line); padding: 13px 18px; font-weight: 700;"><span data-i18n="hero_secondary_cta">View Risk Map</span> <span>↗</span></a>
+        </div>
+        <div class="hero-note"><span style="color: var(--dark-moss); font-weight: 700;">SIH26086</span> <span data-i18n="hero_badge">Designed for every field, every season</span></div>
+      </div>
+      <div class="forecast-card">
+        <p class="card-kicker" data-i18n="hero_card_kicker">Saarthi · Sangrur, Punjab</p>
+        <div class="weather-symbol">☔</div>
+        <p class="weather-label" data-i18n="hero_card_signal">This week’s monsoon signal</p>
+        <p class="weather-value"><strong>7</strong><small data-i18n="hero_card_days">days</small></p>
+        <p class="weather-caption" data-i18n="hero_card_sub">early warning for dry spells</p>
+        <div class="signal-line"><span></span></div>
+        <div class="signal-key"><span data-i18n="risk_low">Low</span><span data-i18n="risk_mod">Moderate</span><span data-i18n="risk_high">High</span></div>
+      </div>
+      <div class="hero-landscape">
+        <div class="sun"></div>
+        <div class="field field-one"></div>
+      </div>
+    </section>
+
+    <!-- 4-Pillar Impact Counter Strip -->
+    <section class="stats">
+      <div>
+        <strong data-i18n="stat_1_val">7-Day</strong>
+        <span data-i18n="stat_1_lbl">Validated Rainfall Outlook</span>
+      </div>
+      <div>
+        <strong data-i18n="stat_2_val">6</strong>
+        <span data-i18n="stat_2_lbl">Validated Bhuvan Blocks</span>
+      </div>
+      <div>
+        <strong data-i18n="stat_3_val">CHIRPS-GEFS</strong>
+        <span data-i18n="stat_3_lbl">Bias-Corrected Forecast Source</span>
+      </div>
+      <div>
+        <strong data-i18n="stat_4_val">19.54 mm</strong>
+        <span data-i18n="stat_4_lbl">Historical Test MAE (NB04)</span>
+      </div>
+    </section>
+
+    <!-- Platform Feature Entry Cards -->
+    <section style="padding: 70px 6.6%; background: #ffffff; border-bottom: 1px solid var(--line);">
+      <div style="margin-bottom: 36px;">
+        <p class="eyebrow"><i class="live-dot"></i> <span data-i18n="hero_eyebrow">Hyperlocal Architecture</span></p>
+        <h2 style="font-size: clamp(30px, 3.5vw, 44px);"><span data-i18n="portal_features_title">Explore the SAARTHI Platform</span></h2>
+        <p style="color: #607062; font-size: 14px; margin-top: 8px;" data-i18n="portal_features_sub">Decision support portals built for farmers and agriculture communities in Sangrur.</p>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <!-- Card 1: Farmer Portal -->
+        <a href="/farmer" style="text-decoration: none; color: inherit; display: block;" class="pillar-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <span style="font: 10px 'DM Mono', monospace; color: var(--moss); background: #eef5e7; padding: 4px 8px; border-radius: 12px; letter-spacing: 0.05em;">01 · FARMER ADVISORY</span>
+            <span style="font-size: 18px;">↗</span>
+          </div>
+          <h3 style="font-size: 18px; margin: 0 0 8px;" data-i18n="card_farmer_title">Farmer Advisory Portal</h3>
+          <p style="font-size: 12px; color: #58695b; line-height: 1.6; margin: 0;" data-i18n="card_farmer_desc">Personalized sowing decisions, 4-pillar risk breakdown, and root-zone moisture dial.</p>
+        </a>
+
+        <!-- Card 2: Risk Map -->
+        <a href="/map" style="text-decoration: none; color: inherit; display: block;" class="pillar-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <span style="font: 10px 'DM Mono', monospace; color: var(--moss); background: #eef5e7; padding: 4px 8px; border-radius: 12px; letter-spacing: 0.05em;">02 · GIS RISK MAP</span>
+            <span style="font-size: 18px;">↗</span>
+          </div>
+          <h3 style="font-size: 18px; margin: 0 0 8px;" data-i18n="card_map_title">Village-Scale Risk Map</h3>
+          <p style="font-size: 12px; color: #58695b; line-height: 1.6; margin: 0;" data-i18n="card_map_desc">Interactive map of the six validated Sangrur blocks with 7-day rainfall categories.</p>
+        </a>
+
+        <!-- Card 3: Forecast Outlook -->
+        <a href="/timeline" style="text-decoration: none; color: inherit; display: block;" class="pillar-card">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+            <span style="font: 10px 'DM Mono', monospace; color: var(--moss); background: #eef5e7; padding: 4px 8px; border-radius: 12px; letter-spacing: 0.05em;">03 · 7-DAY OUTLOOK</span>
+            <span style="font-size: 18px;">↗</span>
+          </div>
+          <h3 style="font-size: 18px; margin: 0 0 8px;" data-i18n="card_timeline_title">7-Day Forecast Outlook</h3>
+          <p style="font-size: 12px; color: #58695b; line-height: 1.6; margin: 0;" data-i18n="card_timeline_desc">Validated daily rainfall, probabilities and 7-day matrix per block.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Quick Block Outlook Section with Dynamic ML Prediction -->
+    <section class="outlook" id="outlook">
+      <div class="outlook-heading">
+        <p class="eyebrow"><i class="live-dot"></i> <span data-i18n="outlook_heading">Your Block Outlook</span></p>
+        <h2><span data-i18n="outlook_title_1">One selection.</span><br><em data-i18n="outlook_title_em">A clear decision.</em></h2>
+        <p data-i18n="outlook_desc">Select your block in Sangrur. Saarthi shows the validated 7-day rainfall outlook with probabilities.</p>
+        <label class="block-selector"><span data-i18n="choose_block">Choose your block</span>
+          <select id="block-select">
+            <option value="Dhuri">Dhuri</option>
+            <option value="Lehra">Lehra</option>
+            <option value="Malerkotla">Malerkotla</option>
+            <option value="Moonak">Moonak</option>
+            <option value="Sangrur" selected>Sangrur</option>
+            <option value="Sunam">Sunam</option>
+          </select>
+        </label>
+        <div style="margin-top: 18px;">
+          <a href="/farmer" class="primary-button" style="display: inline-flex; align-items: center; gap: 8px;">
+            <span data-i18n="card_farmer_title">Open Farm Dashboard</span> <span>→</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="analysis-panel" aria-live="polite">
+        <div class="analysis-header">
+          <div>
+            <p class="card-kicker" data-i18n="latest_block_analysis">Latest Block Analysis</p>
+            <h3 id="analysis-block">Sangrur</h3>
+          </div>
+          <span class="updated">Issued date shown below · 6 Blocks Live</span>
+        </div>
+        <div class="analysis-grid">
+          <div>
+            <span data-i18n="rain_7d">7-day total rainfall</span>
+            <strong id="rain-7">—</strong>
+            <small>millimetres</small>
+          </div>
+          <div>
+            <span data-i18n="dry_14d">Dry / wet days</span>
+            <strong id="dry-14">—</strong>
+            <small>days in next 7</small>
+          </div>
+          <div>
+            <span data-i18n="expected_rain">Heaviest day</span>
+            <strong id="expected-rain">—</strong>
+            <small>millimetres + date</small>
+          </div>
+          <div>
+            <span data-i18n="rain_trend">Rainfall trend</span>
+            <strong class="trend" id="rain-trend">—</strong>
+            <small>block outlook</small>
+          </div>
+        </div>
+        <div class="risk-row">
+          <div><span class="risk-dot"></span><strong id="risk-label">Analysing conditions</strong></div>
+          <span id="risk-probability">—</span>
+        </div>
+        <div class="risk-track"><span id="risk-meter"></span></div>
+        <p class="risk-caption" data-i18n="dry_spell_caption">LOW / NORMAL / HIGH 7-day rainfall category with calibrated probabilities (training thresholds).</p>
+        <p class="model-note" id="model-note"></p>
+      </div>
+
+      <aside class="sowing-card" id="sowing-card" data-tone="wait">
+        <p class="card-kicker" data-i18n="sowing_rec">Sowing recommendation</p>
+        <span class="decision-icon" id="decision-icon">↗</span>
+        <p class="decision-status" id="decision-status">Preparing your advice</p>
+        <h3 id="decision-title">Reading the rainfall signals…</h3>
+        <p id="decision-message">Saarthi is assessing the conditions in your selected block.</p>
+        <div class="wait-badge" id="wait-badge">Review in <strong id="wait-days">—</strong> days</div>
+      </aside>
+    </section>
+  </main>
+
+  <!-- Footer with Trilingual Attribution -->
+  <footer>
+    <a class="brand" href="/"><span class="brand-mark">⌁</span>Saarthi</a>
+    <p data-i18n="footer_text">Climate clarity for stronger rural futures in Punjab.</p>
+    <span data-i18n="footer_copy">© 2026 · SIH26086 Hyperlocal Monsoon Intelligence</span>
+  </footer>
+</div>
+
+<script src="/static/i18n.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>

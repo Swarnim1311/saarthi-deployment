@@ -1,0 +1,155 @@
+/* ============================================================
+   SAARTHI — Shared Design System
+   One product language: cinematic, editorial, scientific, calm.
+   HTML + CSS + vanilla JS. English only.
+   ============================================================ */
+:root{
+  --forest:#1c3a2a;
+  --botanical:#244235;
+  --moss:#335b42;
+  --sage:#9db5a0;
+  --sage-soft:#e5eae0;
+  --olive:#6b7a4f;
+  --ivory:#f8f7f2;
+  --paper:#fbfcf9;
+  --charcoal:#1d241f;
+  --ink:#1d241f;
+  --muted:#5d6f60;
+  --faint:#839184;
+  --line:#dcded2;
+  --line-soft:#e7eae0;
+  --amber:#c98a2b;
+  --amber-bg:#fdf3df;
+  --risk-high:#b7321a;
+  --risk-high-bg:#fde8e4;
+  --risk-mod:#876a0c;
+  --risk-mod-bg:#fdf5d6;
+  --risk-low:#2c6e26;
+  --risk-low-bg:#e5f5dd;
+  --sky:#2d6b8b;
+  --lime:#d8e87e;
+  --lime-soft:#abc87d;
+  --serif:'Playfair Display',Georgia,'Times New Roman',serif;
+  --sans:'Manrope',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --mono:'DM Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --r-xs:6px; --r-sm:8px; --r-md:12px; --r-lg:18px; --r-xl:26px; --r-2xl:28px; --r-pill:999px;
+  /* Saarthi radius language (Issue 7): compact controls → xs/sm;
+     cards, panels, tables, map containers → md/lg; major shells → xl/2xl;
+     pills/badges stay pill-shaped. Prefer these vars over hardcoded px. */
+  --shadow-sm:0 2px 10px rgba(28,58,42,.07);
+  --shadow-md:0 12px 32px rgba(28,58,42,.12);
+  --shadow-lg:0 24px 64px rgba(20,35,26,.22);
+  --ease:cubic-bezier(.22,.61,.21,1);
+  --t-fast:.16s var(--ease); --t-med:.32s var(--ease); --t-slow:.6s var(--ease);
+  --z-nav:200; --z-overlay:400; --z-toast:900;
+  --max:1440px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+body{margin:0;background:#10150f;color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+::selection{background:var(--forest);color:#fff}
+:focus-visible{outline:2px solid var(--forest);outline-offset:3px;border-radius:4px}
+
+/* ---------- shell (retired: saarthi-shell.css provides .app-shell) ---------- */
+
+/* NOTE: the old horizontal top navigation (.sa-nav, .sa-brand, .sa-links,
+   .sa-live, .sa-cta, .sa-menu-btn, .sa-mobile-menu) was removed: the
+   hover-expand vertical rail in saarthi-shell.css is the sole nav. */
+.sa-dot{width:7px;height:7px;border-radius:50%;background:#9ed683;animation:saPulse 1.8s ease-in-out infinite}
+
+/* NOTE: old light-theme section/type/card/metric/geo/footer components
+   (.sa-display, .sa-lede, .sa-section, .sa-glass, .sa-card, .sa-metric*,
+   .sa-geo, .sa-footer, .sa-img-zoom) retired with the cinematic shell. */
+.sa-kicker{font:700 10.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--moss);margin:0 0 8px}
+
+/* ---------- glass / shared components (dark shell theme) ---------- */
+.sa-badge{display:inline-flex;align-items:center;gap:6px;font:800 10.5px var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:6px 12px;border-radius:var(--r-pill);border:1px solid transparent}
+.sa-badge.low{background:var(--risk-low-bg);color:var(--risk-low);border-color:#bfe0b8}
+.sa-badge.mod{background:var(--risk-mod-bg);color:var(--risk-mod);border-color:#e8d48a}
+.sa-badge.high{background:var(--risk-high-bg);color:var(--risk-high);border-color:#eba894}
+.sa-badge.na{background:#eef1ea;color:#657566;border-color:var(--line)}
+.sa-btn{display:inline-flex;align-items:center;gap:8px;border-radius:var(--r-pill);padding:13px 22px;font-weight:800;font-size:13.5px;text-decoration:none;cursor:pointer;border:1px solid transparent;transition:transform var(--t-fast),box-shadow var(--t-fast),background var(--t-fast),border-color var(--t-fast),color var(--t-fast);will-change:transform}
+.sa-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.sa-btn:active{transform:translateY(0) scale(.985)}
+.sa-btn.primary{background:linear-gradient(135deg,#9ed683,#d8e87e);color:#102216;box-shadow:0 4px 16px rgba(158,214,131,.3)}
+.sa-btn.primary:hover{box-shadow:0 8px 24px rgba(158,214,131,.45);color:#0a170e}
+.sa-btn.secondary{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.2);color:#fff;backdrop-filter:blur(12px)}
+.sa-btn.secondary:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.35);color:#fff}
+.sa-empty{border:1px dashed var(--line);background:#f4f6f0;border-radius:var(--r-md);padding:22px;color:var(--muted);font-size:13.5px;line-height:1.6}
+.sa-loading{display:flex;align-items:center;gap:10px;font-size:12.5px;font-weight:700;color:var(--muted);background:#eef1ea;border:1px solid var(--line);border-radius:10px;padding:10px 14px}
+.sa-spinner{width:18px;height:18px;min-width:18px;border-radius:50%;border:2.5px solid rgba(255,255,255,.22);border-top-color:#9ed683;border-right-color:#d8e87e;animation:saSpin .75s linear infinite;display:inline-block;box-sizing:border-box}
+@keyframes saSpin{to{transform:rotate(360deg)}}
+/* Honest indeterminate loading bar: used while live ECMWF IFS data
+   is being fetched. No fake percentages — the bar sweeps continuously and is
+   removed (or replaced by an error note) when loading settles. */
+.sa-loading-bar{display:block;position:relative;width:100%;height:7px;border-radius:var(--r-pill);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);box-shadow:inset 0 1px 3px rgba(0,0,0,.35);overflow:hidden;margin-top:12px;box-sizing:border-box}
+.sa-loading-bar i,.sa-loading-bar .sa-loading-fill{display:block;position:absolute;top:0;bottom:0;left:0;width:40%;border-radius:inherit;
+  background:linear-gradient(90deg,transparent 0%,#76c968 25%,#d8e87e 55%,#9ed683 80%,transparent 100%);
+  box-shadow:0 0 14px rgba(158,214,131,.95),0 0 4px rgba(216,232,126,.9);
+  animation:saLoadSweep 1.5s cubic-bezier(.4,0,.2,1) infinite}
+@keyframes saLoadSweep{0%{left:-42%}100%{left:100%}}
+.sa-source{font:500 11px var(--mono);color:var(--faint)}
+.sa-tech{border:1px solid var(--line);border-radius:var(--r-md);background:#f4f6f0;margin-top:12px}
+.sa-tech summary{cursor:pointer;padding:12px 16px;font-weight:800;font-size:12.5px;list-style:none}
+.sa-tech summary::-webkit-details-marker{display:none}
+.sa-tech .sa-tech-body{padding:0 16px 14px;font-size:12.5px;color:#43564a;line-height:1.65}
+
+/* ---------- animation utilities ---------- */
+.sa-reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.sa-reveal.in{opacity:1;transform:none}
+.sa-reveal[data-delay="1"]{transition-delay:.08s}.sa-reveal[data-delay="2"]{transition-delay:.16s}
+.sa-reveal[data-delay="3"]{transition-delay:.24s}.sa-reveal[data-delay="4"]{transition-delay:.32s}
+@media (prefers-reduced-motion:reduce){
+  .sa-reveal{opacity:1;transform:none;transition:none}
+  *:not(.sa-spinner):not(.sa-loading-bar):not(.sa-loading-bar i):not(.sa-loading-fill),
+  *:not(.sa-spinner):not(.sa-loading-bar):not(.sa-loading-bar i):not(.sa-loading-fill)::before,
+  *:not(.sa-spinner):not(.sa-loading-bar):not(.sa-loading-bar i):not(.sa-loading-fill)::after{animation-duration:.001s !important;transition-duration:.001s !important}
+  html{scroll-behavior:auto}
+  .sa-loading-bar i,.sa-loading-bar .sa-loading-fill{animation:saPulse 2.4s ease-in-out infinite !important;left:0 !important;width:100% !important;opacity:.85}
+  .sa-spinner{animation-duration:2s !important}
+}
+/* ---------- global glass form controls (dark translucent, all pages) ---------- */
+.app-shell select, .app select, .auth select,
+.app-shell input[type="text"], .app-shell input[type="date"], .app-shell input[type="number"],
+.app-shell input[type="email"], .app-shell input[type="search"], .app-shell textarea {
+  width: 100%; appearance: none; -webkit-appearance: none;
+  background: rgba(8, 16, 11, .52);
+  border: 1px solid rgba(255, 255, 255, .16);
+  border-radius: var(--r-md);
+  color: #f2f7ef;
+  font: 600 13px var(--sans);
+  padding: 11px 36px 11px 13px;
+  outline: none;
+  backdrop-filter: blur(14px) saturate(1.25);
+  -webkit-backdrop-filter: blur(14px) saturate(1.25);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.10), 0 4px 14px rgba(0,0,0,.25);
+  transition: border-color var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+}
+.app-shell input[type="date"], .app-shell input[type="text"], .app-shell input[type="number"],
+.app-shell input[type="email"], .app-shell input[type="search"], .app-shell textarea { padding-right: 13px; }
+.app-shell select {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1.5 6 6.5 11 1.5' fill='none' stroke='%23d8e87e' stroke-width='2' stroke-linecap='round'/></svg>");
+  background-repeat: no-repeat; background-position: right 13px center;
+  cursor: pointer; text-overflow: ellipsis; overflow: hidden; white-space: nowrap;
+}
+.app-shell select:hover, .app-shell input:hover, .app-shell textarea:hover { border-color: rgba(255,255,255,.28); }
+.app-shell select:focus-visible, .app-shell input:focus-visible, .app-shell textarea:focus-visible {
+  border-color: rgba(158, 214, 131, .8);
+  box-shadow: 0 0 0 3px rgba(158, 214, 131, .18), 0 0 22px rgba(158, 214, 131, .14);
+  background-color: rgba(10, 20, 13, .66);
+}
+.app-shell select option, .app select option {
+  background: #101c14; color: #eef4ea; font-weight: 600;
+}
+.app-shell select:disabled, .app-shell input:disabled { opacity: .55; cursor: not-allowed; }
+.app-shell input[type="checkbox"] { width: 15px; height: 15px; accent-color: #9ed683; }
+.app-shell label > span, .app-shell label > span:first-child { color: #a9bda2; }
+@media (prefers-reduced-motion: reduce) {
+  .app-shell select, .app-shell input, .app-shell textarea { transition: none; }
+}
+/* PERF: opacity-only pulse (box-shadow spread is repaint-heavy). Single definition. */
+@keyframes saPulse{0%,100%{opacity:.45}50%{opacity:.95}}
+::view-transition-old(root),::view-transition-new(root){animation-duration:.35s}

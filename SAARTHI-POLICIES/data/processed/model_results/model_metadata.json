@@ -1,0 +1,105 @@
+{
+  "selected_model": "Raw GEFS",
+  "target": "target_7d_rainfall_mm",
+  "features": [
+    "gefs_d1",
+    "gefs_d2",
+    "gefs_d3",
+    "gefs_d4",
+    "gefs_d5",
+    "gefs_d6",
+    "gefs_d7",
+    "gefs_3d_total",
+    "gefs_7d_total",
+    "rain_1d",
+    "rain_3d",
+    "rain_7d",
+    "rain_14d",
+    "rain_30d",
+    "rain_lag_1",
+    "rain_lag_2",
+    "rain_lag_3",
+    "rain_lag_4",
+    "rain_lag_5",
+    "rain_lag_6",
+    "rain_lag_7",
+    "enso_value",
+    "sin_day_of_year",
+    "cos_day_of_year",
+    "soil_clay",
+    "soil_sand",
+    "soil_silt",
+    "soil_soc",
+    "soil_ph",
+    "latitude",
+    "longitude"
+  ],
+  "train_dates": [
+    "2016-06-01",
+    "2019-09-30"
+  ],
+  "val_dates": [
+    "2021-06-01",
+    "2022-09-30"
+  ],
+  "test_dates": [
+    "2023-06-01",
+    "2025-09-30"
+  ],
+  "train_rows": 2928,
+  "val_rows": 1464,
+  "test_rows": 2196,
+  "thresholds_mm": {
+    "T33": 10.939151985384193,
+    "T66": 34.66167447031182
+  },
+  "test_metrics": {
+    "MAE": 19.539,
+    "RMSE": 29.606,
+    "R2": 0.377,
+    "Bias": -4.089
+  },
+  "category_metrics_test": {
+    "accuracy": 0.6849,
+    "macro_F1": 0.6436,
+    "log_loss": 2.0781,
+    "brier": 1.0872
+  },
+  "blocks": [
+    "Dhuri",
+    "Lehra",
+    "Malerkotla",
+    "Moonak",
+    "Sangrur",
+    "Sunam"
+  ],
+  "random_seed": 42,
+  "model_path": "C:\\Users\\Swarnim\\Desktop\\ML projects\\saarthi-2\\models\\best_model.joblib",
+  "data_path": "C:\\Users\\Swarnim\\Desktop\\ML projects\\saarthi-2\\data\\processed\\final_ml_dataset.parquet",
+  "model_type": "raw_gefs",
+  "selected_method": "Raw CHIRPS-GEFS baseline",
+  "forecast_horizon_days": 7,
+  "spatial_unit": "Sangrur legacy Bhuvan blocks",
+  "required_gefs_leads": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "target_definition": "actual CHIRPS rainfall D+1 through D+7",
+  "probability_method": "winner train-residual ECDF (Cell 23); params in models/probability_calibration.npz",
+  "threshold_source": "training_only",
+  "model_artifact": "models/best_model.joblib",
+  "calibration_artifact": "models/probability_calibration.npz",
+  "inference_config": "models/inference_config.json",
+  "artifact_version": "nb04-2026-09-10",
+  "required_input_datasets": [
+    "CHIRPS-GEFS v3 daily (issue folder D, target files D+1..D+7)",
+    "CHIRPS observations (context only, <=D)",
+    "ENSO monthly index (context only)",
+    "SoilGrids (static context)"
+  ]
+}

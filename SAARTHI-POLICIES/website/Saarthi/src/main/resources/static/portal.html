@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Saarthi Platform — Hyperlocal Climate & Agronomy Intelligence</title>
+  <meta name="description" content="SAARTHI decision platform for Sangrur District, Punjab. Validated 7-day outlook for 6 blocks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <!-- Leaflet GIS Map Stylesheet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/portal.css">
+</head>
+<body>
+<div class="page-shell portal-shell">
+  <!-- Portal Navigation Header with Active Route Indicators & Trilingual Switcher -->
+  <nav class="portal-nav">
+    <a class="brand" href="/"><span class="brand-mark">⌁</span>Saarthi</a>
+    
+    <div class="nav-tabs">
+      <a href="/farmer" id="nav-farmer" data-i18n="nav_farmer">Farmer Portal</a>
+      <a href="/map" id="nav-map" data-i18n="nav_map">Risk Map</a>
+      <a href="/timeline" id="nav-timeline" data-i18n="nav_timeline">Forecast</a>
+      <a href="/policy-alerts" id="nav-policy-alerts">Policy Alerts</a>
+    </div>
+
+    <div class="portal-nav-group">
+      <span class="live-pill"><i class="live-dot"></i> <span data-i18n="live_monitoring">Sangrur Live Monitoring</span></span>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="hi">हिं</button>
+        <button class="lang-btn" data-lang="pa">ਪੰ</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Platform Shell -->
+  <main class="portal-main">
+    <header class="portal-header">
+      <p class="eyebrow"><i class="live-dot"></i> <span data-i18n="district_name">Sangrur District, Punjab · 6 Blocks · Validated 7-Day Outlook</span></p>
+      <h1 id="page-title">Farmer <em>advisory.</em></h1>
+      <p id="page-intro" class="portal-intro"></p>
+    </header>
+
+    <!-- 1. FARMER ADVISORY PORTAL (/farmer) -->
+    <section id="farmer" class="portal-page" style="display: none;">
+      <div class="portal-grid">
+        <!-- Farm Profile Form -->
+        <aside class="farm-form">
+          <h3 data-i18n="farm_profile">Farm Profile</h3>
+          
+          <label>
+            <span data-i18n="lbl_block">Block</span>
+            <select id="form-block">
+              <option value="Dhuri">Dhuri</option>
+              <option value="Lehra">Lehra</option>
+              <option value="Malerkotla">Malerkotla</option>
+              <option value="Moonak">Moonak</option>
+              <option value="Sangrur">Sangrur</option>
+              <option value="Sunam" selected>Sunam</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="lbl_panchayat">Panchayat</span>
+            <select id="form-panchayat">
+              <!-- Populated dynamically based on block -->
+              <option value="Suler Gherat">Suler Gherat</option>
+              <option value="Kularan">Kularan</option>
+              <option value="Chhajli">Chhajli</option>
+              <option value="Dirba">Dirba</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="lbl_crop">Crop Variety</span>
+            <select id="form-crop">
+              <option value="Paddy (PR-126)" selected>Paddy (PR-126 - Short Duration)</option>
+              <option value="Paddy (Pusa-44)">Paddy (Pusa-44 - Long Duration)</option>
+              <option value="Basmati">Basmati (PB-1121 / PB-1509)</option>
+              <option value="Cotton">Cotton (Bt Hybrid)</option>
+              <option value="Maize">Maize (PMH-1)</option>
+              <option value="Wheat">Wheat (HD-2967 / PBW-725)</option>
+              <option value="Sugarcane">Sugarcane (Co-0238)</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="lbl_soil">Soil Type</span>
+            <select id="form-soil">
+              <option value="Clay Loam" selected>Clay Loam (High Retention)</option>
+              <option value="Alluvial">Alluvial (Balanced Loam)</option>
+              <option value="Sandy Loam">Sandy Loam (Rapid Drain)</option>
+              <option value="Silt Loam">Silt Loam (Moderate Retention)</option>
+            </select>
+          </label>
+
+          <label>
+            <span data-i18n="lbl_sowing_date">Planned Sowing Date</span>
+            <input type="date" id="form-date" value="2026-09-06">
+          </label>
+
+          <label>
+            <span data-i18n="lbl_irrigation">Irrigation Source</span>
+            <select id="form-irrigation">
+              <option value="Canals" selected>Canals (Sirhind/Bhakhra Network)</option>
+              <option value="Tubewells">Tubewells (Deep Groundwater Pump)</option>
+              <option value="Rainfed">Rainfed (Pure Monsoon Dependent)</option>
+            </select>
+          </label>
+
+          <button class="primary-button" id="form-refresh-btn">
+            <span data-i18n="btn_update_advisory">Compute Advisory</span> <span>→</span>
+          </button>
+        </aside>
+
+        <!-- Decision Board -->
+        <div class="decision-board">
+          <!-- Sowing Decision Hero Card -->
+          <div class="decision-hero-card">
+            <div class="decision-badge-strip">
+              <span class="decision-tag sow" id="decision-tag">SAFE TO SOW</span>
+              <span class="window-badge"><span data-i18n="lbl_recommended_window">Recommended Window:</span> <strong id="decision-window">Sep 06 – Sep 12</strong></span>
+            </div>
+
+            <h2 id="decision-headline">Optimal sowing window for Paddy (PR-126).</h2>
+            <p class="decision-rationale" id="decision-explanation">Loading personalized agronomic rationale...</p>
+
+            <div class="decision-meta-row">
+              <div><span data-i18n="dry_spell_prob_label">Dry Spell Probability:</span> <strong id="decision-prob">18.4%</strong></div>
+              <div><span data-i18n="lbl_model_confidence">Model Source:</span> <strong id="decision-confidence">Raw CHIRPS-GEFS</strong></div>
+              <div><span>Target Panchayat:</span> <strong id="decision-target-panchayat">Suler Gherat, Sunam</strong></div>
+            </div>
+          </div>
+
+          <!-- 4-Pillar Risk Breakdown Grid -->
+          <div class="pillars-grid">
+            <div class="pillar-card">
+              <span data-i18n="pillar_weather">Weather Risk</span>
+              <strong id="pillar-weather-val">Low</strong>
+              <small>Rainfall Trend: Normal</small>
+            </div>
+            <div class="pillar-card">
+              <span data-i18n="pillar_soil">Soil Moisture Risk</span>
+              <strong id="pillar-soil-val">Low</strong>
+              <small>Retention: Clay Loam</small>
+            </div>
+            <div class="pillar-card">
+              <span data-i18n="pillar_crop">Crop Vulnerability</span>
+              <strong id="pillar-crop-val">Moderate</strong>
+              <small>Stage: Nursery / Direct</small>
+            </div>
+            <div class="pillar-card">
+              <span data-i18n="pillar_dry_spell">Dry Break Risk</span>
+              <strong id="pillar-dry-val">18%</strong>
+              <small>7-Day Probability</small>
+            </div>
+          </div>
+
+          <!-- Soil Gauge Dial & WhatsApp Share Row -->
+          <div class="gauge-actions-row">
+            <!-- Root-Zone Soil Moisture Gauge Dial -->
+            <div class="soil-gauge-card">
+              <div class="gauge-dial-wrap">
+                <div class="gauge-dial" id="root-gauge-dial">
+                  <span class="gauge-inner-val" id="gauge-percent">38%</span>
+                </div>
+              </div>
+              <div class="gauge-info">
+                <p class="card-kicker" data-i18n="lbl_root_moisture">Root-Zone Soil Moisture</p>
+                <h3 id="gauge-status">Adequate Moisture</h3>
+                <p data-i18n="lbl_root_moisture_sub">Volumetric water content in active root zone (0–30 cm).</p>
+              </div>
+            </div>
+
+            <!-- WhatsApp Kisan Group Sharing Action Card -->
+            <div class="share-action-card">
+              <div>
+                <p class="card-kicker">Kisan Community Outreach</p>
+                <h3 data-i18n="btn_copy_whatsapp">Share WhatsApp Advisory</h3>
+                <p>One-click formatted advisory message ready to forward to local Kisan WhatsApp & Telegram groups.</p>
+              </div>
+              <div class="share-buttons-group">
+                <button class="share-kisan-btn" id="share-whatsapp-btn">
+                  <span>📱</span> <span id="share-btn-text" data-i18n="btn_copy_whatsapp">Copy WhatsApp Text</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- 1B. POLICY ALERTS -->
+    <section id="policy-alerts" class="portal-page" style="display: none;">
+      <div class="timeline-card-wrap">
+        <div class="timeline-header-bar">
+          <div>
+            <p class="card-kicker">Government Policy Monitor</p>
+            <h2>Latest <em>Farmer Policies & Alerts</em></h2>
+            <p style="margin-top: 8px; opacity: 0.75;">
+              Verified policy information collected from official government sources.
+            </p>
+          </div>
+
+          <button class="primary-button" id="policy-refresh-btn">
+            Refresh Policies →
+          </button>
+        </div>
+
+        <div id="policy-alert-list">
+          <p style="padding: 20px; opacity: 0.7;">
+            Loading policy alerts...
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- 2. VILLAGE SCALE RISK MAP (/map) -->
+    <section id="map" class="portal-page" style="display: none;">
+      <div class="map-layout-container">
+        <!-- Map Controls & Filters Bar -->
+        <div class="map-controls-bar">
+          <div class="map-filters">
+            <label style="margin: 0; font-weight: 700; font-size: 11px;">
+              <span data-i18n="map_filter_block">Filter by Block:</span>
+              <select id="map-block-filter">
+                <option value="all" data-i18n="map_all_blocks">All 6 Blocks</option>
+                <option value="Dhuri">Dhuri</option>
+                <option value="Lehra">Lehra</option>
+                <option value="Malerkotla">Malerkotla</option>
+                <option value="Moonak">Moonak</option>
+                <option value="Sangrur">Sangrur</option>
+                <option value="Sunam">Sunam</option>
+              </select>
+            </label>
+
+            <label style="margin: 0; font-weight: 700; font-size: 11px;">
+              <span data-i18n="map_filter_risk">Filter by Category:</span>
+              <select id="map-category-filter">
+                <option value="all" data-i18n="map_all_risks">All Categories</option>
+                <option value="LOW" data-i18n="risk_low">LOW (&lt;10.94 mm)</option>
+                <option value="NORMAL" data-i18n="risk_mod">NORMAL</option>
+                <option value="HIGH" data-i18n="risk_high">HIGH (&gt;34.66 mm)</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="map-legend-pills">
+            <span class="legend-pill low"><i></i> <span data-i18n="risk_low">LOW (&lt;10.94 mm)</span></span>
+            <span class="legend-pill mod"><i></i> <span data-i18n="risk_mod">NORMAL</span></span>
+            <span class="legend-pill high"><i></i> <span data-i18n="risk_high">HIGH (&gt;34.66 mm)</span></span>
+            <span style="color: #657566; margin-left: 8px;">| 6 Blocks · Training Thresholds</span>
+          </div>
+        </div>
+
+        <!-- Interactive Leaflet Map Canvas -->
+        <div id="leaflet-map-canvas"></div>
+      </div>
+    </section>
+
+    <!-- 3. 7–30 DAY FORECAST OUTLOOK (/timeline) -->
+    <section id="timeline" class="portal-page" style="display: none;">
+      <div class="timeline-card-wrap">
+        <div class="timeline-header-bar">
+          <div>
+            <p class="card-kicker" data-i18n="timeline_title">Probabilistic Outlook</p>
+            <h2>Sangrur District · <em id="timeline-block-title">Sunam Block</em></h2>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <div class="timeline-horizon-buttons">
+              <button class="horizon-btn active" data-days="7">7 Days</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dual-Axis Probabilistic Timeline Chart Container -->
+        <div class="recharts-forecast-container" id="recharts-forecast-canvas">
+          <!-- Rendered dynamically by portal.js -->
+        </div>
+
+        <!-- 7-Day Day-by-Day Forecast Matrix Table -->
+        <h3 style="font-size: 16px; margin: 24px 0 12px; letter-spacing: 0.01em; word-spacing: 0.05em;">7-Day Day-by-Day Rainfall Matrix</h3>
+        <div class="matrix-table-wrap">
+          <table class="matrix-table">
+            <thead>
+              <tr>
+                <th data-i18n="th_day">Day</th>
+                <th data-i18n="th_date">Date</th>
+                <th data-i18n="th_rain">Predicted Rain (mm)</th>
+                <th data-i18n="th_wetdry">Wet / Dry (≥1 mm)</th>
+              </tr>
+            </thead>
+            <tbody id="forecast-matrix-tbody">
+              <!-- Matrix rows inserted by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Large-Scale Climate Context (MJO + ENSO + IOD note; explanatory only, not a rainfall driver) -->
+        <h3 style="font-size: 16px; margin: 24px 0 12px; letter-spacing: 0.01em; word-spacing: 0.05em;">Large-Scale Climate Context</h3>
+        <div class="matrix-table-wrap">
+          <table class="matrix-table">
+            <tbody id="climate-context-tbody">
+              <tr><td>Loading climate context…</td></tr>
+            </tbody>
+          </table>
+          <p style="font-size: 12px; opacity: 0.75; margin-top: 8px;">Climate context is explanatory only — the 7-day rainfall forecast above comes from Raw CHIRPS-GEFS.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Platform Footer -->
+  <footer>
+    <a class="brand" href="/"><span class="brand-mark">⌁</span>Saarthi</a>
+    <p data-i18n="footer_text">Climate clarity for stronger rural futures in Punjab.</p>
+    <span data-i18n="footer_copy">© 2026 · SIH26086 Hyperlocal Monsoon Intelligence</span>
+  </footer>
+</div>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="/static/i18n.js"></script>
+<script src="/static/portal.js"></script>
+</body>
+</html>

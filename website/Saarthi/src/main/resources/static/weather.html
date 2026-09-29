@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAARTHI — Live Block Weather Intelligence</title>
+  <meta name="description" content="Block-level weather intelligence: 16-day outlook, rainfall signals and field-work risk for your selected block." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/saarthi-design.css" />
+  <link rel="stylesheet" href="/static/saarthi-shell.css" />
+  <link rel="stylesheet" href="/static/chat.css" />
+  <style>
+    /* ============ HOME — page layer (shared shell/rail/glass in saarthi-shell.css) ============ */
+    .wx-main{min-width:0;flex:1;display:flex;flex-direction:column;gap:16px}
+    .wx-eyebrow .updated{margin-left:auto;font:700 10px var(--mono);color:#cfe0bd;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);padding:6px 12px;border-radius:999px;white-space:nowrap}
+    .wx-statement{font-size:clamp(38px,3.9vw,62px);animation:wxRise .7s var(--ease) .1s both}
+    .wx-sub{animation:wxRise .7s var(--ease) .18s both}
+    .wx-loc{font-size:16px;font-weight:800;color:#fff;margin:0;animation:wxRise .7s var(--ease) .22s both}
+    .wx-method{font:500 11px var(--mono);color:#9fb198;margin:2px 0 0}
+    .wx-geo{display:flex;gap:8px;flex-wrap:wrap;padding:10px;animation:wxRise .7s var(--ease) .26s both}
+    .wx-geo label{display:flex;flex-direction:column;gap:5px;font:700 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#a9bda2;flex:1;min-width:130px}
+    .wx-geo select{width:100%}
+    .analysis-panel{padding:18px;animation:wxRise .7s var(--ease) .3s both}
+    .analysis-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:10px}
+    .analysis-grid>div{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.10);border-radius:var(--r-md);padding:14px 16px;transition:transform var(--t-fast),border-color var(--t-fast),box-shadow var(--t-fast)}
+    .analysis-grid>div:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .analysis-grid span{font:700 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#9fb198}
+    .analysis-grid strong{display:block;font-size:clamp(22px,2vw,30px);margin-top:4px;color:#fff;font-weight:800;letter-spacing:-.01em}
+    .analysis-grid small{color:#8fa184;font-size:11px}
+    .risk-caption,.model-note{font-size:11.5px;color:#9fb198;line-height:1.6;margin:10px 0 0}
+    /* Issue 5: the forecast card owns its own clear space — the SVG curve,
+       the 16-day rainfall timeline and the W3/W4 outlook each stack in normal
+       block flow with their own margins, so nothing can float over the chart. */
+    .wx-forecast{padding:16px 18px 14px;animation:wxRise .7s var(--ease) .38s both;isolation:isolate}
+    .wx-forecast-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+    .wx-forecast-head p{font:700 10px var(--mono);letter-spacing:.12em;color:#9fb198;margin:0;text-transform:uppercase}
+    .wx-forecast-head span{font:500 10.5px var(--mono);color:#8fa184}
+    #wx-strip{position:relative;z-index:0}
+    .wx-rain-wrap{overflow-x:auto;overflow-y:hidden;padding:2px 0 4px}
+    .wx-rain-svg{display:block;width:100%;min-width:480px;height:auto}
+    .wx-rain-empty{font-size:12px;color:#8fa184;padding:6px 0}
+    /* Issue 5: rainfall timeline and W3/W4 outlook are ordinary in-flow
+       sections below the curve — static positioning, clear margins, their own
+       stacking level, never absolutely positioned over the chart. */
+    #rainfall-timeline{margin-top:14px;position:static;display:block;z-index:auto}
+    #rainfall-timeline .timeline-heading{display:flex;justify-content:space-between;font:700 10px var(--mono);letter-spacing:.1em;color:#8fa184;text-transform:uppercase;margin-bottom:8px}
+    #rainfall-timeline .rain-bars{display:flex;gap:5px;align-items:flex-end;overflow-x:auto;padding-bottom:4px}
+    #rainfall-timeline .rain-day{min-width:44px;text-align:center;font-size:9px;color:#9fb198}
+    #rainfall-timeline .rain-day span{display:block;font:600 9px var(--mono);color:#cdd8c9}
+    #rainfall-timeline .rain-day i{display:block;width:100%;min-height:4px;border-radius:4px;background:linear-gradient(180deg,#9ed683,rgba(158,214,131,.25));margin:4px 0}
+    #rainfall-timeline .rain-day.peak i{background:linear-gradient(180deg,#f0c35e,rgba(240,195,94,.3))}
+    #rainfall-timeline .timeline-note{font-size:10px;color:#8fa184;margin:6px 0 0}
+    #seasonal-signals{margin-top:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:var(--r-md);padding:12px 14px;font-size:11.5px;color:#c6d2c0}
+    #seasonal-signals .card-kicker{font:700 9.5px var(--mono);letter-spacing:.1em;color:#9fb198;text-transform:uppercase;margin:0 0 6px}
+    #seasonal-signals article{margin:4px 0}
+    #seasonal-signals span{color:#8fa184;font-size:10px;display:block}
+    #seasonal-signals strong{display:block;color:#fff;font-size:12.5px}
+    #seasonal-signals small{color:#8fa184}
+    .wx-field{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;align-items:stretch;position:relative;z-index:0}
+    .wx-mini{padding:15px 16px;animation:wxRise .7s var(--ease) .46s both;transition:transform var(--t-fast),border-color var(--t-fast),box-shadow var(--t-fast)}
+    .wx-mini:hover{transform:translateY(-2px);border-color:rgba(255,255,255,.22);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+    .wx-mini p{font:700 9.5px var(--mono);letter-spacing:.12em;color:#9fb198;margin:0 0 6px;text-transform:uppercase}
+    .wx-mini strong{color:#fff;font-size:19px}
+    .wx-mini small{display:block;color:#8fa184;font-size:11px;margin-top:3px;line-height:1.5}
+    .wx-mini a{color:inherit;text-decoration:none;display:block}
+    .wx-cta{background:linear-gradient(140deg,#eef4cf,#cfdf9e);border:none;color:#1c3a2a !important}
+    .wx-cta strong{color:#1c3a2a !important}
+    .wx-cta small{color:#4a5c42 !important}
+    /* Overlap fix: the sowing card is a bare grid cell whose link wrapped
+       block-level children in an inline box, collapsing height and clipping
+       into neighbours. Block-level link, full cell height, own padding. */
+    #sowing-card{padding:0;background:none;border:none;box-shadow:none;min-width:0}
+    #sowing-card a{display:block;height:100%;box-sizing:border-box;background:linear-gradient(140deg,#eef4cf,#cfdf9e);border-radius:var(--r-lg);padding:15px 16px;color:#1c3a2a;text-decoration:none;transition:transform var(--t-fast),box-shadow var(--t-fast)}
+    #sowing-card a:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(216,232,126,.35)}
+    #sowing-card p{margin:0 0 6px;font:700 9.5px var(--mono);letter-spacing:.12em;text-transform:uppercase;color:#4a5c42}
+    #sowing-card strong{display:block;color:#1c3a2a;font-size:19px}
+    #sowing-card small{display:block;color:#4a5c42;font-size:11px;margin-top:3px;line-height:1.5}
+    .wx-side{min-width:0;flex:0 0 330px;display:flex;flex-direction:column;gap:14px}
+    .wx-card{padding:20px;animation:wxRise .7s var(--ease) both;transition:transform var(--t-fast),border-color var(--t-fast),box-shadow var(--t-fast)}
+    .wx-card:hover{border-color:rgba(255,255,255,.22);box-shadow:0 14px 36px rgba(0,0,0,.32)}
+    .wx-card:nth-child(2){animation-delay:.15s}.wx-card:nth-child(3){animation-delay:.25s}
+    .wx-card .k{font:700 10px var(--mono);letter-spacing:.12em;color:#9fb198;margin:0 0 8px;text-transform:uppercase}
+    .wx-place{font-size:20px;font-weight:800;color:#fff;margin:0}
+    .wx-place-sub{font-size:12px;color:#9fb198;margin:2px 0 12px}
+    .wx-big{font-size:clamp(54px,4.6vw,74px);font-weight:800;letter-spacing:-.03em;color:#fff;line-height:1;margin:0}
+    .wx-big small{font-size:15px;font-weight:700;color:#9fb198;letter-spacing:0}
+    .wx-rows{margin-top:12px;border-top:1px solid rgba(255,255,255,.1);padding-top:10px;display:flex;flex-direction:column;gap:8px}
+    .wx-rows div{display:flex;justify-content:space-between;font-size:12.5px;color:#c6d2c0}
+    .wx-rows strong{color:#fff}
+    .risk-track{height:7px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden;margin-top:12px}
+    .risk-track span{display:block;height:100%;width:20%;background:linear-gradient(90deg,#4a7a5c,#9ed683);border-radius:99px;transition:width .6s var(--ease)}
+    .wx-risk-line{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+    .wx-src{font:500 10.5px var(--mono);color:#8fa184;line-height:1.6}
+    #crop-advice{margin-top:14px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:var(--r-md);padding:12px 14px;font-size:12px;color:#c6d2c0;position:static;display:block;clear:both;z-index:auto}
+    #crop-advice .crop-heading{font:700 10px var(--mono);letter-spacing:.1em;color:#9fb198;text-transform:uppercase;margin-bottom:6px}
+    #rainfall-map{margin-top:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.09);border-radius:var(--r-md);padding:12px 14px}
+    #rainfall-map .map-heading{display:flex;justify-content:space-between;align-items:baseline;font:700 10px var(--mono);letter-spacing:.1em;color:#8fa184;text-transform:uppercase;margin-bottom:8px}
+    #rainfall-map .map-heading h4{margin:0;font-size:12px;color:#fff}
+    #rainfall-map .card-kicker{font:700 9.5px var(--mono);letter-spacing:.1em;color:#9fb198;text-transform:uppercase;margin:0}
+    #rainfall-map .village-list{list-style:none;margin:8px 0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+    #rainfall-map .village-list li{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:7px 11px;font-size:11.5px;color:#dfe8d8;cursor:pointer}
+    #rainfall-map .village-list li:hover{border-color:rgba(158,214,131,.5)}
+    #rainfall-map .village-list small{color:#8fa184}
+    #rainfall-map .map-legend{font:500 9.5px var(--mono);color:#8fa184;margin-top:6px}
+    @media(max-width:1180px){.wx-side{flex:1 1 100%;display:grid;grid-template-columns:1fr 1fr;align-items:start}.app-body{flex-wrap:wrap}}
+    @media(max-width:1024px){.analysis-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:960px){.wx-side{grid-template-columns:minmax(0,1fr)}.analysis-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:860px){.wx-field{grid-template-columns:minmax(0,1fr)}}
+    @media(max-width:600px){
+      .analysis-grid{grid-template-columns:minmax(0,1fr)}
+      .wx-field{grid-template-columns:minmax(0,1fr)}
+      .wx-statement{font-size:clamp(30px,9vw,40px)}
+    }
+    @media (prefers-reduced-motion:reduce){.wx-statement,.wx-sub,.wx-loc,.wx-geo,.analysis-panel,.wx-forecast,.wx-mini,.wx-card{animation:none}}
+    /* ---- Task 1 overlap guarantee (weather page) --------------------------
+       The 7-day strip, the D1-D16 rainfall bars and the 17-30 day outlook card
+       are three runtime-injected blocks inside ONE card, so they must occupy
+       consecutive normal-flow rows: no float, no absolute positioning, no
+       negative offsets, and every child allowed to shrink. A tall bar column or
+       a long label can then never widen the card or land on its neighbour. The
+       bars keep a fixed minimum column width and scroll inside the card instead
+       of being squeezed, so all 16 days, their rain values and their
+       percentages stay readable on desktop, tablet and mobile. */
+    .wx-forecast{overflow:hidden;isolation:isolate}
+    .wx-forecast > *{float:none;clear:none;margin-left:0;margin-right:0;max-width:100%;min-width:0}
+    #wx-strip,#rainfall-timeline,#crop-advice{position:static;z-index:auto}
+    #rainfall-timeline{display:block;clear:both}
+    #rainfall-timeline .rain-bars{align-items:flex-end;overflow-x:auto;overflow-y:hidden;padding:2px 0 6px}
+    #rainfall-timeline .rain-day{flex:0 0 auto;width:46px;min-width:46px}
+    #rainfall-timeline .rain-day span,#rainfall-timeline .rain-day small{display:block;white-space:nowrap}
+    #crop-advice{display:block;clear:both;position:static;overflow-wrap:anywhere}
+    #crop-advice p{margin:9px 0 0}
+    @media(max-width:600px){#rainfall-timeline .rain-day{width:42px;min-width:42px}}
+  </style>
+  </style>
+  <link rel="stylesheet" href="/static/saarthi-refine.css">
+</head>
+<body class="app">
+  <div class="app-bg" aria-hidden="true"><img src="/static/images/greenagriculturallandscape1.jpg" alt="" fetchpriority="high"></div>
+  <div class="app-veil" aria-hidden="true"></div>
+  <div class="app-tint" aria-hidden="true"></div>
+  <button class="fab-menu" aria-expanded="false" aria-controls="rail-overlay" aria-label="Open navigation">☰</button>
+
+  <div class="app-shell">
+    <div class="app-body">
+      <aside class="rail liq" aria-label="Primary">
+        <a class="rail-brand" href="/home" data-nav="home" aria-label="SAARTHI home"><img src="/static/assets/logo.png" alt="SAARTHI logo"><b>SAARTHI</b></a>
+        <a class="rail-item" href="/home" data-nav="home"><i>⌂</i><span>Home</span></a>
+        <a class="rail-item" href="/weather" data-nav="weather"><i>◎</i><span>Weather</span></a>
+        <a class="rail-item" href="/farmer" data-nav="farmer"><i>♧</i><span>Farmer Portal</span></a>
+        <a class="rail-item" href="/forecast" data-nav="timeline"><i>☔</i><span>Forecast</span></a>
+        <a class="rail-item" href="/risk-map" data-nav="map"><i>◍</i><span>Risk Map</span></a>
+        <a class="rail-item" href="/climate" data-nav="intelligence"><i>◐</i><span>Climate Intelligence</span></a>
+        <a class="rail-item" href="/cropatlas" data-nav="cropatlas"><i>❦</i><span>CropAtlas</span></a>
+        <a class="rail-item" href="/policies" data-nav="policy-alerts"><i>⚖</i><span>Policies</span></a>
+        <span class="rail-live"><i class="sa-dot"></i><em>Live</em></span>
+      </aside>
+
+      <main class="wx-main outlook-heading app-content" id="top">
+        <p class="eyebrow wx-eyebrow"><i class="sa-dot"></i>Block weather intelligence <span class="updated">Live</span></p>
+        <h1 class="display wx-statement" id="decision-title">Choose a block to read the rainfall signals.</h1>
+        <p class="lede wx-sub" id="decision-message">16-day rainfall outlook for your selected block. Longer-range guidance is a climatological reference — never a day-by-day forecast.</p>
+        <p class="wx-loc" id="geo-location-line">Select State → District → Block</p>
+        <p class="wx-method" id="geo-method-line"></p>
+
+        <div class="glass wx-geo geo-cascade" role="group" aria-label="Choose your block">
+          <label>State<select id="state-select" aria-label="State"></select></label>
+          <label>District<select id="district-select" aria-label="District"></select></label>
+          <label>Block<select id="block-select" aria-label="Block"></select></label>
+        </div>
+
+        <div class="analysis-panel glass" aria-live="polite">
+          <div class="analysis-grid">
+            <div><span>7-day rainfall</span><strong id="rain-7">—</strong><small>millimetres, block outlook</small></div>
+            <div><span>Dry / wet days</span><strong id="dry-14">—</strong><small>days in next 7</small></div>
+            <div><span>3-day signal</span><strong class="trend" id="rain-trend">—</strong><small>near-term trend</small></div>
+            <div><span>Heaviest day</span><strong id="expected-rain">—</strong><small>millimetres + date</small></div>
+          </div>
+          <p class="risk-caption">16-day outlook with 3/7/15-day cumulative rainfall.</p>
+          <p class="model-note" id="model-note" hidden></p>
+        </div>
+
+        <section class="wx-forecast glass" aria-label="7-day rainfall outlook">
+          <div class="wx-forecast-head"><p>Rain · next 7 days</p><span id="wx-strip-meta">Standby</span></div>
+          <div id="wx-strip" aria-live="polite"><p class="wx-rain-empty">Select a block to load the 7-day rainfall outlook.</p></div>
+        </section>
+
+        <section class="wx-field" aria-label="Field intelligence">
+          <div class="wx-mini glass"><p>Field risk · <span id="decision-status">Standby</span></p><strong id="risk-label">—</strong><small id="risk-probability">No block selected</small></div>
+          <div id="sowing-card" data-tone="wait">
+            <a href="/farmer" data-carry-to-farmer><p>Farmer advisory <span id="decision-icon" aria-hidden="true">→</span></p><strong>Open Farmer Advisory →</strong><small>Review in <b id="wait-days">—</b> days · carries your block forward</small></a>
+          </div>
+          <div class="wx-mini glass"><a href="/cropatlas"><p>Botanical intelligence</p><strong>Explore CropAtlas →</strong><small>Requirement vs block environment, honestly separated</small></a></div>
+        </section>
+      </main>
+
+      <aside class="wx-side">
+        <section class="wx-card liq liq-hero soft" aria-label="Current block weather">
+          <p class="k">Saarthi · Block outlook</p>
+          <p class="wx-place" id="analysis-block">Select a block</p>
+          <p class="wx-place-sub">This week's monsoon signal · 16 days live</p>
+          <p class="wx-big"><span id="wx-big-rain">—</span> <small>mm / 7d</small></p>
+          <div class="wx-rows">
+            <div><span>Heaviest day</span><strong id="wx-side-heaviest">—</strong></div>
+            <div><span>Dry / wet</span><strong id="wx-side-drywet">—</strong></div>
+            <div><span>3-day signal</span><strong id="wx-side-trend">—</strong></div>
+          </div>
+        </section>
+        <section class="wx-card glass" aria-label="Field risk">
+          <p class="k">Field risk · D+1–D+3</p>
+          <div class="wx-risk-line"><span class="sa-badge na" id="wx-risk-badge">Standby</span></div>
+          <div class="risk-track"><span id="risk-meter"></span></div>
+          <p class="wx-src" id="wx-risk-note" style="margin:10px 0 0">Rule-based field-work risk where supported. LOW is not “no rain”.</p>
+        </section>
+        <section class="wx-card glass" aria-label="Location">
+          <p class="k">Location</p>
+          <p class="wx-place" id="wx-loc-block" style="font-size:16px">No block selected</p>
+          <p class="wx-src" id="wx-loc-sub">State → District → Block</p>
+        </section>
+      </aside>
+    </div>
+
+    <footer class="app-foot">
+      <span>© 2026 SAARTHI · Agricultural intelligence for every block</span>
+      <span><a href="/forecast">Forecast</a> · <a href="/risk-map">Risk Map</a> · <a href="/farmer">Farmer Portal</a></span>
+    </footer>
+  </div>
+
+  <nav class="rail-overlay" id="rail-overlay" aria-label="Sections">
+    <a href="/home" data-nav="home"><i>⌂</i>Home</a>
+    <a href="/weather" data-nav="weather"><i>◎</i>Weather</a>
+    <a href="/farmer" data-nav="farmer"><i>♧</i>Farmer Portal</a>
+    <a href="/forecast" data-nav="timeline"><i>☔</i>Forecast</a>
+    <a href="/risk-map" data-nav="map"><i>◍</i>Risk Map</a>
+    <a href="/climate" data-nav="intelligence"><i>◐</i>Climate Intelligence</a>
+    <a href="/cropatlas" data-nav="cropatlas"><i>❦</i>CropAtlas</a>
+    <a href="/policies" data-nav="policy-alerts"><i>⚖</i>Policies</a>
+    <p class="ov-live">● LIVE MONITORING</p>
+  </nav>
+
+  <script src="/static/geo-select.js"></script>
+  <script src="/static/chat.js"></script>
+  <script src="/static/app.js"></script>
+  <script src="/static/saarthi-ui.js"></script>
+  <script src="/static/saarthi-liquid.js"></script>
+  <script>
+  /* 7-day rainfall chart: smooth area/line rendered from the REAL
+     app.js forecast nodes (#rainfall-timeline .rain-day). No synthetic data:
+     every point is parsed from the served outlook; missing stays missing. */
+  (function () {
+    'use strict';
+    function parseRain(text) {
+      if (!text) return null;
+      if (/no data|unavailable/i.test(text)) return null;
+      var m = text.replace(',', '.').match(/-?\d+(\.\d+)?/);
+      return m ? parseFloat(m[0]) : null;
+    }
+    function fmtVal(v) {
+      if (v === null || v === undefined || !isFinite(v)) return 'No data';
+      return (Number(v.toFixed(1)) + ' mm');
+    }
+    function smoothPath(pts) {
+      if (pts.length === 1) return 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+      var d = 'M' + pts[0][0].toFixed(1) + ' ' + pts[0][1].toFixed(1);
+      for (var k = 0; k < pts.length - 1; k++) {
+        var p0 = pts[Math.max(0, k - 1)], p1 = pts[k], p2 = pts[k + 1], p3 = pts[Math.min(pts.length - 1, k + 2)];
+        var c1x = p1[0] + (p2[0] - p0[0]) / 6, c1y = p1[1] + (p2[1] - p0[1]) / 6;
+        var c2x = p2[0] - (p3[0] - p1[0]) / 6, c2y = p2[1] - (p3[1] - p1[1]) / 6;
+        d += ' C' + c1x.toFixed(1) + ' ' + c1y.toFixed(1) + ',' + c2x.toFixed(1) + ' ' + c2y.toFixed(1) + ',' + p2[0].toFixed(1) + ' ' + p2[1].toFixed(1);
+      }
+      return d;
+    }
+    function esc(s) {
+      return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+    function renderStrip() {
+      // PERF: guarded — this runs only via explicit refresh() calls from the
+      // render path (never via MutationObserver), so DOM writes here cannot
+      // re-trigger themselves. The flag is a safety net only.
+      if (renderStrip._busy) return;
+      renderStrip._busy = true;
+      try {
+        var strip = document.getElementById('wx-strip');
+        var meta = document.getElementById('wx-strip-meta');
+        var nodes = document.querySelectorAll('#rainfall-timeline .rain-day');
+        if (!strip || !nodes.length) return;
+        var days = Array.prototype.slice.call(nodes, 0, 7).map(function (n, i) {
+          var span = n.querySelector('span');
+          var small = n.querySelector('small');
+          var v = parseRain(span ? span.textContent : '');
+          var sm = small ? small.textContent.replace(/\s+/g, ' ').trim() : '';
+          var parts = sm.split(' ');
+          return { v: v, day: parts[0] || ('D' + (i + 1)), date: parts.slice(1).join(' ') };
+        });
+        if (meta) meta.textContent = 'D1–D7';
+        var valid = days.map(function (d) { return d.v; }).filter(function (v) { return v !== null && isFinite(v) && v >= 0; });
+        var dataMax = valid.length ? Math.max.apply(null, valid) : 0;
+        // Display-only nice scale: headroom above the largest day, human ticks,
+        // never clips real data. Zero/small rain stays visible and honest.
+        var yMax = dataMax > 0 ? dataMax * 1.2 : 1;
+        var mag = Math.pow(10, Math.floor(Math.log(yMax / 3) / Math.LN10));
+        var step = 10 * mag;
+        var mults = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+        for (var mi = 0; mi < mults.length; mi++) {
+          if (mults[mi] * mag * 3 >= yMax) { step = mults[mi] * mag; break; }
+        }
+        yMax = step * 3;
+        var W = 640, H = 252, padL = 46, padR = 14, padT = 18, padB = 52;
+        var plotW = W - padL - padR, plotH = H - padT - padB, baseY = padT + plotH;
+        var xAt = function (i) { return padL + (i + 0.5) * (plotW / days.length); };
+        var yAt = function (v) { return padT + plotH - (Math.max(0, v) / yMax) * plotH; };
+        var ticks = [0, step, step * 2, step * 3].map(function (t) { return Math.round(t * 1000) / 1000; });
+        var grid = ticks.map(function (t) {
+          var y = yAt(t);
+          return '<line x1="' + padL + '" y1="' + y.toFixed(1) + '" x2="' + (W - padR) + '" y2="' + y.toFixed(1) + '" stroke="rgba(255,255,255,.13)" stroke-dasharray="3,4" stroke-width="1"/>'
+            + '<text x="' + (padL - 8) + '" y="' + (y + 3.5).toFixed(1) + '" text-anchor="end" fill="#9fb198" font-family="\'DM Mono\',monospace" font-size="10">' + t + '</text>';
+        }).join('');
+        // Split on missing days so the line never bridges unavailable data.
+        var segs = [], cur = [];
+        days.forEach(function (d, i) {
+          if (d.v !== null && isFinite(d.v) && d.v >= 0) cur.push({ i: i, v: d.v });
+          else if (cur.length) { segs.push(cur); cur = []; }
+        });
+        if (cur.length) segs.push(cur);
+        var area = segs.map(function (pts) {
+          var xy = pts.map(function (p) { return [xAt(p.i), yAt(p.v)]; });
+          var line = smoothPath(xy);
+          return '<path d="' + line + ' L' + xy[xy.length - 1][0].toFixed(1) + ' ' + baseY + ' L' + xy[0][0].toFixed(1) + ' ' + baseY + ' Z" fill="url(#wxRainArea)" opacity="0.55"/>';
+        }).join('');
+        var line = segs.map(function (pts) {
+          return '<path d="' + smoothPath(pts.map(function (p) { return [xAt(p.i), yAt(p.v)]; })) + '" fill="none" stroke="#d8e87e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>';
+        }).join('');
+        var dots = segs.map(function (pts) {
+          return pts.map(function (p) {
+            return '<circle cx="' + xAt(p.i).toFixed(1) + '" cy="' + yAt(p.v).toFixed(1) + '" r="3.2" fill="#0e1a11" stroke="#d8e87e" stroke-width="2"><title>' + esc(days[p.i].day + ' ' + days[p.i].date + ': ' + fmtVal(p.v)) + '</title></circle>';
+          }).join('');
+        }).join('');
+        var vals = days.map(function (d, i) {
+          var y = d.v === null ? (baseY - 12) : (yAt(d.v) - 9);
+          var label = d.v === null ? '—' : fmtVal(d.v);
+          var fill = d.v === null ? '#8fa184' : '#e9f2d8';
+          return '<text x="' + xAt(i).toFixed(1) + '" y="' + y.toFixed(1) + '" text-anchor="middle" fill="' + fill + '" font-family="\'DM Mono\',monospace" font-weight="700" font-size="10.5">' + esc(label) + '</text>';
+        }).join('');
+        var axis = days.map(function (d, i) {
+          return '<text x="' + xAt(i).toFixed(1) + '" y="' + (baseY + 18).toFixed(1) + '" text-anchor="middle" fill="#e9f2d8" font-family="\'DM Mono\',monospace" font-weight="700" font-size="10">' + esc(d.day) + '</text>'
+            + '<text x="' + xAt(i).toFixed(1) + '" y="' + (baseY + 32).toFixed(1) + '" text-anchor="middle" fill="#9fb198" font-family="\'DM Mono\',monospace" font-size="9">' + esc(d.date) + '</text>';
+        }).join('');
+        strip.innerHTML = '<div class="wx-rain-wrap"><svg class="wx-rain-svg" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="7-day rainfall outlook">'
+          + '<defs><linearGradient id="wxRainArea" x1="0" y1="0" x2="0" y2="1">'
+          + '<stop offset="0%" stop-color="#9ed683" stop-opacity="0.85"/><stop offset="100%" stop-color="#9ed683" stop-opacity="0.06"/>'
+          + '</linearGradient></defs>'
+          + grid + area + line + dots + vals
+          + '<line x1="' + padL + '" y1="' + baseY + '" x2="' + (W - padR) + '" y2="' + baseY + '" stroke="rgba(255,255,255,.22)" stroke-width="1.5"/>'
+          + axis + '</svg></div>';
+      } finally {
+        renderStrip._busy = false;
+      }
+    }
+    /* PERF: explicit one-shot mirrors. app.js calls SaarthiHome.refresh()
+       after every render instead of always-on MutationObservers. No
+       observation, no feedback loop: plain text copies, then the chart. */
+    function syncField(id, target, fmt) {
+      var a = document.getElementById(id), b = document.getElementById(target);
+      if (!a || !b) return;
+      b.textContent = fmt ? fmt(a.textContent) : a.textContent;
+    }
+    function syncRiskBadge() {
+      var label = document.getElementById('risk-label');
+      var badge = document.getElementById('wx-risk-badge');
+      var note = document.getElementById('wx-risk-note');
+      if (!label || !badge) return;
+      var t = (label.textContent || '').toLowerCase();
+      badge.className = 'sa-badge ' + (/high/.test(t) ? 'high' : /mod/.test(t) ? 'mod' : /low/.test(t) ? 'low' : 'na');
+      badge.textContent = label.textContent;
+      var prob = document.getElementById('risk-probability');
+      if (note && prob) note.textContent = prob.textContent;
+    }
+    function refresh() {
+      syncField('rain-7', 'wx-big-rain');
+      syncField('expected-rain', 'wx-side-heaviest');
+      syncField('dry-14', 'wx-side-drywet');
+      syncField('rain-trend', 'wx-side-trend');
+      syncField('geo-location-line', 'wx-loc-block');
+      syncRiskBadge();
+      renderStrip();
+    }
+    window.SaarthiHome = { refresh: refresh, renderStrip: renderStrip };
+    document.addEventListener('DOMContentLoaded', function () {
+      refresh();
+    });
+  })();
+  </script>
+</body>
+</html>

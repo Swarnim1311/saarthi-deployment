@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SAARTHI Voice Assistant</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f7f1;
+            color: #1f2d1f;
+        }
+
+        .container {
+            max-width: 650px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 28px;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 8px 0 16px;
+            color: #2e7d32;
+        }
+
+        .profile-btn {
+            background: #2e7d32;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 9px 15px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 6px rgba(46, 125, 50, 0.2);
+        }
+
+        .profile-btn:hover {
+            background: #1b5e20;
+            transform: translateY(-1px);
+        }
+
+        .active-farmer-banner {
+            background: #e8f5e9;
+            border: 1px solid #81c784;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin: 12px 0 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+        }
+
+        .farmer-summary-text {
+            color: #1b5e20;
+            line-height: 1.4;
+        }
+
+        .clear-session-btn {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #ffcdd2;
+            padding: 4px 10px;
+            font-size: 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+
+        .clear-session-btn:hover {
+            background: #ffcdd2;
+        }
+
+        .language-box {
+            margin: 18px 0;
+        }
+
+        .language-box label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+            background: #fafafa;
+        }
+
+        .voice-circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 20px auto 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            background: #e8f5e9;
+            transition: all 0.3s ease;
+            user-select: none;
+            cursor: pointer;
+        }
+
+        .voice-circle.listening {
+            background: #ffebee;
+            box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.5);
+            animation: pulse-red 1.3s infinite;
+        }
+
+        .voice-circle.processing {
+            background: #fff8e1;
+            box-shadow: 0 0 0 0 rgba(255, 179, 0, 0.5);
+            animation: pulse-orange 1.2s infinite;
+        }
+
+        .voice-circle.speaking {
+            background: #e3f2fd;
+            box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.5);
+            animation: pulse-blue 1.3s infinite;
+        }
+
+        .voice-circle.error {
+            background: #ffebee;
+            border: 2px solid #ef5350;
+        }
+
+        .voice-circle svg {
+            transition: stroke 0.3s ease;
+        }
+
+        .voice-circle.listening svg {
+            stroke: #d32f2f;
+        }
+
+        .voice-circle.processing svg {
+            stroke: #f57c00;
+        }
+
+        .voice-circle.speaking svg {
+            stroke: #1976d2;
+        }
+
+        .voice-circle.error svg {
+            stroke: #c62828;
+        }
+
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0.6); transform: scale(1); }
+            50% { transform: scale(1.05); }
+            70% { box-shadow: 0 0 0 16px rgba(229, 57, 53, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(229, 57, 53, 0); transform: scale(1); }
+        }
+
+        @keyframes pulse-orange {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.04); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse-blue {
+            0% { box-shadow: 0 0 0 0 rgba(33, 150, 243, 0.6); transform: scale(1); }
+            50% { transform: scale(1.04); }
+            70% { box-shadow: 0 0 0 16px rgba(33, 150, 243, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(33, 150, 243, 0); transform: scale(1); }
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 18px;
+            margin: 6px;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        #startButton {
+            display: block;
+            margin: 8px auto 10px;
+            font-size: 18px;
+            font-weight: bold;
+            background: #2e7d32;
+            color: white;
+            box-shadow: 0 3px 10px rgba(46, 125, 50, 0.25);
+            min-width: 220px;
+            text-align: center;
+        }
+
+        #startButton:hover {
+            background: #1b5e20;
+        }
+
+        #startButton.listening {
+            background: #d32f2f;
+            box-shadow: 0 3px 12px rgba(211, 47, 47, 0.35);
+        }
+
+        #startButton.processing {
+            background: #f57c00;
+            box-shadow: 0 3px 12px rgba(245, 124, 0, 0.35);
+        }
+
+        #startButton.speaking {
+            background: #1976d2;
+            box-shadow: 0 3px 12px rgba(25, 118, 210, 0.35);
+        }
+
+        .recording-timer {
+            text-align: center;
+            font-weight: bold;
+            font-size: 15px;
+            color: #d32f2f;
+            margin: 4px 0 10px;
+            letter-spacing: 0.5px;
+        }
+
+        .secondary-buttons {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        #replayButton {
+            background: #1976d2;
+            color: white;
+            font-weight: bold;
+        }
+
+        #replayButton:hover {
+            background: #1565c0;
+        }
+
+        .status {
+            text-align: center;
+            font-weight: bold;
+            margin: 12px 0;
+            min-height: 24px;
+            transition: color 0.2s ease;
+        }
+
+        .box {
+            background: #f7f9f7;
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .box-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2e7d32;
+        }
+
+        #result {
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .example {
+            margin-top: 15px;
+            padding: 12px 15px;
+            background: #fff8e1;
+            border-radius: 10px;
+            border-left: 4px solid #ffb300;
+        }
+
+        .example-title {
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 25px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* ========================================== */
+        /* MODAL STYLES (TASK 3: FARMER PROFILE)      */
+        /* ========================================== */
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(3px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 16px;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 16px;
+            max-width: 560px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #e8f5e9;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #1b5e20;
+            font-size: 20px;
+        }
+
+        .modal-close-btn {
+            background: #f5f5f5;
+            border: none;
+            font-size: 18px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #555;
+            padding: 0;
+            margin: 0;
+        }
+
+        .modal-close-btn:hover {
+            background: #e0e0e0;
+            color: black;
+        }
+
+        .section-box {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 16px;
+        }
+
+        .section-box h4 {
+            margin: 0 0 10px 0;
+            color: #2e7d32;
+            font-size: 15px;
+        }
+
+        .load-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .load-row input {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .primary-sm-btn {
+            background: #2e7d32;
+            color: white;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .primary-sm-btn:hover {
+            background: #1b5e20;
+        }
+
+        .quick-chips {
+            margin-top: 10px;
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .chip-btn {
+            background: #e8f5e9;
+            color: #1b5e20;
+            border: 1px solid #c8e6c9;
+            font-size: 12px;
+            padding: 5px 10px;
+            border-radius: 14px;
+            margin: 0;
+        }
+
+        .chip-btn:hover {
+            background: #c8e6c9;
+        }
+
+        /* Profile details card */
+        .profile-card {
+            background: white;
+            border: 1.5px solid #81c784;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin-top: 12px;
+        }
+
+        .profile-card-header {
+            font-weight: bold;
+            color: #1b5e20;
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .profile-card-item {
+            font-size: 13.5px;
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        .profile-card-item strong {
+            color: #111;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-group label {
+            font-size: 12.5px;
+            font-weight: bold;
+            margin-bottom: 4px;
+            color: #333;
+        }
+
+        .form-group input {
+            padding: 8px 10px;
+            font-size: 13.5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: 0 0 0 2px rgba(46, 125, 50, 0.15);
+        }
+
+        .feedback-msg {
+            font-size: 13px;
+            margin-top: 8px;
+            min-height: 18px;
+            font-weight: 500;
+        }
+
+        .feedback-msg.success {
+            color: #2e7d32;
+        }
+
+        .feedback-msg.error {
+            color: #c62828;
+        }
+
+        </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER & PROFILE BUTTON -->
+        <div class="header-top">
+            <h1>SAARTHI</h1>
+            <button id="profileButton" class="profile-btn">
+                Farmer Profile
+            </button>
+        </div>
+
+        <h2 id="askTitle">Ask SAARTHI</h2>
+
+        <!-- ACTIVE FARMER CONTEXT BANNER -->
+        <div id="activeFarmerBanner" class="active-farmer-banner" style="display: none;">
+            <div class="farmer-summary-text">
+                <strong>Active Farmer:</strong> <span id="bannerFarmerName"></span> (<span id="bannerFarmerCrop"></span>, <span id="bannerFarmerLocation"></span>)
+            </div>
+            <button id="clearFarmerSessionBtn" class="clear-session-btn" title="Clear profile context">
+                Clear
+            </button>
+        </div>
+
+
+        <!-- 1. LANGUAGE SELECTION -->
+        <div class="language-box">
+            <label id="languageLabel" for="language">
+                Choose Language:
+            </label>
+            <select id="language">
+                <option value="en-IN">English</option>
+                <option value="hi-IN">हिंदी</option>
+                <option value="te-IN">తెలుగు</option>
+                <option value="pa-IN">ਪੰਜਾਬੀ</option>
+            </select>
+        </div>
+
+
+        <!-- 2. MICROPHONE / VOICE INPUT & 3. STOP BUTTON -->
+        <div class="voice-circle" id="voiceCircle" role="button" tabindex="0" title="Tap to Speak / Stop">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2e7d32" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
+        </div>
+
+        <button id="startButton">
+            Start Speaking
+        </button>
+
+
+        <!-- RECORDING TIMER -->
+        <div id="recordingTimer" class="recording-timer" style="display: none;">
+            Recording 00:00
+        </div>
+
+
+        <!-- STATUS -->
+        <div id="status" class="status">
+            Ready
+        </div>
+
+
+        <!-- EXAMPLE PROMPT -->
+        <div class="example">
+            <div id="exampleTitle" class="example-title">
+                Try asking:
+            </div>
+            <div id="exampleQuestion">
+                "Should I irrigate my paddy today?"
+            </div>
+        </div>
+
+
+        <!-- 6. CHAT / RESPONSE AREA: WHAT FARMER SAID -->
+        <div class="box">
+            <div class="box-title" id="youSaidTitle">
+                You said:
+            </div>
+            <div id="userQuestion">
+                -
+            </div>
+        </div>
+
+
+        <!-- 6. CHAT / RESPONSE AREA: SAARTHI ANSWER -->
+        <div class="box">
+            <div class="box-title" id="answerTitle">
+                SAARTHI says:
+            </div>
+            <div id="result">
+                -
+            </div>
+        </div>
+
+
+        <!-- 4. HEAR AGAIN / SPEAKER BUTTON -->
+        <div class="secondary-buttons">
+            <button id="replayButton">
+                Hear Again
+            </button>
+        </div>
+
+
+        <div class="footer">
+            Voice-first multilingual agricultural assistant
+        </div>
+
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- 5. FARMER PROFILE MODAL (TASK 3)           -->
+    <!-- ========================================== -->
+    <div id="farmerModal" class="modal-overlay" style="display: none;">
+
+        <div class="modal-card">
+
+            <div class="modal-header">
+                <h3>Farmer Profile</h3>
+                <button id="closeModalBtn" class="modal-close-btn" title="Close">&times;</button>
+            </div>
+
+            <!-- SECTION A: LOAD EXISTING FARMER -->
+            <div class="section-box">
+                <h4>Load Farmer Profile</h4>
+                <div class="load-row">
+                    <input type="text" id="loadFarmerIdInput" placeholder="Enter Farmer ID (e.g. F001)">
+                    <button id="loadFarmerBtn" class="primary-sm-btn">Load Farmer</button>
+                </div>
+
+                <div class="quick-chips">
+                    <span style="font-size: 12px; color: #666; align-self: center;">Quick test:</span>
+                    <button type="button" class="chip-btn" id="chipF001">F001 (Amritsar - Rice)</button>
+                    <button type="button" class="chip-btn" id="chipF002">F002 (Vijayawada - Wheat)</button>
+                </div>
+
+                <div id="loadMsg" class="feedback-msg"></div>
+
+                <!-- PROFILE CARD (DISPLAYS LOADED FARMER) -->
+                <div id="loadedProfileCard" class="profile-card" style="display: none;">
+                    <div class="profile-card-header">
+                        Active Profile Card
+                    </div>
+                    <div class="profile-card-item">
+                        <strong>Farmer ID:</strong> <span id="cardFarmerId">-</span>
+                    </div>
+                    <div class="profile-card-item">
+                        <strong>Name:</strong> <span id="cardFarmerName">-</span>
+                    </div>
+                    <div class="profile-card-item">
+                        <strong>Crop:</strong> <span id="cardCrop">-</span>
+                    </div>
+                    <div class="profile-card-item">
+                        <strong>Location:</strong> <span id="cardLocation">-</span>
+                    </div>
+                    <div class="profile-card-item">
+                        <strong>District & State:</strong> <span id="cardDistrictState">-</span>
+                    </div>
+                    <div class="profile-card-item" id="cardLandSizeItem">
+                        <strong>Land Size:</strong> <span id="cardLandSize">-</span>
+                    </div>
+                    <div class="profile-card-item" id="cardSowingDateItem">
+                        <strong>Sowing Date:</strong> <span id="cardSowingDate">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SECTION B: SAVE / REGISTER NEW FARMER -->
+            <div class="section-box">
+                <h4>Register / Update Farmer</h4>
+                <form id="farmerForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="formFarmerId">Farmer ID *</label>
+                            <input type="text" id="formFarmerId" placeholder="e.g. F003" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formFarmerName">Farmer Name *</label>
+                            <input type="text" id="formFarmerName" placeholder="e.g. Harpreet Singh" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formCrop">Crop *</label>
+                            <input type="text" id="formCrop" placeholder="e.g. Rice, Wheat, Cotton" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formCropLocation">Crop Location *</label>
+                            <input type="text" id="formCropLocation" placeholder="e.g. Amritsar" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formDistrict">District *</label>
+                            <input type="text" id="formDistrict" placeholder="e.g. Amritsar" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formState">State *</label>
+                            <input type="text" id="formState" placeholder="e.g. Punjab" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="formLandSize">Land Size (optional)</label>
+                            <input type="text" id="formLandSize" placeholder="e.g. 5 acres">
+                        </div>
+                        <div class="form-group">
+                            <label for="formSowingDate">Sowing Date (optional)</label>
+                            <input type="date" id="formSowingDate">
+                        </div>
+                    </div>
+
+                    <div style="margin-top: 14px; text-align: right;">
+                        <button type="submit" id="saveFarmerBtn" class="primary-sm-btn">
+                            Save Farmer
+                        </button>
+                    </div>
+
+                    <div id="saveMsg" class="feedback-msg"></div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

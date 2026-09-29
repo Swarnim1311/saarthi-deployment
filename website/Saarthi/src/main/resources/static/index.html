@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAARTHI — Block Weather Intelligence for Indian Agriculture</title>
+  <meta name="description" content="From rainfall and field-work risk to crop suitability and climate signals, SAARTHI turns live weather data into practical intelligence for every block." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/saarthi-design.css" />
+  <link rel="stylesheet" href="/static/saarthi-shell.css" />
+  <style>
+    /* ============ LANDING — minimal cinematic intro, almost no glass ============ */
+    /* Viewport fit (landing only): shell is exactly one viewport tall with
+       hidden overflow; the hero compresses instead of scrolling. Other pages
+       keep natural document scroll — these rules are .landing-scoped. */
+    .app-shell.landing{background:transparent;border:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;
+      height:calc(100vh - 28px);min-height:0;overflow:hidden}
+    .landing-body{flex:1;display:flex;gap:18px;padding:20px;align-items:stretch;min-height:0;min-width:0}
+    .landing-hero{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column;justify-content:center;padding:clamp(12px,3vw,48px);position:relative;overflow:hidden}
+    .landing-rule{width:56px;height:2px;background:#d8e87e;margin:0 0 18px;animation:wxRise .7s var(--ease) .05s both;flex:0 0 auto}
+    .landing-eyebrow{animation:wxRise .7s var(--ease) .1s both}
+    .landing-title{font-family:var(--serif);font-weight:600;line-height:1.06;letter-spacing:-.015em;color:#fff;margin:12px 0 0;
+      font-size:clamp(36px,4.6vw,68px);text-wrap:balance;text-shadow:0 2px 30px rgba(0,0,0,.55);animation:wxRise .7s var(--ease) .18s both}
+    .landing-title .line{display:block}
+    .landing-title em{font-style:italic;color:#e9f2d8}
+    @media(max-width:640px){.landing-title{font-size:clamp(32px,9vw,44px);line-height:1.1}}
+    .landing-lede{color:#d6dfd2;line-height:1.65;font-size:clamp(13.5px,1.2vw,16px);max-width:56ch;margin:14px 0 0;
+      text-shadow:0 1px 14px rgba(0,0,0,.6);animation:wxRise .7s var(--ease) .26s both}
+    .landing-cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px;animation:wxRise .7s var(--ease) .34s both}
+    .landing-cta .sa-btn{box-shadow:0 12px 30px rgba(0,0,0,.4)}
+    .landing-cta .ghost{background:rgba(10,18,12,.32);border:1px solid rgba(255,255,255,.25);color:#fff;backdrop-filter:blur(16px) saturate(1.3);-webkit-backdrop-filter:blur(16px) saturate(1.3)}
+    .landing-meta{display:flex;gap:0;margin-top:26px;border-top:1px solid rgba(255,255,255,.18);animation:wxRise .7s var(--ease) .42s both}
+    .landing-meta a{flex:1;min-width:0;padding:12px 16px 2px 0;color:#eef4ea;text-decoration:none;border-right:1px solid rgba(255,255,255,.12);margin-right:16px;transition:opacity var(--t-fast)}
+    .landing-meta a:last-child{border-right:none;margin-right:0}
+    .landing-meta a:hover{opacity:.75}
+    .landing-meta b{display:block;font:700 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#d8e87e;margin-bottom:5px}
+    .landing-meta span{font-size:12px;color:#c6d2c0;line-height:1.5;display:block}
+    .landing-foot{display:flex;justify-content:space-between;gap:10px;padding:11px 24px;border-top:1px solid rgba(255,255,255,.14);
+      font:500 10.5px var(--mono);color:#b9c6b4;flex-wrap:wrap;flex:0 0 auto}
+    .landing-foot a{color:#dfe8d8}
+    /* Short viewports: compress type instead of overflowing. */
+    @media(max-height:780px){
+      .landing-title{font-size:clamp(34px,4.4vw,60px)}
+      .landing-lede{margin-top:10px}
+      .landing-cta{margin-top:16px}
+      .landing-meta{margin-top:18px}
+      .landing-rule{margin-bottom:12px}
+    }
+    /* Issue 6: very short viewports can't fit the full composition — let the
+       shell grow with natural document scroll instead of clipping content or
+       forcing a competing inner scrollbar. Footer and links stay reachable. */
+    @media(max-height:640px) and (min-width:861px){
+      .app-shell.landing{height:auto;min-height:calc(100vh - 28px);overflow:visible}
+      .landing-hero{overflow:visible}
+    }
+    @media(max-width:860px){
+      .app-shell.landing{height:auto;min-height:calc(100vh - 16px);overflow:visible}
+      .landing-meta{flex-direction:column}
+      .landing-meta a{border-right:none;border-bottom:1px solid rgba(255,255,255,.12);margin-right:0;padding:12px 0}
+      .landing-meta a:last-child{border-bottom:none}
+      .landing-hero{justify-content:flex-end;padding:20px;overflow:visible}
+    }
+    @media (prefers-reduced-motion:reduce){.landing-rule,.landing-eyebrow,.landing-title,.landing-lede,.landing-cta,.landing-meta{animation:none}}
+  </style>
+  <link rel="stylesheet" href="/static/saarthi-refine.css">
+</head>
+<body class="app">
+  <div class="app-bg" aria-hidden="true"><img src="/static/images/dramaticclouds2.jpg" alt="" fetchpriority="high"></div>
+  <div class="app-veil" aria-hidden="true"></div>
+  <div class="app-tint" aria-hidden="true"></div>
+  <button class="fab-menu" aria-expanded="false" aria-controls="rail-overlay" aria-label="Open navigation">☰</button>
+
+  <div class="app-shell landing">
+    <div class="landing-body">
+      <aside class="rail liq" aria-label="Primary">
+        <a class="rail-brand" href="/home" data-nav="home" aria-label="SAARTHI home"><img src="/static/assets/logo.png" alt="SAARTHI logo"><b>SAARTHI</b></a>
+        <a class="rail-item" href="/home" data-nav="home"><i>⌂</i><span>Home</span></a>
+        <a class="rail-item" href="/weather" data-nav="weather"><i>◎</i><span>Weather</span></a>
+        <a class="rail-item" href="/farmer" data-nav="farmer"><i>♧</i><span>Farmer Portal</span></a>
+        <a class="rail-item" href="/forecast" data-nav="timeline"><i>☔</i><span>Forecast</span></a>
+        <a class="rail-item" href="/risk-map" data-nav="map"><i>◍</i><span>Risk Map</span></a>
+        <a class="rail-item" href="/climate" data-nav="intelligence"><i>◐</i><span>Climate Intelligence</span></a>
+        <a class="rail-item" href="/cropatlas" data-nav="cropatlas"><i>❦</i><span>CropAtlas</span></a>
+        <a class="rail-item" href="/policies" data-nav="policy-alerts"><i>⚖</i><span>Policies</span></a>
+        <span class="rail-live"><i class="sa-dot"></i><em>Live</em></span>
+      </aside>
+
+      <main class="landing-hero app-content" id="top">
+        <div class="landing-rule" aria-hidden="true"></div>
+        <p class="eyebrow landing-eyebrow"><i class="sa-dot"></i>Live block weather intelligence</p>
+        <h1 class="landing-title"><span class="line">Weather changes the field.</span><em class="line">Know what changes next.</em></h1>
+        <p class="landing-lede">From rainfall and field-work risk to crop suitability and climate signals, SAARTHI turns live weather data into practical intelligence for every block.</p>
+        <div class="landing-cta">
+          <a class="sa-btn primary" href="/weather">Explore your block <span>→</span></a>
+          <a class="sa-btn ghost" href="/farmer">Open Farmer Portal</a>
+        </div>
+        <nav class="landing-meta" aria-label="Platform areas">
+          <a href="/forecast"><b>16-day forecast</b><span>See what the weather is bringing.</span></a>
+          <a href="/cropatlas"><b>CropAtlas</b><span>Know what can grow here.</span></a>
+          <a href="/climate"><b>Climate intelligence</b><span>Understand the signals behind the season.</span></a>
+        </nav>
+      </main>
+    </div>
+
+    <footer class="landing-foot">
+      <span>© 2026 SAARTHI · Live weather intelligence for every block</span>
+      <span><a href="/weather">Weather</a> · <a href="/forecast">Forecast</a> · <a href="/farmer">Farmer Portal</a></span>
+    </footer>
+  </div>
+
+  <nav class="rail-overlay" id="rail-overlay" aria-label="Sections">
+    <a href="/home" data-nav="home"><i>⌂</i>Home</a>
+    <a href="/weather" data-nav="weather"><i>◎</i>Weather</a>
+    <a href="/farmer" data-nav="farmer"><i>♧</i>Farmer Portal</a>
+    <a href="/forecast" data-nav="timeline"><i>☔</i>Forecast</a>
+    <a href="/risk-map" data-nav="map"><i>◍</i>Risk Map</a>
+    <a href="/climate" data-nav="intelligence"><i>◐</i>Climate Intelligence</a>
+    <a href="/cropatlas" data-nav="cropatlas"><i>❦</i>CropAtlas</a>
+    <a href="/policies" data-nav="policy-alerts"><i>⚖</i>Policies</a>
+    <p class="ov-live">● LIVE MONITORING</p>
+  </nav>
+
+  <script src="/static/saarthi-ui.js"></script>
+  <script src="/static/saarthi-liquid.js"></script>
+</body>
+</html>

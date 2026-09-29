@@ -1,0 +1,59 @@
+body {
+    font-family: Arial, sans-serif;
+
+    background-color: #f3f7f1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 100vh;
+
+    margin: 0;
+}
+
+.voice-box {
+    background-color: white;
+
+    width: 350px;
+
+    padding: 40px;
+
+    border-radius: 20px;
+
+    text-align: center;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+.mic {
+    font-size: 70px;
+
+    margin: 25px 0;
+}
+
+button {
+    padding: 14px 25px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+p {
+    color: #666;
+
+    margin-top: 20px;
+}
