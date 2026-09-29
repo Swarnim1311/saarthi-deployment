@@ -49,6 +49,19 @@
   border-radius: 8px;
   background: #ffffff;
   color: var(--ink, #22301f);
+  color-scheme: light;
+}
+/* This bar is a light panel: the shared dark-shell hover/focus rules
+   (saarthi-design.css / saarthi-shell.css) repaint `background` at a higher
+   specificity, which would leave the dark --ink text sitting on the dark
+   glass hover/focus surface and render the closed control unreadable.
+   Re-assert the light surface for the interaction states. This file loads
+   after saarthi-design.css, so it wins the tie on source order. */
+.intel-select-bar select:hover,
+.intel-select-bar select:focus,
+.intel-select-bar select:focus-visible {
+  background: #ffffff;
+  color: var(--ink, #22301f);
 }
 
 .intel-summary {
